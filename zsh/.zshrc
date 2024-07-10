@@ -1,6 +1,6 @@
 export PATH=/home/ric/.local/bin:$PATH
 export CHROME_EXECUTABLE=/usr/bin/chromium
-export EDITOR=nano
+export EDITOR=nvim
 # export PATH="/opt/flutter/bin:$PATH"
 # export ANDROID_HOME=/home/ric/Android/Sdk
 # export PATH=$ANDROID_HOME/platform-tools:$PATH
@@ -81,15 +81,38 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls='ls --color'
-alias vim='nvim'
+alias vi='nvim'
 alias c='clear'
+alias f="fzf --preview='bat --color=always {}'"
+alias zshc='nvim .zshrc'
+
+
 
 # Shell integrations
-# eval "$(fzf --zsh)"
-# eval "$(zoxide init --cmd cd zsh)"
+eval "$(fzf --zsh)"
+eval "$(zoxide init zsh)"
 
 
 eval "$(direnv hook zsh)"
 
 # Turso
 export PATH="$PATH:/home/ric/.turso"
+
+# bun completions
+[ -s "/home/ric/.bun/_bun" ] && source "/home/ric/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+
+
+
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}

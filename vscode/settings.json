@@ -1,0 +1,27 @@
+{
+  "editor.fontSize": 16,
+  "editor.fontFamily": "FiraCode Nerd Font",
+  "editor.fontLigatures": true,
+  "workbench.colorTheme": "One Dark Pro",
+  "workbench.iconTheme": "material-icon-theme",
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font",
+  "files.autoSave": "afterDelay",
+  "editor.formatOnSave": true,
+  "terminal.integrated.cursorStyle": "line",
+  "window.zoomLevel": 0.6,
+  "terminal.external.linuxExec": "blackbox-terminal",
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [80],
+    "editor.selectionHighlight": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off"
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.linkedEditing": true,
+  "editor.formatOnPaste": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.minimap.enabled": false
+}
