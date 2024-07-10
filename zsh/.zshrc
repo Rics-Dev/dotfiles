@@ -48,6 +48,14 @@ autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 
+
+
+
+
+
+
+
+
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/kushal.omp.json)"
 
