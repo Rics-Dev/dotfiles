@@ -23,5 +23,11 @@
   "editor.linkedEditing": true,
   "editor.formatOnPaste": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.minimap.enabled": false
+  "editor.minimap.enabled": false,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["k", "j"],
+      "after": ["<Esc>"]
+    }
+  ]
 }

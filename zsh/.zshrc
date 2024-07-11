@@ -1,6 +1,6 @@
 export PATH=/home/ric/.local/bin:$PATH
 export CHROME_EXECUTABLE=/usr/bin/chromium
-export EDITOR=nvim
+
 # export PATH="/opt/flutter/bin:$PATH"
 # export ANDROID_HOME=/home/ric/Android/Sdk
 # export PATH=$ANDROID_HOME/platform-tools:$PATH
