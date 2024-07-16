@@ -29,5 +29,8 @@
       "before": ["k", "j"],
       "after": ["<Esc>"]
     }
-  ]
+  ],
+  "git.suggestSmartCommit": false,
+  "material-icon-theme.files.customClones": [],
+  "svelte.enable-ts-plugin": true
 }

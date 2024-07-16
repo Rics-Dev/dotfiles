@@ -1,6 +1,4 @@
 export PATH=/home/ric/.local/bin:$PATH
-export CHROME_EXECUTABLE=/usr/bin/chromium
-
 # export PATH="/opt/flutter/bin:$PATH"
 # export ANDROID_HOME=/home/ric/Android/Sdk
 # export PATH=$ANDROID_HOME/platform-tools:$PATH
@@ -103,15 +101,11 @@ eval "$(zoxide init zsh)"
 
 eval "$(direnv hook zsh)"
 
-# Turso
-export PATH="$PATH:/home/ric/.turso"
 
-# bun completions
-[ -s "/home/ric/.bun/_bun" ] && source "/home/ric/.bun/_bun"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+
+
+
 
 
 
@@ -124,3 +118,14 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
+
+
+
+#export PATH="$PATH":"$HOME/.pub-cache/bin"
+export CHROME_EXECUTABLE=/usr/bin/chromium
+export EDITOR=nvim
+export PATH="$PATH:/home/ric/.turso"
+# bun completions
+[ -s "/home/ric/.bun/_bun" ] && source "/home/ric/.bun/_bun"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
