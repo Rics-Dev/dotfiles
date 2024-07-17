@@ -10,7 +10,8 @@
         | append $"($env.HOME)/.local/bin"
         | append $"($env.HOME)/bin"
         | append $"($env.HOME)/.bun/bin"
-        | append $"($env.HOME)/.turso" 
+        | append $"($env.HOME)/.turso"
+        | append $"($env.HOME)/.pocketbase"
         | append ($env.PATH | split row (char esep))
     )
 
