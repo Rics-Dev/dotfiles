@@ -155,7 +155,7 @@ $env.config = {
     }
 
     rm: {
-        always_trash: false # always act as if -t was given. Can be overridden with -p
+        always_trash: true # always act as if -t was given. Can be overridden with -p
     }
 
     table: {
@@ -901,7 +901,7 @@ def --env yy [...args] {
 	if $cwd != "" and $cwd != $env.PWD {
 		cd $cwd
 	}
-	rm -fp $tmp
+	#rm -fp $tmp
 }
 
 
@@ -911,28 +911,4 @@ def run_fastfetch [] {
     }
 }
 run_fastfetch
-
-# Alias to prompt for confirmation before executing 'rm -rf'
-alias rm = {
-    if $nu.shell.args | any? { $it == "-rf" } {
-        echo "Are you sure you want to execute rm -rf? (y/n)"
-        let confirm = $input
-        if $confirm == "y" {
-            rm $nu.shell.args
-        } else {
-            echo "Cancelled"
-        }
-    } else {
-        rm $nu.shell.args
-    }
-}
-
-# Alias to prevent execution of 'rm -rf /*'
-alias rm = {
-    if $nu.shell.args | all? { $it == "-rf" || $it == "/*" } {
-        echo "Error: 'rm -rf /*' is not allowed."
-    } else {
-        rm $nu.shell.args
-    }
-}
 
