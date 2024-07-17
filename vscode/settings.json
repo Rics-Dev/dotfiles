@@ -32,5 +32,6 @@
   ],
   "git.suggestSmartCommit": false,
   "material-icon-theme.files.customClones": [],
-  "svelte.enable-ts-plugin": true
+  "svelte.enable-ts-plugin": true,
+  "git.autofetch": true
 }
