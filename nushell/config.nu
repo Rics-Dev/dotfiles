@@ -40,8 +40,8 @@ let dark_theme = {
     shape_custom: green
     shape_datetime: cyan_bold
     shape_directory: cyan
-    shape_external: red
-    shape_externalarg: cyan
+    shape_external: cyan
+    shape_externalarg: green_bold
     shape_external_resolved: green_bold
     shape_filepath: cyan
     shape_flag: blue_bold
@@ -471,13 +471,13 @@ $env.config = {
             mode: [emacs, vi_normal, vi_insert]
             event: { send: ctrld }
         }
-        {
-            name: clear_screen
-            modifier: control
-            keycode: char_l
-            mode: [emacs, vi_normal, vi_insert]
-            event: { send: clearscreen }
-        }
+    #{
+    #       name: clear_screen
+    #       modifier: control
+    #       keycode: char_l
+    #       mode: [emacs, vi_normal, vi_insert]
+    #       event: { send: clearscreen }
+    #   }
         {
             name: search_history
             modifier: control
@@ -893,6 +893,9 @@ $env.config = {
     ]
 }
 
+#aliases:
+alias c = clear
+alias nv = nvim
 
 def --env yy [...args] {
 	let tmp = (mktemp -t "yazi-cwd.XXXXXX")

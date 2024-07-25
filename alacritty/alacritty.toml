@@ -57,10 +57,12 @@ style = "Regular"
 history = 15000
 
 [window]
-opacity = 0.95
+title = "Alacritty"
+dynamic_title = false
+opacity = 0.98
 #decorations = "full"
 
-#startup_mode = "Windowed"
+startup_mode = "Fullscreen"
 
 [window.dimensions]
 columns = 125
