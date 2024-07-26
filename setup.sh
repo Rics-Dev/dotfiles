@@ -28,63 +28,75 @@ install_package() {
 }
 
 # Setup fastfetch
-echo "Setting up fastfetch..."
+#echo "Setting up fastfetch..."
+#
+#if command_exists fastfetch; then
+#  echo "fastfetch is already installed."
+#else
+#  echo "Installing fastfetch..."
+#  if command_exists apt-get || command_exists yum || command_exists pacman; then
+#    install_package apt-get fastfetch || install_package yum fastfetch || install_package pacman fastfetch
+#  else
+#    echo "Error: Package manager not found. Please install fastfetch manually."
+#    exit 1
+#  fi
+#
+#  # Check if installation was successful
+#  if ! command_exists fastfetch; then
+#    echo "Error: fastfetch installation failed. Exiting."
+#    exit 1
+#  fi
+#fi
 
-if command_exists fastfetch; then
-  echo "fastfetch is already installed."
-else
-  echo "Installing fastfetch..."
-  if command_exists apt-get || command_exists yum || command_exists pacman; then
-    install_package apt-get fastfetch || install_package yum fastfetch || install_package pacman fastfetch
-  else
-    echo "Error: Package manager not found. Please install fastfetch manually."
-    exit 1
-  fi
+# Setup zsh
+#echo "Setting up zsh..."
+#
+#if command_exists zsh; then
+#  echo "zsh is already installed."
+#else
+#  echo "Installing zsh..."
+#  if command_exists apt-get || command_exists yum || command_exists pacman; then
+#    install_package apt-get zsh || install_package yum zsh || install_package pacman zsh
+#  else
+#    echo "Error: Package manager not found. Please install zsh manually."
+#    exit 1
+#  fi
+#
+#  # Check if installation was successful
+#  if ! command_exists zsh; then
+#    echo "Error: zsh installation failed. Exiting."
+#    exit 1
+#  fi
+#fi
 
-  # Check if installation was successful
-  if ! command_exists fastfetch; then
-    echo "Error: fastfetch installation failed. Exiting."
-    exit 1
-  fi
-fi
+# Create symbolic link for .zshrc
+#ln -s ~/.dotfiles/zsh/.zshrc ~/.zshrc
+#echo "zsh link created"
+
+# Create symlink for alacritty
+ln -s ~/.dotfiles/alacritty ~/.config/alacritty
+echo "alacritty link created"
+
+#create symlink for nushell
+ln -s ~/.dotfiles/nushell/env.nu ~/.config/nushell/env.nu
+ln -s ~/.dotfiles/nushell/config.nu ~/.config/nushell/config.nu
+ln -s ~/.dotfiles/nushell/paths.nu ~/.config/nushell/paths.nu
+echo "nushell symlink created"
+
+#create symlink for tmux
+ln -s ~/.dotfiles/tmux ~/.config/tmux
+echo "tmux symlink created"
 
 # Create symbolic link for fastfetch
 ln -s ~/.dotfiles/fastfetch ~/.config/fastfetch
 echo "fastfetch link created"
 
-# Setup zsh
-echo "Setting up zsh..."
-
-if command_exists zsh; then
-  echo "zsh is already installed."
-else
-  echo "Installing zsh..."
-  if command_exists apt-get || command_exists yum || command_exists pacman; then
-    install_package apt-get zsh || install_package yum zsh || install_package pacman zsh
-  else
-    echo "Error: Package manager not found. Please install zsh manually."
-    exit 1
-  fi
-
-  # Check if installation was successful
-  if ! command_exists zsh; then
-    echo "Error: zsh installation failed. Exiting."
-    exit 1
-  fi
-fi
-
-# Create symbolic link for .zshrc
-ln -s ~/.dotfiles/zsh/.zshrc ~/.zshrc
-echo "zsh link created"
-
-echo "Setup complete."
-
 #setup nvim
 ln -s ~/.dotfiles/nvim ~/.config/nvim
-
-#setup firefox
-curl -s -o- https://raw.githubusercontent.com/rafaelmardojai/firefox-gnome-theme/master/scripts/install-by-curl.sh | bash
+echo "neovim link created"
 
 #setup symlink for vscode
 ln -s ~/.dotfiles/vscode/settings.json ~/.config/Code/User/settings.json
 
+#setup firefox
+curl -s -o- https://raw.githubusercontent.com/rafaelmardojai/firefox-gnome-theme/master/scripts/install-by-curl.sh | bash

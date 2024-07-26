@@ -40,8 +40,8 @@ let dark_theme = {
     shape_custom: green
     shape_datetime: cyan_bold
     shape_directory: cyan
-    shape_external: cyan
-    shape_externalarg: green_bold
+    shape_external: red
+    shape_externalarg: cyan
     shape_external_resolved: green_bold
     shape_filepath: cyan
     shape_flag: blue_bold
@@ -705,16 +705,12 @@ $env.config = {
             }
         }
         {
-            name: move_right_or_take_history_hint
+            name: fzf_search
             modifier: control
             keycode: char_f
-            mode: emacs
-            event: {
-                until: [
-                    { send: historyhintcomplete }
-                    { send: menuright }
-                    { send: right }
-                ]
+            mode: [emacs, vi_normal, vi_insert]
+            event: { send: executehostcommand,
+                      cmd: "let selected = (fzf --preview='bat --color=always {}'); if $selected != '' { nvim $selected }"
             }
         }
         {
@@ -731,12 +727,22 @@ $env.config = {
             mode: emacs
             event: { edit: undo }
         }
+    #{
+    #       name: paste_before
+    #       modifier: control
+    #       keycode: char_y
+    #       mode: emacs
+    #       event: { edit: pastecutbufferbefore }
+    #   }
         {
-            name: paste_before
+            name: yazi_tmux_cd
             modifier: control
             keycode: char_y
-            mode: emacs
-            event: { edit: pastecutbufferbefore }
+            mode: [emacs, vi_insert]
+            event: {
+            send: executehostcommand
+            cmd: "yy"
+            }
         }
         {
             name: cut_word_left
@@ -896,15 +902,17 @@ $env.config = {
 #aliases:
 alias c = clear
 alias nv = nvim
-
+alias f = fzf --preview='bat --color=always {}'
+alias nd = neovide
 def --env yy [...args] {
-	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
-	yazi ...$args --cwd-file $tmp
-	let cwd = (open $tmp)
-	if $cwd != "" and $cwd != $env.PWD {
-		cd $cwd
-	}
-	#rm -fp $tmp
+    let tmp = (mktemp -t "yazi-cwd.XXXXXX")
+    yazi ...$args --cwd-file $tmp
+    let cwd = (open $tmp)
+    if $cwd != "" and $cwd != $env.PWD {
+        cd $cwd
+    # tmux new-session -c $cwd
+    }
+    rm -f $tmp
 }
 
 
@@ -915,3 +923,8 @@ def run_fastfetch [] {
 }
 run_fastfetch
 
+
+
+
+
+$env.FZF_DEFAULT_COMMAND = "fd -t f . ~/dev ~/.dotfiles"
