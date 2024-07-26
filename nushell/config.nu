@@ -710,7 +710,7 @@ $env.config = {
             keycode: char_f
             mode: [emacs, vi_normal, vi_insert]
             event: { send: executehostcommand,
-                      cmd: "let selected = (fzf --preview='bat --color=always {}'); if $selected != '' { nvim $selected }"
+                      cmd: "let selected = (fzf --preview='bat --color=always {}'); if $selected != '' { neovide $selected }"
             }
         }
         {
@@ -927,4 +927,4 @@ run_fastfetch
 
 
 
-$env.FZF_DEFAULT_COMMAND = "fd -t f . ~/dev ~/.dotfiles"
+$env.FZF_DEFAULT_COMMAND = "fd  . ~/dev ~/.dotfiles"

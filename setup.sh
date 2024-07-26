@@ -78,9 +78,7 @@ ln -s ~/.dotfiles/alacritty ~/.config/alacritty
 echo "alacritty link created"
 
 #create symlink for nushell
-ln -s ~/.dotfiles/nushell/env.nu ~/.config/nushell/env.nu
-ln -s ~/.dotfiles/nushell/config.nu ~/.config/nushell/config.nu
-ln -s ~/.dotfiles/nushell/paths.nu ~/.config/nushell/paths.nu
+ln -s ~/.dotfiles/nushell ~/.config/nushell
 echo "nushell symlink created"
 
 #create symlink for tmux
