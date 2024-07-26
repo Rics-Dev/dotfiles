@@ -927,4 +927,4 @@ run_fastfetch
 
 
 
-$env.FZF_DEFAULT_COMMAND = "fd  . ~/dev ~/.dotfiles"
+$env.FZF_DEFAULT_COMMAND = "fd  . ~/dev ~/.config/ ~/.dotfiles"
