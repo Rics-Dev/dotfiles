@@ -74,26 +74,36 @@ install_package() {
 #echo "zsh link created"
 
 # Create symlink for alacritty
+rm -rf ~/.config/alacritty
 ln -s ~/.dotfiles/alacritty ~/.config/alacritty
 echo "alacritty link created"
 
 #create symlink for nushell
+rm -rf ~/.config/nushell
 ln -s ~/.dotfiles/nushell ~/.config/nushell
 echo "nushell symlink created"
 
 #create symlink for tmux
+rm -rf ~/.config/tmux
 ln -s ~/.dotfiles/tmux ~/.config/tmux
 echo "tmux symlink created"
 
 # Create symbolic link for fastfetch
+rm -rf ~/.config/fastfetch
 ln -s ~/.dotfiles/fastfetch ~/.config/fastfetch
 echo "fastfetch link created"
 
 #setup nvim
+rm -rf ~/.config/nvim
 ln -s ~/.dotfiles/nvim ~/.config/nvim
 echo "neovim link created"
 
+#setup neovide
+rm -rf ~/.config/neovide
+ln -s ~/.dotfiles/neovide ~/.config/neovide
+
 #setup symlink for vscode
+rm -rf ~/.config/Code/User/settings.json
 ln -s ~/.dotfiles/vscode/settings.json ~/.config/Code/User/settings.json
 
 #setup firefox
