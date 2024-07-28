@@ -1,7 +1,8 @@
 return {
-  "RacimFethallah/project-explorer.nvim",
+  "Rics-Dev/project-explorer.nvim",
   dependencies = {
     "nvim-telescope/telescope.nvim",
+    "nvim-neo-tree/neo-tree.nvim",
   },
   opts = {
     paths = { "~/dev/*" }, -- User's custom paths
