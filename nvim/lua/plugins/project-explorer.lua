@@ -5,7 +5,7 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
   },
   opts = {
-    paths = { "~/dev/*" }, -- User's custom paths
+    paths = { "~/dev/*", "~/dev" }, -- User's custom paths
   },
   config = function(_, opts)
     require("project_explorer").setup(opts)
