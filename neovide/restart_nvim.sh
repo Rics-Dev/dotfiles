@@ -5,11 +5,12 @@
 echo "executing close"
 echo "closing"
 pkill neovide &
-echo "closed"
+echo "nvim closed"
 echo "close executed"
-# Wait a moment to ensure Neovim has closed
+
+# Wait until Neovim is definitely closed
 sleep 1
 echo "opening nvim"
-# Reopen Neovim
-neovide
-echo "echo nvim opened"
+# Reopen Neovide
+neovide &
+echo "neovide opened"
