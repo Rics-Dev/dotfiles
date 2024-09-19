@@ -5,6 +5,7 @@ return {
   },
   opts = {
     paths = { "~/dev/*" }, --custom path set by user
+    newProjectPath = "~/dev/", --custom path for new projects
     file_explorer = function(dir) --custom file explorer set by user
       vim.cmd("Neotree close")
       vim.cmd("Neotree " .. dir)
