@@ -108,3 +108,9 @@ ln -s ~/.dotfiles/vscode/settings.json ~/.config/Code/User/settings.json
 
 #setup firefox
 curl -s -o- https://raw.githubusercontent.com/rafaelmardojai/firefox-gnome-theme/master/scripts/install-by-curl.sh | bash
+
+
+
+
+export command for zsh:
+echo 'export PATH="~/development/flutter/bin:$PATH"' >> ~/.zshenv

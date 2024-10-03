@@ -1,8 +1,3 @@
-export PATH=/home/ric/.local/bin:$PATH
-# export PATH="/opt/flutter/bin:$PATH"
-# export ANDROID_HOME=/home/ric/Android/Sdk
-# export PATH=$ANDROID_HOME/platform-tools:$PATH
-
 # -----------------------------------------------------
 # Fastfetch if on wm
 # -----------------------------------------------------
@@ -102,3 +97,13 @@ export PATH="$PATH:/home/ric/.turso"
 [ -s "/home/ric/.bun/_bun" ] && source "/home/ric/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH=/home/ric/.local/bin:$PATH
+export JAVA_HOME=/home/ric/dev/tools/sdkman/candidates/java/current
+export PATH=$JAVA_HOME/bin:$PATH
+export PATH="$PATH:/home/.local/share/JetBrains/Toolbox/scripts"
+export PATH="$PATH:/home/ric/dev/tools/flutter/bin"
+
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/dev/tools/sdkman"
+[[ -s "$HOME/dev/tools/sdkman/bin/sdkman-init.sh" ]] && source "$HOME/dev/tools/sdkman/bin/sdkman-init.sh"

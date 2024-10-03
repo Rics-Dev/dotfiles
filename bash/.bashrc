@@ -649,3 +649,9 @@ export PATH="$PATH:/home/ric/.local/share/JetBrains/Toolbox/scripts"
 
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
+
+
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/dev/tools/sdkman"
+[[ -s "$HOME/dev/tools/sdkman/bin/sdkman-init.sh" ]] && source "$HOME/dev/tools/sdkman/bin/sdkman-init.sh"
