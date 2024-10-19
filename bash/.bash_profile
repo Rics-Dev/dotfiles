@@ -9,3 +9,4 @@ fi
 if [[ -f ~/.bashrc ]]; then
   source ~/.bashrc
 fi
+. "/home/ric/.deno/env"

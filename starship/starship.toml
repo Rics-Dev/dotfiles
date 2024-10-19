@@ -1,0 +1,26 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Disable the newline
+add_newline = false
+
+# Customize the prompt format
+format = "$directory$git_branch$character"
+
+# Add right prompt with time
+right_format = "$time"
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[✗](bold red) [➜](bold green)"
+
+# Enable and configure the time module
+[time]
+disabled = false
+style = "bold blue"
+format = "[$time]($style)"
+time_format = "%T"         # This will show time in 24-hour format (HH:MM:SS)
+
+# Disable the package module
+[package]
+disabled = true

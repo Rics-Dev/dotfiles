@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/ric/.zsh/completions:"* ]]; then export FPATH="/home/ric/.zsh/completions:$FPATH"; fi
 # -----------------------------------------------------
 # Fastfetch if on wm
 # -----------------------------------------------------
@@ -103,7 +105,7 @@ export PATH=$JAVA_HOME/bin:$PATH
 export PATH="$PATH:/home/.local/share/JetBrains/Toolbox/scripts"
 export PATH="$PATH:/home/ric/dev/tools/flutter/bin"
 
-
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/dev/tools/sdkman"
 [[ -s "$HOME/dev/tools/sdkman/bin/sdkman-init.sh" ]] && source "$HOME/dev/tools/sdkman/bin/sdkman-init.sh"
+. "/home/ric/.deno/env"

@@ -1,8 +1,5 @@
 function run_fastfetch
-    
-    set -l term_width (tput cols)
-    
-    if test $term_width -ge 50
+    if string match -q "*pts*" (tty)
         fastfetch --config ~/.config/fastfetch/example13.jsonc
     end
 end
