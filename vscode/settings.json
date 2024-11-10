@@ -4,7 +4,7 @@
   "editor.fontLigatures": true,
   "workbench.colorTheme": "One Dark Pro",
   "workbench.iconTheme": "material-icon-theme",
-  "terminal.integrated.fontFamily": "FiraCode Nerd Font",
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
   "files.autoSave": "afterDelay",
   "editor.formatOnSave": true,
   "terminal.integrated.cursorStyle": "line",
@@ -39,5 +39,19 @@
     "plaintext": false,
     "markdown": false,
     "scminput": false
-  }
+  },
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-xelatex",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    }
+  ],
+  "chat.editing.alwaysSaveWithGeneratedChanges": true
 }

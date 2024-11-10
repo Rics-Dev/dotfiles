@@ -27,3 +27,4 @@ vim.keymap.set(
   save_and_close_session,
   { desc = "Save session and go to Dashboard", noremap = true, silent = true }
 )
+vim.keymap.set("n", "<C-b>", "<cmd>bd<cr>", { noremap = true, silent = true })

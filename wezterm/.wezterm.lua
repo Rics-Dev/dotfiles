@@ -21,7 +21,7 @@ end)
 config.font = wezterm.font 'JetBrainsMono Nerd Font'
 config.font_size = 13.0
 config.default_cursor_style = 'BlinkingBar'
-config.window_background_opacity = 0.90
+config.window_background_opacity = 0.95
 
 
 
