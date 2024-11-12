@@ -1,20 +1,19 @@
 local function open_dotfiles()
-  -- Open Telescope file picker in the specified directories
-  require("telescope.builtin").find_files({
+  -- Open FZF-lua file picker in the specified directories
+  require("fzf-lua").files({
+    cwd = "~/.dotfiles",
     search_dirs = { "~/.dotfiles", "~/.config" },
-    attach_mappings = function(_, map)
-      map("i", "<CR>", function(prompt_bufnr)
-        local action_state = require("telescope.actions.state")
-        local actions = require("telescope.actions")
-        local selection = action_state.get_selected_entry()
-        actions.close(prompt_bufnr)
-        -- Change to the dotfiles directory
-        vim.cmd("cd ~/.dotfiles")
-        -- Open the selected file
-        vim.cmd("edit " .. selection.path)
-      end)
-      return true
-    end,
+    actions = {
+      ["default"] = function(selected)
+        -- If we have a selection
+        if selected and selected[1] then
+          -- Change to the dotfiles directory
+          vim.cmd("cd ~/.dotfiles")
+          -- Open the selected file
+          vim.cmd("edit " .. selected[1])
+        end
+      end,
+    },
   })
 end
 

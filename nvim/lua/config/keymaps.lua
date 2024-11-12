@@ -18,9 +18,9 @@ local function save_and_close_session()
   vim.cmd("Dashboard")
 end
 
-vim.keymap.set("n", "<C-j>", "10j", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-k>", "10k", { noremap = true, silent = true })
-vim.keymap.set("i", "jk", "<Esc>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<C-j>", "10j", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<C-k>", "10k", { noremap = true, silent = true })
+-- vim.keymap.set("i", "jk", "<Esc>", { noremap = true, silent = true })
 vim.keymap.set(
   "n",
   "<leader>m",

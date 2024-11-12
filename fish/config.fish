@@ -14,9 +14,11 @@ fish_add_path \
 
 if status is-interactive
     # Interactive session configurations
-
+    theme_gruvbox dark medium
     # Initialize tools
-    command -q run_fastfetch && run_fastfetch
+    if functions -q run_fastfetch
+        run_fastfetch
+    end
 
     # Shell enhancements
     if command -q zoxide
