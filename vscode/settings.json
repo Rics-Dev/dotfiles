@@ -2,7 +2,7 @@
   "editor.fontSize": 16,
   "editor.fontFamily": "JetBrainsMono Nerd Font",
   "editor.fontLigatures": true,
-  "workbench.colorTheme": "One Dark Pro",
+  "workbench.colorTheme": "Gruvbox Dark Medium",
   "workbench.iconTheme": "material-icon-theme",
   "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
   "files.autoSave": "afterDelay",
