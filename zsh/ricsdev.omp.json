@@ -2,53 +2,64 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "blocks": [
     {
+      "type": "rprompt",
       "segments": [
         {
-          "foreground": "#00C5C7",
           "properties": {
+            "cache_duration": "none",
             "time_format": "15:04:05"
           },
-          "style": "plain",
           "template": " {{ .CurrentDate | date .Format }} ",
-          "type": "time"
+          "foreground": "#00C5C7",
+          "type": "time",
+          "style": "plain"
         }
-      ],
-      "type": "rprompt"
+      ]
     },
     {
+      "type": "prompt",
       "alignment": "left",
       "segments": [
         {
-          "foreground": "#56B6C2",
           "properties": {
+            "cache_duration": "none",
             "style": "full"
           },
-          "style": "plain",
           "template": "{{ .Path }} ",
-          "type": "path"
+          "foreground": "#56B6C2",
+          "type": "path",
+          "style": "plain"
         },
         {
-          "type": "git",
-          "style": "plain",
+          "properties": {
+            "cache_duration": "none"
+          },
           "template": "{{ .HEAD }} ",
-          "foreground": "#FFE700"
+          "foreground": "#FFE700",
+          "type": "git",
+          "style": "plain"
         },
         {
-          "type": "text",
-          "style": "plain",
+          "properties": {
+            "cache_duration": "none"
+          },
           "template": "➜",
-          "foreground": "#98C379"
+          "foreground": "#98C379",
+          "type": "text",
+          "style": "plain"
         },
         {
-          "type": "status",
-          "style": "plain",
+          "properties": {
+            "cache_duration": "none"
+          },
           "template": " ✗",
-          "foreground": "#BF616A"
+          "foreground": "#BF616A",
+          "type": "status",
+          "style": "plain"
         }
-      ],
-      "type": "prompt"
+      ]
     }
   ],
-  "final_space": true,
-  "version": 2
+  "version": 3,
+  "final_space": true
 }

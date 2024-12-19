@@ -16,9 +16,12 @@ wezterm.on("gui-startup", function()
 	window:gui_window():maximize()
 end)
 
+config.color_scheme = "One Dark (Gogh)"
+-- config.color_scheme = "Gruvbox dark, soft (base16)"
+-- config.color_scheme = "Gruvbox Material (Gogh)"
 -- This is where you actually apply your config choices
-config.font = wezterm.font("JetBrainsMono Nerd Font")
-config.font_size = 13.0
+config.font = wezterm.font("JetBrainsMonoNL Nerd Font")
+config.font_size = 14.0
 config.default_cursor_style = "BlinkingBar"
 config.window_background_opacity = 0.95
 
@@ -140,96 +143,4 @@ config.window_frame = {
 	inactive_titlebar_bg = "#272C33",
 }
 
-config.color_scheme = "GruvboxDark"
-
--- config.colors = {
--- 	-- -- The default text color
--- 	-- foreground = "#abb2bf",
--- 	-- -- The default background color
--- 	-- background = "#272C33",
--- 	-- -- Cursor colors
--- 	-- cursor_bg = "#8fee96",
--- 	-- cursor_fg = "#272C33",
--- 	-- cursor_border = "#8fee96",
--- 	-- -- Selection colors
--- 	-- selection_fg = "#ffffff",
--- 	-- selection_bg = "#3e4452",
--- 	-- -- The color of the scrollbar "thumb"
--- 	-- scrollbar_thumb = "#3e4452",
--- 	-- -- The color of the split lines between panes
--- 	-- split = "#3e4452",
--- 	-- -- ANSI colors
--- 	-- ansi = {
--- 	-- 	"#1e2127", -- black
--- 	-- 	"#e06c75", -- red
--- 	-- 	"#98c379", -- green
--- 	-- 	"#d19a66", -- yellow
--- 	-- 	"#61afef", -- blue
--- 	-- 	"#c678dd", -- magenta
--- 	-- 	"#56b6c2", -- cyan
--- 	-- 	"#828791", -- white
--- 	-- },
--- 	-- -- Bright ANSI colors
--- 	-- brights = {
--- 	-- 	"#5c6370", -- bright black
--- 	-- 	"#e06c75", -- bright red
--- 	-- 	"#98c379", -- bright green
--- 	-- 	"#d19a66", -- bright yellow
--- 	-- 	"#61afef", -- bright blue
--- 	-- 	"#c678dd", -- bright magenta
--- 	-- 	"#56b6c2", -- bright cyan
--- 	-- 	"#e6efff", -- bright white
--- 	-- },
--- 	-- -- Tab bar colors
--- 	-- tab_bar = {
--- 	-- 	background = "#3e4452",
--- 	-- 	active_tab = {
--- 	-- 		bg_color = "#e6efff",
--- 	-- 		fg_color = "#000000",
--- 	-- 	},
--- 	-- 	inactive_tab = {
--- 	-- 		bg_color = "#3e4452",
--- 	-- 		fg_color = "#abb2bf",
--- 	-- 	},
--- 	-- 	inactive_tab_edge = "#575757",
--- 	foreground = "#ebdbb2",
--- 	background = "#282828",
---
--- 	cursor_bg = "#ebdbb2",
--- 	cursor_border = "#ebdbb2",
--- 	cursor_fg = "#282828",
---
--- 	selection_bg = "#3c3836",
--- 	selection_fg = "#ebdbb2",
---
--- 	ansi = {
--- 		"#282828", -- black
--- 		"#cc241d", -- red
--- 		"#98971a", -- green
--- 		"#d79921", -- yellow
--- 		"#458588", -- blue
--- 		"#b16286", -- purple
--- 		"#689d6a", -- aqua
--- 		"#a89984", -- gray
--- 	},
--- 	brights = {
--- 		"#928374", -- bright black
--- 		"#fb4934", -- bright red
--- 		"#b8bb26", -- bright green
--- 		"#fabd2f", -- bright yellow
--- 		"#83a598", -- bright blue
--- 		"#d3869b", -- bright purple
--- 		"#8ec07c", -- bright aqua
--- 		"#ebdbb2", -- bright white
--- 	},
---
--- 	-- Extra Gruvbox colors for customization
--- 	tab_bar = {
--- 		background = "#282828",
--- 		active_tab = { bg_color = "#3c3836", fg_color = "#ebdbb2" },
--- 		inactive_tab = { bg_color = "#282828", fg_color = "#928374" },
--- 	},
--- }
-
--- Return the configuration
 return config
