@@ -36,6 +36,8 @@ if status is-interactive
         starship init fish | source
     end
 
+
+
     # Uncomment to use oh-my-posh instead of starship
     # if command -q oh-my-posh
     #     oh-my-posh init fish --config ~/.dotfiles/oh-my-posh/ricsdev.omp.json | source

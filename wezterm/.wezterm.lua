@@ -16,24 +16,60 @@ wezterm.on("gui-startup", function()
 	window:gui_window():maximize()
 end)
 
-config.color_scheme = "One Dark (Gogh)"
--- config.color_scheme = "Gruvbox dark, soft (base16)"
--- config.color_scheme = "Gruvbox Material (Gogh)"
--- This is where you actually apply your config choices
-config.font = wezterm.font("JetBrainsMonoNL Nerd Font")
+-- Fonts and appearance
+config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.font_size = 14.0
 config.default_cursor_style = "BlinkingBar"
-config.window_background_opacity = 0.95
-
--- tab bar
-config.hide_tab_bar_if_only_one_tab = false
+config.window_background_opacity = 0.9
+config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = true
 config.tab_and_split_indices_are_zero_based = true
+config.enable_wayland = false
+
+-- Scrolling
+config.scrollback_lines = 2000
+config.adjust_window_size_when_changing_font_size = false
+
+config.audible_bell = "Disabled"
+
+config.colors = {
+	foreground = "#abb2bf",
+	background = "#272C33",
+	cursor_bg = "#8fee96",
+	cursor_fg = "#272C33",
+	cursor_border = "#8fee96",
+	selection_bg = "#3e4452",
+	selection_fg = "#ffffff",
+	ansi = {
+		"#1e2127",
+		"#e06c75",
+		"#98c379",
+		"#d19a66",
+		"#61afef",
+		"#c678dd",
+		"#56b6c2",
+		"#828791",
+	},
+	brights = {
+		"#5c6370",
+		"#e06c75",
+		"#98c379",
+		"#d19a66",
+		"#61afef",
+		"#c678dd",
+		"#56b6c2",
+		"#e6efff",
+	},
+	tab_bar = {
+		background = "#3e4452",
+		active_tab = { bg_color = "#e6efff", fg_color = "#000000" },
+		inactive_tab = { bg_color = "#3e4452", fg_color = "#abb2bf" },
+	},
+}
 
 -- tmux
 config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 2000 }
---config.leader = { key = "F13", mods = "", timeout_milliseconds = 2000 }
 config.keys = {
 	{
 		mods = "LEADER",
@@ -55,6 +91,8 @@ config.keys = {
 		key = "n",
 		action = wezterm.action.ActivateTabRelative(1),
 	},
+	{ key = "l", mods = "CTRL|SHIFT", action = wezterm.action.ActivateTabRelative(1) },
+	{ key = "h", mods = "CTRL|SHIFT", action = wezterm.action.ActivateTabRelative(-1) },
 	{
 		mods = "LEADER",
 		key = "'",
