@@ -69,48 +69,78 @@ install_package() {
 #  fi
 #fi
 
-# Create symbolic link for .zshrc
-#ln -s ~/.dotfiles/zsh/.zshrc ~/.zshrc
-#echo "zsh link created"
-
 # Create symlink for alacritty
 rm -rf ~/.config/alacritty
 ln -s ~/.dotfiles/alacritty ~/.config/alacritty
 echo "alacritty link created"
 
-#create symlink for nushell
-rm -rf ~/.config/nushell
-ln -s ~/.dotfiles/nushell ~/.config/nushell
-echo "nushell symlink created"
-
-#create symlink for tmux
-rm -rf ~/.config/tmux
-ln -s ~/.dotfiles/tmux ~/.config/tmux
-echo "tmux symlink created"
+# create symlink for bash
+rm ~/.bashrc
+rm ~/.bash_profile
+ln -s ~/.dotfiles/bash/.bashrc ~/.bashrc
+ln -s ~/.dotfiles/bash/.bash_profile ~/.bash_profile
+echo "bash link created"
 
 # Create symbolic link for fastfetch
 rm -rf ~/.config/fastfetch
 ln -s ~/.dotfiles/fastfetch ~/.config/fastfetch
 echo "fastfetch link created"
 
+# Create symbolic link for fish
+rm -rf ~/.config/fish
+ln -s ~/.dotfiles/fish ~/.config/fish
+echo "fish link created"
+
+# Create symbolic link for ghostty
+rm -rf ~/.config/ghostty
+ln -s ~/.dotfiles/ghostty ~/.config/ghostty
+echo "ghostty link created"
+
+#setup neovide
+rm -rf ~/.config/neovide
+ln -s ~/.dotfiles/neovide ~/.config/neovide
+echo "neovide link created"
+
+#create symlink for nushell
+rm -rf ~/.config/nushell
+ln -s ~/.dotfiles/nushell ~/.config/nushell
+echo "nushell symlink created"
+
 #setup nvim
 rm -rf ~/.config/nvim
 ln -s ~/.dotfiles/nvim ~/.config/nvim
 echo "neovim link created"
 
-#setup neovide
-rm -rf ~/.config/neovide
-ln -s ~/.dotfiles/neovide ~/.config/neovide
+# Setup Starship
+rm ~/.config/starship.toml
+ln -s ~/.dotfiles/starship/starship.toml ~/.config/starship.toml
+echo "starship link created"
+
+#create symlink for tmux
+rm -rf ~/.config/tmux
+ln -s ~/.dotfiles/tmux ~/.config/tmux
+echo "tmux symlink created"
 
 #setup symlink for vscode
-rm -rf ~/.config/Code/User/settings.json
-ln -s ~/.dotfiles/vscode/settings.json ~/.config/Code/User/settings.json
+# rm -rf ~/.config/Code/User/settings.json
+# ln -s ~/.dotfiles/vscode/settings.json ~/.config/Code/User/settings.json
 
-#setup firefox
-curl -s -o- https://raw.githubusercontent.com/rafaelmardojai/firefox-gnome-theme/master/scripts/install-by-curl.sh | bash
+# Create symbolic link for WezTerm
+rm ~/.wezterm.lua
+ln -s ~/.dotfiles/wezterm/.wezterm.lua ~/.wezterm.lua
+echo "wezterm link created"
 
+#create symlink for yazi
+rm -rf ~/.config/yazi
+ln -s ~/.dotfiles/yazi ~/.config/yazi
+echo "Yazi symlink created"
 
+#create symlink for Zed
+rm -rf ~/.config/zed
+ln -s ~/.dotfiles/zed ~/.config/zed
+echo "Zed symlink created"
 
-
-export command for zsh:
-echo 'export PATH="~/development/flutter/bin:$PATH"' >> ~/.zshenv
+# Create symbolic link for zsh
+rm ~/.zshrc
+ln -s ~/.dotfiles/zsh/.zshrc ~/.zshrc
+echo "zsh link created"
