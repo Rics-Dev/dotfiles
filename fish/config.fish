@@ -1,24 +1,23 @@
 # Environment Variables
-set -gx ANDROID_HOME "$HOME/Android/Sdk"
-set -gx EMULATORS "$ANDROID_HOME/emulator"
-set -gx NDK_HOME "$ANDROID_HOME/ndk/28.0.12433566"
-set -gx BUN_INSTALL "$HOME/.bun"
-set -gx JAVA_HOME "$HOME/dev/tools/sdkman/candidates/java/current"
-set -gx FLUTTER "$HOME/dev/tools/flutter/bin"
-set -gx DEPOT_TOOLS "$HOME/dev/tools/depot_tools"
+#set -gx ANDROID_HOME "$HOME/Android/Sdk"
+#set -gx EMULATORS "$ANDROID_HOME/emulator"
+#set -gx NDK_HOME "$ANDROID_HOME/ndk/28.0.12433566"
+#set -gx BUN_INSTALL "$HOME/.bun"
+#set -gx JAVA_HOME "$HOME/dev/tools/sdkman/candidates/java/current"
+#set -gx FLUTTER "$HOME/dev/tools/flutter/bin"
+#set -gx DEPOT_TOOLS "$HOME/dev/tools/depot_tools"
 # Path Management
-fish_add_path \
-    $HOME/.modular/bin \
-    $HOME/.deno/env \
-    $HOME/.cargo/bin \
-    $ANDROID_HOME \
-    $EMULATORS \
-    $NDK_HOME \
-    $BUN_INSTALL/bin \
-    $JAVA_HOME \
-    $FLUTTER \
-    $DEPOT_TOOLS
-
+#fish_add_path \
+#$HOME/.modular/bin \
+#$HOME/.deno/env \
+#$HOME/.cargo/bin \
+#$ANDROID_HOME \
+#$EMULATORS \
+#$NDK_HOME \
+#$BUN_INSTALL/bin \
+#$JAVA_HOME \
+#$FLUTTER \
+#$DEPOT_TOOLS
 if status is-interactive
     # Interactive session configurations
     #theme_gruvbox dark medium

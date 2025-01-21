@@ -1,31 +1,31 @@
 # Ric's setup.sh
 
 # Function to check if a command exists
-command_exists() {
-  command -v "$1" >/dev/null 2>&1
-}
+#command_exists() {
+#  command -v "$1" >/dev/null 2>&1
+#}
 
 # Function to install a package using the appropriate package manager
-install_package() {
-  local package_manager="$1"
-  local package_name="$2"
+#install_package() {
+#  local package_manager="$1"
+#  local package_name="$2"
 
-  case "$package_manager" in
-  apt-get)
-    sudo apt-get install -y "$package_name"
-    ;;
-  yum)
-    sudo yum install -y "$package_name"
-    ;;
-  pacman)
-    sudo pacman -S --noconfirm "$package_name"
-    ;;
-  *)
-    echo "Error: Package manager not found. Please install $package_name manually."
-    exit 1
-    ;;
-  esac # End of case statement
-}
+#  case "$package_manager" in
+#  apt-get)
+#    sudo apt-get install -y "$package_name"
+#    ;;
+#  yum)
+#    sudo yum install -y "$package_name"
+#    ;;
+#  pacman)
+#    sudo pacman -S --noconfirm "$package_name"
+#    ;;
+#  *)
+#    echo "Error: Package manager not found. Please install $package_name manually."
+#    exit 1
+#    ;;
+#  esac # End of case statement
+#}
 
 # Setup fastfetch
 #echo "Setting up fastfetch..."
@@ -70,9 +70,9 @@ install_package() {
 #fi
 
 # Create symlink for alacritty
-rm -rf ~/.config/alacritty
-ln -s ~/.dotfiles/alacritty ~/.config/alacritty
-echo "alacritty link created"
+#rm -rf ~/.config/alacritty
+#ln -s ~/.dotfiles/alacritty ~/.config/alacritty
+#echo "alacritty link created"
 
 # create symlink for bash
 rm ~/.bashrc
@@ -97,14 +97,14 @@ ln -s ~/.dotfiles/ghostty ~/.config/ghostty
 echo "ghostty link created"
 
 #setup neovide
-rm -rf ~/.config/neovide
-ln -s ~/.dotfiles/neovide ~/.config/neovide
-echo "neovide link created"
+#rm -rf ~/.config/neovide
+#ln -s ~/.dotfiles/neovide ~/.config/neovide
+#echo "neovide link created"
 
 #create symlink for nushell
-rm -rf ~/.config/nushell
-ln -s ~/.dotfiles/nushell ~/.config/nushell
-echo "nushell symlink created"
+#rm -rf ~/.config/nushell
+#ln -s ~/.dotfiles/nushell ~/.config/nushell
+#echo "nushell symlink created"
 
 #setup nvim
 rm -rf ~/.config/nvim
@@ -117,18 +117,18 @@ ln -s ~/.dotfiles/starship/starship.toml ~/.config/starship.toml
 echo "starship link created"
 
 #create symlink for tmux
-rm -rf ~/.config/tmux
-ln -s ~/.dotfiles/tmux ~/.config/tmux
-echo "tmux symlink created"
+#rm -rf ~/.config/tmux
+#ln -s ~/.dotfiles/tmux ~/.config/tmux
+#echo "tmux symlink created"
 
 #setup symlink for vscode
 # rm -rf ~/.config/Code/User/settings.json
 # ln -s ~/.dotfiles/vscode/settings.json ~/.config/Code/User/settings.json
 
 # Create symbolic link for WezTerm
-rm ~/.wezterm.lua
-ln -s ~/.dotfiles/wezterm/.wezterm.lua ~/.wezterm.lua
-echo "wezterm link created"
+#rm ~/.wezterm.lua
+#ln -s ~/.dotfiles/wezterm/.wezterm.lua ~/.wezterm.lua
+#echo "wezterm link created"
 
 #create symlink for yazi
 rm -rf ~/.config/yazi
@@ -141,6 +141,6 @@ ln -s ~/.dotfiles/zed ~/.config/zed
 echo "Zed symlink created"
 
 # Create symbolic link for zsh
-rm ~/.zshrc
-ln -s ~/.dotfiles/zsh/.zshrc ~/.zshrc
-echo "zsh link created"
+#rm ~/.zshrc
+#ln -s ~/.dotfiles/zsh/.zshrc ~/.zshrc
+#echo "zsh link created"
