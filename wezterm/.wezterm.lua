@@ -17,7 +17,7 @@ wezterm.on("gui-startup", function()
 end)
 
 -- Fonts and appearance
-config.font = wezterm.font("JetBrainsMono Nerd Font")
+config.font = wezterm.font("JetBrains Mono NL")
 config.font_size = 14.0
 config.default_cursor_style = "BlinkingBar"
 config.window_background_opacity = 0.9

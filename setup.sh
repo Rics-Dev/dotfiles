@@ -126,9 +126,9 @@ echo "starship link created"
 # ln -s ~/.dotfiles/vscode/settings.json ~/.config/Code/User/settings.json
 
 # Create symbolic link for WezTerm
-#rm ~/.wezterm.lua
-#ln -s ~/.dotfiles/wezterm/.wezterm.lua ~/.wezterm.lua
-#echo "wezterm link created"
+rm ~/.wezterm.lua
+ln -s ~/.dotfiles/wezterm/.wezterm.lua ~/.wezterm.lua
+echo "wezterm link created"
 
 #create symlink for yazi
 rm -rf ~/.config/yazi
