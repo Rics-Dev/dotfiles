@@ -117,9 +117,9 @@ ln -s ~/.dotfiles/starship/starship.toml ~/.config/starship.toml
 echo "starship link created"
 
 #create symlink for tmux
-#rm -rf ~/.config/tmux
-#ln -s ~/.dotfiles/tmux ~/.config/tmux
-#echo "tmux symlink created"
+rm -rf ~/.config/tmux
+ln -s ~/.dotfiles/tmux ~/.config/tmux
+echo "tmux symlink created"
 
 #setup symlink for vscode
 # rm -rf ~/.config/Code/User/settings.json

@@ -8,11 +8,12 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "vim_mode": true,
-  "ui_font_size": 16,
-  "buffer_font_size": 16,
+  "ui_font_size": 18,
+  "buffer_font_size": 17,
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Dark"
-  }
+    "dark": "JetBrains New Dark"
+  },
+  "format_on_save": "on"
 }

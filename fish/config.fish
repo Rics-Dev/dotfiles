@@ -22,6 +22,39 @@ fish_add_path \
     $ANDROID_HOME
 if status is-interactive
     # Interactive session configurations
+
+    # TMux aliases and functions
+    alias ta="tmux attach" # Just attach
+    alias tls="tmux ls" # List sessions
+
+    # Function to create a new named session
+    function tn
+        if test (count $argv) -eq 0
+            echo "Usage: tn <session-name>"
+            return 1
+        end
+        tmux new -s $argv[1]
+    end
+
+    # Function to attach to a specific session
+    function ts
+        if test (count $argv) -eq 0
+            echo "Usage: ts <session-name>"
+            return 1
+        end
+        tmux attach -t $argv[1]
+    end
+
+    # Function to kill a specific tmux session
+    function tk
+        if test (count $argv) -eq 0
+            echo "Usage: tk <session-name>"
+            return 1
+        end
+        tmux kill-session -t $argv[1]
+    end
+
+
     #theme_gruvbox dark medium
     # Initialize tools
     if functions -q run_fastfetch

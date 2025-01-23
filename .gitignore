@@ -1,2 +1,10 @@
 tmux/plugins 
 nushell/history.txt
+tmux/.tmux/plugins/tmux-battery
+tmux/.tmux/plugins/tmux-continuum
+tmux/.tmux/plugins/tmux-online-status
+tmux/.tmux/plugins/tmux-resurrect
+tmux/.tmux/plugins/tmux-sessionx
+tmux/.tmux/plugins/tmux
+tmux/.tmux/plugins/tpm
+tmux/.tmux/plugins/vim-tmux-navigator
