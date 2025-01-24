@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local act = wezterm.action
 local config = {}
 
 if wezterm.config_builder then
@@ -6,17 +7,19 @@ if wezterm.config_builder then
 end
 
 config = {
+	color_scheme = "OneDark (base16)",
 	default_cursor_style = "BlinkingBlock",
 	automatically_reload_config = true,
 	window_close_confirmation = "NeverPrompt",
 	adjust_window_size_when_changing_font_size = false,
 	window_decorations = "RESIZE",
 	check_for_updates = false,
-	use_fancy_tab_bar = false,
+	use_fancy_tab_bar = true,
 	tab_bar_at_bottom = false,
 	font_size = 14,
 	font = wezterm.font("JetBrains Mono NL"),
-	enable_tab_bar = false,
+	-- enable_tab_bar = false,
+	hide_tab_bar_if_only_one_tab = true,
 	window_padding = {
 		left = 14,
 		right = 14,
@@ -24,8 +27,31 @@ config = {
 		bottom = 0,
 	},
 	window_background_opacity = 0.95,
+
+	keys = {
+		{
+			key = "t",
+			mods = "CTRL|SHIFT",
+			action = act.SpawnTab("DefaultDomain"),
+		},
+		{
+			key = "h",
+			mods = "CTRL|SHIFT",
+			action = act.ActivateTabRelative(-1),
+		},
+		{
+			key = "l",
+			mods = "CTRL|SHIFT",
+			action = act.ActivateTabRelative(1),
+		},
+		{
+			key = "w",
+			mods = "CTRL|SHIFT",
+			action = act.CloseCurrentTab({ confirm = true }),
+		},
+	},
 	-- -- tmux
-	-- config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 2000 }
+	-- leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 2000 },
 	-- config.keys = {
 	-- 	{
 	-- 		mods = "LEADER",

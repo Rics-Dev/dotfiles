@@ -45,7 +45,14 @@ alias zjt="zellij attach -c -l compact" # Create and attach to a new session wit
 alias zjh="zellij --help" # Show Zellij help
 
 # General aliases
-alias ll="ls -la" # List all files in long format
+alias ls="eza --icons --color=auto" # Replace ls with eza, enable icons and color
+alias ll="eza -la --icons --color=auto" # List all files in long format with icons and color
+alias la="eza -a --icons --color=auto" # List all files including hidden ones
+alias lt="eza -T --icons --color=auto" # List files in a tree format
+alias lr="eza -R --icons --color=auto" # List files recursively
+alias lg="eza -l --git --icons --color=auto" # List files with Git status
+alias lx="eza -l --extended --icons --color=auto" # List files with extended attributes
+
 alias gs="git status" # Check git status
 alias ga="git add" # Add files to git staging
 alias gcm="git commit -m" # Shortcut for git commit with a message
