@@ -44,24 +44,26 @@ blinking = "Always"
 shape = "Block"
 
 [font]
-size = 13.0
+size = 14.0
 
 [font.glyph_offset]
 x = 0
 y = 0
 
 [font.normal]
-family = "FiraCode Nerd Font"
+family = "JetBrains Mono NL"
 style = "Regular"
 
 [scrolling]
 history = 15000
 
 [window]
+dynamic_padding = true
 title = "Alacritty"
 dynamic_title = false
 opacity = 0.90
-#decorations = "full"
+decorations = "none"
+blur = true
 
 startup_mode = "Maximized"
 

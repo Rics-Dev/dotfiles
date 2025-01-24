@@ -70,9 +70,9 @@
 #fi
 
 # Create symlink for alacritty
-#rm -rf ~/.config/alacritty
-#ln -s ~/.dotfiles/alacritty ~/.config/alacritty
-#echo "alacritty link created"
+rm -rf ~/.config/alacritty
+ln -s ~/.dotfiles/alacritty ~/.config/alacritty
+echo "alacritty link created"
 
 # create symlink for bash
 rm ~/.bashrc
@@ -121,13 +121,17 @@ rm -rf ~/.config/tmux
 ln -s ~/.dotfiles/tmux ~/.config/tmux
 echo "tmux symlink created"
 
+#create symlink for zellij
+rm -rf ~/.config/zellij
+ln -s ~/.dotfiles/zellij ~/.config/zellij
+echo "zellij symlink created"
 #setup symlink for vscode
 # rm -rf ~/.config/Code/User/settings.json
 # ln -s ~/.dotfiles/vscode/settings.json ~/.config/Code/User/settings.json
 
 # Create symbolic link for WezTerm
 rm ~/.wezterm.lua
-ln -s ~/.dotfiles/wezterm/.wezterm.lua ~/.wezterm.lua
+ln -s ~/.dotfiles/wezterm/wezterm.lua ~/.wezterm.lua
 echo "wezterm link created"
 
 #create symlink for yazi
