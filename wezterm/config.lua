@@ -7,6 +7,9 @@ if wezterm.config_builder then
 end
 
 config = {
+	enable_wayland = true,
+	animation_fps = 240,
+	max_fps = 240,
 	color_scheme = "OneDark (base16)",
 	default_cursor_style = "BlinkingBlock",
 	automatically_reload_config = true,
@@ -17,7 +20,11 @@ config = {
 	use_fancy_tab_bar = true,
 	tab_bar_at_bottom = false,
 	font_size = 14,
-	font = wezterm.font("JetBrains Mono NL"),
+	font = wezterm.font("JetBrainsMonoNL Nerd Font"),
+	-- font = wezterm.font({
+	-- 	family = "JetBrainsMono Nerd Font",
+	-- 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+	-- }),
 	-- enable_tab_bar = false,
 	hide_tab_bar_if_only_one_tab = true,
 	window_padding = {
@@ -27,7 +34,6 @@ config = {
 		bottom = 0,
 	},
 	window_background_opacity = 0.95,
-
 	keys = {
 		{
 			key = "t",

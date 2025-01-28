@@ -1,7 +1,8 @@
 # Environment Variables
 set -gx ANDROID_HOME "$HOME/Android/Sdk"
 set -gx CHROME_EXECUTABLE /usr/bin/chromium
-#set -gx EMULATORS "$ANDROID_HOME/emulator"
+set -gx EMULATORS "$ANDROID_HOME/emulator"
+set -gx PLATFORM_TOOLS "$ANDROID_HOME/platform-tools"
 #set -gx NDK_HOME "$ANDROID_HOME/ndk/28.0.12433566"
 #set -gx BUN_INSTALL "$HOME/.bun"
 #set -gx JAVA_HOME "$HOME/dev/tools/sdkman/candidates/java/current"
@@ -12,12 +13,13 @@ fish_add_path \
     #$HOME/.modular/bin \
     #$HOME/.deno/env \
     #$HOME/.cargo/bin \
-    #$EMULATORS \
     #$NDK_HOME \
     #$BUN_INSTALL/bin \
     #$JAVA_HOME \
     #$FLUTTER \
     #$DEPOT_TOOLS
+    $EMULATORS \
+    $PLATFORM_TOOLS \
     $CHROME_EXECUTABLE \
     $ANDROID_HOME
 if status is-interactive

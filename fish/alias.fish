@@ -63,6 +63,7 @@ alias gb="git branch" # List branches
 alias gd="git diff" # Show changes
 alias gcl="git clone" # Clone a repository
 alias nv="nvim" # Open neovim
+alias hx="helix" # Open helix
 alias cl="clear" # Clear the terminal
 alias search="rg" # Use ripgrep for fast searching
 alias -- ..="cd .." # Go up one level

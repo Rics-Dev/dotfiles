@@ -21,7 +21,7 @@
   {
     "context": "Editor",
     "bindings": {
-      "ctrl-q": "pane::CloseActiveItem",
+      "alt-x": "pane::CloseActiveItem",
       "shift-h": "pane::ActivatePrevItem",
       "ctrl-shift-h": "pane::SwapItemLeft",
       "shift-l": "pane::ActivateNextItem",
