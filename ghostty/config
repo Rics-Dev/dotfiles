@@ -21,19 +21,21 @@ mouse-hide-while-typing = true
 
 
 confirm-close-surface = false
-window-decoration = false
+maximize = false
+gtk-titlebar = false
+window-decoration = server
 window-padding-x = 10
 window-padding-y = 10
 window-padding-balance = true
 window-new-tab-position = end
 window-width = 150
 window-height = 38
-
+window-padding-color = extend
 
 
 
 # extras
-copy-on-select = clipboard
+#copy-on-select = clipboard
 shell-integration = detect
 
 

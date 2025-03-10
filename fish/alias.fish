@@ -70,6 +70,9 @@ alias -- ..="cd .." # Go up one level
 alias -- ...="cd ../.." # Go up two levels
 alias -- ....="cd ../../.." # Go up three levels
 
+alias fzn='nvim $(fzf)'
+
+
 
 function rmf
     echo "Are you sure you want to delete '$argv'? (y/n)"
@@ -91,3 +94,50 @@ function mkcd
     mkdir -p $argv[1]
     cd $argv[1]
 end
+
+# Fuzzy find files and open in Neovim (requires bat for preview)
+function nvf
+    set -l file (fzf --height 80% --reverse --preview 'bat --color=always --style=numbers --line-range :500 {}' --preview-window right:60%)
+    if test -n "$file"
+        nvim $file
+    end
+end
+bind \cv nvf
+
+# Ctrl+F - Fuzzy file finder (insert path at cursor)
+function fzf-file-widget
+    set -l selected (fzf --height 40% --reverse --preview 'bat --color=always --style=numbers {}')
+    if test -n "$selected"
+        commandline -i -- (string escape "$selected")
+    end
+    commandline -f repaint
+end
+bind \cf fzf-file-widget
+
+# Ctrl+Alt+F - Fuzzy directory finder (cd into directory)
+function fzf-dir-widget
+    set -l selected (fd --type d --hidden | fzf --height 40% --reverse --preview 'tree -C {} | head -200')
+    if test -n "$selected"
+        cd "$selected"
+        commandline -f repaint
+    end
+end
+bind \e\cf fzf-dir-widget
+
+# Ctrl+R - Enhanced history search
+function fzf-history-widget
+    history | fzf --height 80% --reverse | read -l command
+    if test -n "$command"
+        commandline -rb $command
+    end
+end
+bind \cr fzf-history-widget
+
+# Ctrl+Z - Attach to zellij session (with ANSI color codes stripped)
+function fzf-zellij-sessions
+    zellij list-sessions | sed 's/\x1b\[[0-9;]*m//g' | awk '{print $1}' | fzf --height 20% | read -l session
+    if test -n "$session"
+        zellij attach $session
+    end
+end
+bind \cz fzf-zellij-sessions

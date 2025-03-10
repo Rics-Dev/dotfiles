@@ -3,10 +3,12 @@ set -gx ANDROID_HOME "$HOME/Android/Sdk"
 set -gx CHROME_EXECUTABLE /usr/bin/chromium
 set -gx EMULATORS "$ANDROID_HOME/emulator"
 set -gx PLATFORM_TOOLS "$ANDROID_HOME/platform-tools"
+set -gx FLUTTER "$HOME/Developer/tools/flutter/bin"
+#set -gx CEF_PATH "$HOME/.local/share/cef"
+#set -gx LD_LIBRARY_PATH "$LD_LIBRARY_PATH:$HOME/.local/share/cef"
 #set -gx NDK_HOME "$ANDROID_HOME/ndk/28.0.12433566"
 #set -gx BUN_INSTALL "$HOME/.bun"
 #set -gx JAVA_HOME "$HOME/dev/tools/sdkman/candidates/java/current"
-#set -gx FLUTTER "$HOME/dev/tools/flutter/bin"
 #set -gx DEPOT_TOOLS "$HOME/dev/tools/depot_tools"
 # Path Management
 fish_add_path \
@@ -16,8 +18,12 @@ fish_add_path \
     #$NDK_HOME \
     #$BUN_INSTALL/bin \
     #$JAVA_HOME \
-    #$FLUTTER \
     #$DEPOT_TOOLS
+    #$LD_LIBRARY_PATH \
+    #$CEF_PATH \
+    $FLUTTER \
+    ~/.local/bin \
+    ~/.cargo/bin \
     $EMULATORS \
     $PLATFORM_TOOLS \
     $CHROME_EXECUTABLE \
@@ -42,3 +48,5 @@ if status is-interactive
     end
 
 end
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
