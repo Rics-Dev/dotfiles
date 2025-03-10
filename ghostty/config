@@ -8,7 +8,7 @@ background-blur-radius = 20
 fullscreen = false
 
 
-font-family = "JetBrainsMonoNL Nerd Font"
+#font-family = "JetBrainsMonoNL Nerd Font"
 font-feature = -liga
 font-size = 14
 
@@ -21,9 +21,9 @@ mouse-hide-while-typing = true
 
 
 confirm-close-surface = false
-maximize = false
+maximize = true
 gtk-titlebar = false
-window-decoration = server
+#window-decoration = server
 window-padding-x = 10
 window-padding-y = 10
 window-padding-balance = true
