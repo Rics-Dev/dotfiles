@@ -3,14 +3,15 @@
 theme = OneDark
 
 
-background-opacity = 0.95
+background-opacity = 0.90
+background-blur = true
 background-blur-radius = 20
 fullscreen = false
 
 
-#font-family = "JetBrainsMonoNL Nerd Font"
+font-family = "JetBrainsMonoNL Nerd Font Mono"
 font-feature = -liga
-font-size = 14
+font-size = 16
 
 
 cursor-style = block
@@ -20,16 +21,12 @@ shell-integration-features = no-cursor
 mouse-hide-while-typing = true
 
 
-confirm-close-surface = false
 maximize = true
-gtk-titlebar = false
-#window-decoration = server
+window-save-state = always
 window-padding-x = 10
 window-padding-y = 10
 window-padding-balance = true
 window-new-tab-position = end
-window-width = 150
-window-height = 38
 window-padding-color = extend
 
 

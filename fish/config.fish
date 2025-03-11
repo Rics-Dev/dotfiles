@@ -4,11 +4,14 @@
 #set -gx EMULATORS "$ANDROID_HOME/emulator"
 #set -gx PLATFORM_TOOLS "$ANDROID_HOME/platform-tools"
 #set -gx FLUTTER "$HOME/Developer/tools/flutter/bin"
-set -gx HOMEBREW "/opt/homebrew/bin"
+set -gx HOMEBREW /opt/homebrew/bin
+set -gx NODE /opt/homebrew/opt/node@22/bin
+set -gx LDFLAGS "-L/opt/homebrew/opt/node@22/lib"
+set -gx CPPFLAGS "-I/opt/homebrew/opt/node@22/include"
 #set -gx CEF_PATH "$HOME/.local/share/cef"
 #set -gx LD_LIBRARY_PATH "$LD_LIBRARY_PATH:$HOME/.local/share/cef"
 #set -gx NDK_HOME "$ANDROID_HOME/ndk/28.0.12433566"
-#set -gx BUN_INSTALL "$HOME/.bun"
+set -gx BUN "$HOME/.bun/bin"
 #set -gx JAVA_HOME "$HOME/dev/tools/sdkman/candidates/java/current"
 #set -gx DEPOT_TOOLS "$HOME/dev/tools/depot_tools"
 # Path Management
@@ -25,11 +28,13 @@ fish_add_path \
     #$FLUTTER \
     #~/.local/bin \
     #~/.cargo/bin \
-    $HOMEBREW \
-    #$EMULATORS \
-    #$PLATFORM_TOOLS \
-    #$CHROME_EXECUTABLE \
-    #$ANDROID_HOME
+    $NODE \
+    $BUN \
+    $HOMEBREW
+#$EMULATORS \
+#$PLATFORM_TOOLS \
+#$CHROME_EXECUTABLE \
+#$ANDROID_HOME
 if status is-interactive
     # Interactive session configurations
     # Source aliases
