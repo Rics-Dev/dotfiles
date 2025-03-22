@@ -3,7 +3,7 @@
 theme = OneDark
 
 
-background-opacity = 0.90
+background-opacity = 0.95
 background-blur = true
 background-blur-radius = 20
 fullscreen = false
@@ -36,6 +36,7 @@ window-padding-color = extend
 shell-integration = detect
 
 
+#keybind = global:cmd+s=toggle_quick_terminal
 keybind = ctrl+shift+j=move_tab:-1
 keybind = ctrl+shift+k=move_tab:+1
 keybind = ctrl+shift+l=next_tab

@@ -3,11 +3,14 @@
 #set -gx CHROME_EXECUTABLE /usr/bin/chromium
 #set -gx EMULATORS "$ANDROID_HOME/emulator"
 #set -gx PLATFORM_TOOLS "$ANDROID_HOME/platform-tools"
-#set -gx FLUTTER "$HOME/Developer/tools/flutter/bin"
+set -gx FLUTTER "$HOME/Developer/tools/flutter/bin"
 set -gx HOMEBREW /opt/homebrew/bin
 set -gx NODE /opt/homebrew/opt/node@22/bin
-set -gx LDFLAGS "-L/opt/homebrew/opt/node@22/lib"
-set -gx CPPFLAGS "-I/opt/homebrew/opt/node@22/include"
+set -gx GEM_HOME "/opt/homebrew/lib/ruby/gems/3.4.0"
+set -gx GEM_BIN "$GEM_HOME/bin"
+set -gx RUBY /opt/homebrew/opt/ruby/bin
+set -gx LDFLAGS "-L/opt/homebrew/opt/node@22/lib -L/opt/homebrew/opt/ruby/lib"
+set -gx CPPFLAGS "-I/opt/homebrew/opt/node@22/include -I/opt/homebrew/opt/ruby/include"
 #set -gx CEF_PATH "$HOME/.local/share/cef"
 #set -gx LD_LIBRARY_PATH "$LD_LIBRARY_PATH:$HOME/.local/share/cef"
 #set -gx NDK_HOME "$ANDROID_HOME/ndk/28.0.12433566"
@@ -25,10 +28,12 @@ fish_add_path \
     #$DEPOT_TOOLS
     #$LD_LIBRARY_PATH \
     #$CEF_PATH \
-    #$FLUTTER \
     #~/.local/bin \
     #~/.cargo/bin \
+    $GEM_BIN \
+    $FLUTTER \
     $NODE \
+    $RUBY \
     $BUN \
     $HOMEBREW
 #$EMULATORS \

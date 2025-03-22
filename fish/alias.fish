@@ -63,7 +63,6 @@ alias gb="git branch" # List branches
 alias gd="git diff" # Show changes
 alias gcl="git clone" # Clone a repository
 alias nv="nvim" # Open neovim
-alias hx="helix" # Open helix
 alias cl="clear" # Clear the terminal
 alias search="rg" # Use ripgrep for fast searching
 alias -- ..="cd .." # Go up one level
@@ -71,8 +70,6 @@ alias -- ...="cd ../.." # Go up two levels
 alias -- ....="cd ../../.." # Go up three levels
 
 alias fzn='nvim $(fzf)'
-
-
 
 function rmf
     echo "Are you sure you want to delete '$argv'? (y/n)"
@@ -83,7 +80,6 @@ function rmf
         echo "Deletion canceled."
     end
 end
-
 
 # Function to create a directory and cd into it
 function mkcd
