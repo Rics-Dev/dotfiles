@@ -44,14 +44,14 @@ blinking = "Always"
 shape = "Block"
 
 [font]
-size = 14.0
+size = 16
 
 [font.glyph_offset]
 x = 0
 y = 0
 
 [font.normal]
-family = "JetBrainsMonoNL Nerd Font"
+family = "JetBrainsMonoNL Nerd Font Mono"
 style = "Regular"
 
 [scrolling]

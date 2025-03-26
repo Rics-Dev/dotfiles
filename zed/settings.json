@@ -3,7 +3,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "icon_theme": "Material Icon Theme",
+  "icon_theme": "JetBrains Icons Dark",
   "vim_mode": true,
   "ui_font_size": 14,
   "ui_font_family": "JetBrainsMonoNL Nerd Font Mono",
