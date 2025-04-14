@@ -1,7 +1,7 @@
 # Environment Variables
-#set -gx ANDROID_HOME "$HOME/Android/Sdk"
+set -gx ANDROID_HOME "$HOME/Library/Android/Sdk"
 #set -gx CHROME_EXECUTABLE /usr/bin/chromium
-#set -gx EMULATORS "$ANDROID_HOME/emulator"
+set -gx EMULATORS "$ANDROID_HOME/emulator"
 #set -gx PLATFORM_TOOLS "$ANDROID_HOME/platform-tools"
 set -gx FLUTTER "$HOME/Developer/tools/flutter/bin"
 set -gx HOMEBREW /opt/homebrew/bin
@@ -11,12 +11,14 @@ set -gx GEM_BIN "$GEM_HOME/bin"
 set -gx RUBY /opt/homebrew/opt/ruby/bin
 set -gx LDFLAGS "-L/opt/homebrew/opt/node@22/lib -L/opt/homebrew/opt/ruby/lib"
 set -gx CPPFLAGS "-I/opt/homebrew/opt/node@22/include -I/opt/homebrew/opt/ruby/include"
+set -gx POSTGRESQL /Library/PostgreSQL/17/bin
+set -gx MYSQL /usr/local/mysql/bin/
 #set -gx CEF_PATH "$HOME/.local/share/cef"
 #set -gx LD_LIBRARY_PATH "$LD_LIBRARY_PATH:$HOME/.local/share/cef"
 #set -gx NDK_HOME "$ANDROID_HOME/ndk/28.0.12433566"
 set -gx BUN "$HOME/.bun/bin"
 #set -gx JAVA_HOME "$HOME/dev/tools/sdkman/candidates/java/current"
-#set -gx DEPOT_TOOLS "$HOME/dev/tools/depot_tools"
+#set -gx DEPOT_TOOLS "$HOME/dev/tools/depot_tools"i
 # Path Management
 fish_add_path \
     #$HOME/.modular/bin \
@@ -35,11 +37,13 @@ fish_add_path \
     $NODE \
     $RUBY \
     $BUN \
-    $HOMEBREW
-#$EMULATORS \
-#$PLATFORM_TOOLS \
-#$CHROME_EXECUTABLE \
-#$ANDROID_HOME
+    $MYSQL \
+    $HOMEBREW \
+    $EMULATORS \
+    $POSTGRESQL \
+    #$PLATFORM_TOOLS \
+    #$CHROME_EXECUTABLE \
+    $ANDROID_HOME
 if status is-interactive
     # Interactive session configurations
     # Source aliases
