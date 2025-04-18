@@ -9,8 +9,9 @@ background-blur-radius = 20
 fullscreen = false
 
 
-font-family = "JetBrainsMonoNL Nerd Font Mono"
-font-feature = -liga
+#font-family = "JetBrainsMonoNL Nerd Font Mono"
+font-family = "Monaspace Neon Var"
+font-feature = -calt
 font-size = 15
 
 

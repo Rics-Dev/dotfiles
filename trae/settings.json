@@ -51,5 +51,11 @@
   },
   "[javascript]": {
     "editor.defaultFormatter": "biomejs.biome"
-  }
+  },
+  "[svelte]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.editor.labelFormat": "short",
+  "editor.fontFamily": "Monaspace Neon Var",
+  "workbench.colorTheme": "GitHub Dark Dimmed"
 }

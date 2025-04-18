@@ -1,12 +1,13 @@
 return {
-  { "ellisonleao/gruvbox.nvim" },
-  { "navarasu/onedark.nvim" },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "onedark",
-    },
-  },
+  -- { "ellisonleao/gruvbox.nvim" },
+  -- { "navarasu/onedark.nvim" },
+  -- { 'projekt0n/github-nvim-theme', name = 'github-theme' },
+  -- {
+  --   "LazyVim/LazyVim",
+  --   opts = {
+  --     colorscheme = "onedark",
+  --   },
+  -- },
   -- Configure One Dark to use the "warm" style
   {
     "navarasu/onedark.nvim",
