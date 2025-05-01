@@ -46,15 +46,12 @@ fish_add_path \
     $ANDROID_HOME
 if status is-interactive
     # Interactive session configurations
-    # Source aliases
     source ~/.config/fish/alias.fish
 
-    # Initialize tools
-    #if functions -q run_fastfetch
-    #    run_fastfetch
-    #end
+    if command -q atuin
+        atuin init fish | source
+    end
 
-    # Shell enhancements
     if command -q zoxide
         zoxide init --cmd cd fish | source
     end

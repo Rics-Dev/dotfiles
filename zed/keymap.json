@@ -1,34 +1,28 @@
 [
-  {  
+  {
     "context": "Workspace",
+    "bindings": {}
+  },
+  {
+    "context": "Editor && vim_mode == normal",
     "bindings": {
+      "ctrl-w v": "pane::SplitRight",
+      "ctrl-w s": "pane::SplitDown",
+      "cmd-shift-h": "workspace::ActivateNextPane",
+      "cmd-shift-l": "workspace::ActivatePreviousPane",
+      "cmd-shift-j": "workspace::ActivatePaneDown",
+      "cmd-shift-k": "workspace::ActivatePaneUp",
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+      // "shift-j": "pane::SwapItemLeft",
+      // "shift-k": "pane::SwapItemRight",
+      "shift-q": "pane::CloseActiveItem"
     }
   },
   {
-    "context": "Editor",
+    "context": "Editor && vim_mode == insert",
     "bindings": {
-      "cmd-=": "pane::SplitRight",
-      "cmd-;": "pane::SplitDown",
-      "alt-shift-h": "workspace::ActivateNextPane",
-      "alt-shift-l": "workspace::ActivatePreviousPane",
-      "alt-shift-j": "workspace::ActivatePaneDown",
-      "alt-shift-k": "workspace::ActivatePaneUp",
-      "cmd-shift-h": "pane::ActivatePreviousItem",
-      "cmd-shift-l": "pane::ActivateNextItem",
-      "cmd-shift-j": "pane::SwapItemLeft",
-      "cmd-shift-k": "pane::SwapItemRight",
-      "cmd-shift-c": "pane::CloseActiveItem"
-    }
-  },
-  {
-    "context": "Dock",
-    "bindings": {
-      "cmd-=": "pane::SplitRight",
-      "cmd-;": "pane::SplitDown",
-      "alt-shift-h": "workspace::ActivateNextPane",
-      "alt-shift-l": "workspace::ActivatePreviousPane",
-      "alt-shift-j": "workspace::ActivatePaneDown",
-      "alt-shift-k": "workspace::ActivatePaneUp"
+      "escape": ["workspace::SendKeystrokes", "cmd-s escape"]
     }
   }
 ]

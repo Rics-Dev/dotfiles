@@ -10,14 +10,21 @@ return {
   -- },
   -- Configure One Dark to use the "warm" style
   {
-    "navarasu/onedark.nvim",
+    "Rics-Dev/flow.nvim",
+    name = "flow",
     config = function()
-      require("onedark").setup({
-        style = "dark",
-        transparent = false, -- optional, keep background
-        term_colors = true, -- optional, match terminal colors
-      })
-      require("onedark").load()
+      vim.cmd.colorscheme("flow")
     end,
   },
+  -- {
+  --   "navarasu/onedark.nvim",
+  --   config = function()
+  --     require("onedark").setup({
+  --       style = "dark",
+  --       transparent = false, -- optional, keep background
+  --       term_colors = true, -- optional, match terminal colors
+  --     })
+  --     require("onedark").load()
+  --   end,
+  -- },
 }

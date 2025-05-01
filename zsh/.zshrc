@@ -1,111 +1,133 @@
-# Add deno completions to search path
-if [[ ":$FPATH:" != *":/home/ric/.zsh/completions:"* ]]; then export FPATH="/home/ric/.zsh/completions:$FPATH"; fi
-# -----------------------------------------------------
-# Fastfetch if on wm
-# -----------------------------------------------------
-if [[ $(tty) == *"pts"* ]]; then
-    fastfetch --config ~/.config/fastfetch/example13.jsonc
-fi
+# Zsh Configuration
+# Converted from Fish configuration
 
-if [[ -f "/opt/homebrew/bin/brew" ]] then
-  # If you're using macOS, you'll want this enabled
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-# Set the directory we want to store zinit and plugins
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
-# Download Zinit, if it's not there yet
-if [ ! -d "$ZINIT_HOME" ]; then
-   mkdir -p "$(dirname $ZINIT_HOME)"
-   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
-
-# Source/Load zinit
-source "${ZINIT_HOME}/zinit.zsh"
-
-# Add in Powerlevel10k
-#zinit ice depth=1; zinit light romkatv/powerlevel10k
-
-# Add in zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
-
-# Add in snippets
-zinit snippet OMZP::git
-zinit snippet OMZP::sudo
-zinit snippet OMZP::archlinux
-zinit snippet OMZP::aws
-zinit snippet OMZP::kubectl
-zinit snippet OMZP::kubectx
-zinit snippet OMZP::command-not-found
-
-# Load completions
-autoload -Uz compinit && compinit
-
-zinit cdreplay -q
-
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-eval "$(oh-my-posh init zsh --config ~/.dotfiles/zsh/ricsdev.omp.json)"
-
-# Keybindings
-bindkey -e
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
-bindkey '^[w' kill-region
-
-# History
-HISTSIZE=5000
+# Zsh-specific settings
+# History configuration
 HISTFILE=~/.zsh_history
-SAVEHIST=$HISTSIZE
-HISTDUP=erase
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
+HISTSIZE=10000
+SAVEHIST=10000
+setopt SHARE_HISTORY          # Share history between sessions
+setopt HIST_IGNORE_SPACE      # Don't record commands starting with space
+setopt HIST_IGNORE_DUPS       # Don't record duplicated commands
+setopt HIST_FIND_NO_DUPS      # Don't show duplicates when searching
+setopt HIST_REDUCE_BLANKS     # Remove unnecessary blanks
+setopt EXTENDED_HISTORY       # Record command start time
 
-# Completion styling
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+# Completion system
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # Case insensitive completion
 
-# Aliases
-alias ls='ls --color'
-alias vi='nvim'
-alias c='clear'
-alias f="fzf --preview='bat --color=always {}'"
-alias zshc='nvim .zshrc'
-
-# Shell integrations
-eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
+# Key bindings
+bindkey -e                     # Use emacs key bindings
+bindkey '^[[A' up-line-or-search    # Up arrow for history search
+bindkey '^[[B' down-line-or-search  # Down arrow for history search
 
 
+# Colors and syntax highlighting
+# Enable color support
+autoload -U colors && colors
 
-#export PATH="$PATH":"$HOME/.pub-cache/bin"
-export CHROME_EXECUTABLE=/usr/bin/chromium
-export EDITOR=nvim
-export PATH="$PATH:/home/ric/.turso"
-# bun completions
-[ -s "/home/ric/.bun/_bun" ] && source "/home/ric/.bun/_bun"
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-export PATH=/home/ric/.local/bin:$PATH
-export JAVA_HOME=/home/ric/dev/tools/sdkman/candidates/java/current
-export PATH=$JAVA_HOME/bin:$PATH
-export PATH="$PATH:/home/.local/share/JetBrains/Toolbox/scripts"
-export PATH="$PATH:/home/ric/dev/tools/flutter/bin"
+# Basic color definitions for prompts
+export CLICOLOR=1
+export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/dev/tools/sdkman"
-[[ -s "$HOME/dev/tools/sdkman/bin/sdkman-init.sh" ]] && source "$HOME/dev/tools/sdkman/bin/sdkman-init.sh"
-. "/home/ric/.deno/env"
+# Load syntax highlighting
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null || \
+source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
+# Colored ls output
+alias ls="ls --color=auto"
+alias ll="ls -la --color=auto"
+
+# Colored grep output
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# Add color to man pages
+export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
+export LESS_TERMCAP_md=$'\e[1;36m'     # begin blink
+export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
+export LESS_TERMCAP_so=$'\e[01;44;33m' # begin reverse video
+export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
+export LESS_TERMCAP_us=$'\e[1;32m'     # begin underline
+export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
+
+
+# Environment Variables
+export ANDROID_HOME="$HOME/Library/Android/Sdk"
+export EMULATORS="$ANDROID_HOME/emulator"
+export FLUTTER="$HOME/Developer/tools/flutter/bin"
+export HOMEBREW="/opt/homebrew/bin"
+export NODE="/opt/homebrew/opt/node@22/bin"
+export GEM_HOME="/opt/homebrew/lib/ruby/gems/3.4.0"
+export GEM_BIN="$GEM_HOME/bin"
+export RUBY="/opt/homebrew/opt/ruby/bin"
+export LDFLAGS="-L/opt/homebrew/opt/node@22/lib -L/opt/homebrew/opt/ruby/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/node@22/include -I/opt/homebrew/opt/ruby/include"
+export POSTGRESQL="/Library/PostgreSQL/17/bin"
+export MYSQL="/usr/local/mysql/bin/"
+export BUN="$HOME/.bun/bin"
+
+# Path Management
+path=(
+  "$GEM_BIN"
+  "$FLUTTER"
+  "$NODE"
+  "$RUBY"
+  "$BUN"
+  "$MYSQL"
+  "$HOMEBREW"
+  "$EMULATORS"
+  "$POSTGRESQL"
+  "$ANDROID_HOME"
+  $path
+)
+
+# Source aliases and utilities
+[[ -f "$HOME/.dotfiles/zsh/aliases.zsh" ]] && source "$HOME/.dotfiles/zsh/aliases.zsh"
+
+# Source rustup
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
+# Source atuin
+[[ -f "$HOME/.atuin/bin/env.sh" ]] && source "$HOME/.atuin/bin/env.sh"
+
+# Initialize tools if they exist
+# Zoxide
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+
+# Atuin
+if command -v atuin >/dev/null 2>&1; then
+  eval "$(atuin init zsh)"
+fi
+
+# Starship
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
+
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Run fastfetch if in a terminal
+# if [[ $(tty) == *pts* ]]; then
+#   fastfetch --config ~/.config/fastfetch/example13.jsonc
+# fi
+
+# Yazi file manager function
+y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  yazi "$@" --cwd-file="$tmp"
+  if [[ -f "$tmp" ]]; then
+    local cwd="$(cat -- "$tmp")"
+    if [[ -n "$cwd" && "$cwd" != "$PWD" ]]; then
+      cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
+  fi
+}

@@ -1,6 +1,6 @@
 # By default Reload config with shft + cmd + , 
 
-theme = OneDark
+theme = Flow
 
 
 background-opacity = 0.95
@@ -9,9 +9,7 @@ background-blur-radius = 20
 fullscreen = false
 
 
-#font-family = "JetBrainsMonoNL Nerd Font Mono"
-font-family = "Monaspace Neon Var"
-font-feature = -calt
+font-family = "JetBrains Mono NL"
 font-size = 15
 
 
@@ -47,3 +45,5 @@ keybind = ctrl+shift+right=goto_split:right
 keybind = ctrl+shift+left=goto_split:left
 keybind = ctrl+shift+up=goto_split:top
 keybind = ctrl+shift+down=goto_split:bottom
+keybind = cmd+shift+c=copy_to_clipboard
+keybind = cmd+shift+v=paste_from_clipboard

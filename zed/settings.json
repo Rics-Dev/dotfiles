@@ -6,25 +6,46 @@
     },
     "version": "2"
   },
-  "icon_theme": "Bearded Icon Theme",
   "autosave": {
     "after_delay": {
       "milliseconds": 1000
     }
   },
+  "format_on_save": "off",
+  "scrollbar": {
+    "show": "always"
+  },
+  "cursor_blink": false,
   "vim_mode": true,
-  "ui_font_size": 14,
-  "ui_font_family": "Monaspace Neon Var",
-  "buffer_font_size": 14,
-  "buffer_font_weight": 400,
-  "buffer_font_family": "Monaspace Neon Var",
-  "buffer_font_features": {
-    "calt": true
-  }, 
+  "ui_font_size": 15,
+  "ui_font_family": "JetBrains Mono NL",
+  "buffer_font_size": 13,
+  "buffer_font_family": "JetBrains Mono NL",
+  "icon_theme": "Bearded Icon Theme",
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Dark Pro"
+    "dark": "Flow Theme"
+  },
+  "tab_bar": {
+    "show": true,
+    "show_nav_history_buttons": true,
+    "show_tab_bar_buttons": true
+  },
+  "tabs": {
+    "close_position": "right",
+    "file_icons": true,
+    "activate_on_close": "history",
+    "show_close_button": "hover",
+    "show_diagnostics": "errors"
+  },
+  "toolbar": {
+    "breadcrumbs": true,
+    "quick_actions": true,
+    "selections_menu": true
+  },
+  "terminal": {
+    "font_family": "JetBrains Mono NL"
   },
   "lsp": {
     "discord_presence": {
@@ -32,6 +53,7 @@
         "application_id": "1263505205522337886",
         "base_icons_url": "https://raw.githubusercontent.com/xhyrom/zed-discord-presence/main/assets/icons/",
         "state": "Working on {filename}",
+        "details": "In Null",
         "large_image": "{base_icons_url}/{language}.png",
         "large_text": "{language:u}",
         "small_image": "{base_icons_url}/zed.png",
