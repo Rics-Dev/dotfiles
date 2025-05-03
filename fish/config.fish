@@ -1,4 +1,5 @@
 # Environment Variables
+set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
 set -gx ANDROID_HOME "$HOME/Library/Android/Sdk"
 #set -gx CHROME_EXECUTABLE /usr/bin/chromium
 set -gx EMULATORS "$ANDROID_HOME/emulator"
@@ -47,6 +48,8 @@ fish_add_path \
 if status is-interactive
     # Interactive session configurations
     source ~/.config/fish/alias.fish
+
+        carapace _carapace | source
 
     if command -q atuin
         atuin init fish | source
