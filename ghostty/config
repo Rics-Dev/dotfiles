@@ -77,3 +77,7 @@ keybind = cmd+shift+k=resize_split:up,10
 keybind = cmd+shift+j=resize_split:down,10
 keybind = cmd+shift+h=resize_split:left,10
 keybind = cmd+shift+l=resize_split:right,10
+
+keybind = cmd+s>i=increase_font_size:1
+keybind = cmd+s>d=decrease_font_size:1
+keybind = cmd+s>à=reset_font_size
