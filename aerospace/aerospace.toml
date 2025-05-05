@@ -123,6 +123,7 @@ alt-cmd-ctrl-e = 'layout tiles horizontal vertical'
 alt-cmd-ctrl-semicolon = 'fullscreen'
 alt-cmd-ctrl-f = ['layout floating']
 alt-cmd-ctrl-t = ['layout tiling']
+alt-cmd-ctrl-r = ['reload-config']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-cmd-ctrl-h = 'focus left'
