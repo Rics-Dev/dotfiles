@@ -1,4 +1,13 @@
 return {
+  {
+    "Rics-Dev/flow.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("flow").setup() -- Optional: for customization
+      vim.cmd("colorscheme flow")
+    end,
+  },
   -- { "ellisonleao/gruvbox.nvim" },
   -- { "navarasu/onedark.nvim" },
   -- { 'projekt0n/github-nvim-theme', name = 'github-theme' },
@@ -8,14 +17,6 @@ return {
   --     colorscheme = "onedark",
   --   },
   -- },
-  -- Configure One Dark to use the "warm" style
-  {
-    "Rics-Dev/flow.nvim",
-    name = "flow",
-    config = function()
-      vim.cmd.colorscheme("flow")
-    end,
-  },
   -- {
   --   "navarasu/onedark.nvim",
   --   config = function()

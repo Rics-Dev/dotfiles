@@ -18,12 +18,13 @@ set -gx MYSQL /usr/local/mysql/bin/
 #set -gx LD_LIBRARY_PATH "$LD_LIBRARY_PATH:$HOME/.local/share/cef"
 #set -gx NDK_HOME "$ANDROID_HOME/ndk/28.0.12433566"
 set -gx BUN "$HOME/.bun/bin"
+set -gx DENO "$HOME/.deno/bin"
 #set -gx JAVA_HOME "$HOME/dev/tools/sdkman/candidates/java/current"
 #set -gx DEPOT_TOOLS "$HOME/dev/tools/depot_tools"i
 # Path Management
 fish_add_path \
     #$HOME/.modular/bin \
-    #$HOME/.deno/env \
+    $HOME/.deno/env \
     #$HOME/.cargo/bin \
     #$NDK_HOME \
     #$BUN_INSTALL/bin \
@@ -38,6 +39,7 @@ fish_add_path \
     $NODE \
     $RUBY \
     $BUN \
+    $DENO \
     $MYSQL \
     $HOMEBREW \
     $EMULATORS \

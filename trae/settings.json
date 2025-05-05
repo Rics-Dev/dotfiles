@@ -1,4 +1,7 @@
 {
+  "extensions.experimental.affinity": {
+    "jasew.vscode-helix-emulation": 1
+  },
   "files.autoSave": "afterDelay",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,

@@ -1,8 +1,9 @@
-theme = "onedark"
+theme = "flow"
 
 [editor]
 line-number = "relative"
 mouse = true
+bufferline = "multiple"
 continue-comments = true
 auto-format = true
 clipboard-provider = "wayland"

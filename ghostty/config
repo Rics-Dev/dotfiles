@@ -6,7 +6,7 @@ theme = Flow
 background-opacity = 0.95
 background-blur = true
 background-blur-radius = 20
-fullscreen = false
+#fullscreen = true
 
 
 font-family = "JetBrains Mono NL"
@@ -20,13 +20,14 @@ shell-integration-features = no-cursor
 mouse-hide-while-typing = true
 
 
-maximize = true
+#maximize = true
 window-save-state = always
 window-padding-x = 10
-window-padding-y = 10
+window-padding-y = 10,0
 window-padding-balance = true
 window-new-tab-position = end
 window-padding-color = extend
+#window-decoration = none
 
 
 

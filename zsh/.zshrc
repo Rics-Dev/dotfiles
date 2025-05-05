@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/Users/ric/.zsh/completions:"* ]]; then export FPATH="/Users/ric/.zsh/completions:$FPATH"; fi
 # Zsh Configuration
 # Converted from Fish configuration
 
@@ -131,3 +133,4 @@ y() {
     rm -f -- "$tmp"
   fi
 }
+. "/Users/ric/.deno/env"

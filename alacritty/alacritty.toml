@@ -51,7 +51,7 @@ x = 0
 y = 0
 
 [font.normal]
-family = "JetBrainsMonoNL Nerd Font Mono"
+family = "JetBrains Mono NL"
 style = "Regular"
 
 [scrolling]
@@ -65,21 +65,21 @@ opacity = 0.90
 decorations = "none"
 blur = true
 
-startup_mode = "Maximized"
+#startup_mode = "Maximized"
 
-[window.dimensions]
-columns = 125
-lines = 35
+# [window.dimensions]
+# columns = 125
+# lines = 35
 
 [window.padding]
 x = 10
 y = 10
 
 
-[[keyboard.bindings]]
-action = "CreateNewWindow"
-key = "N"
-mods = "Control|Shift"
+# [[keyboard.bindings]]
+# action = "CreateNewWindow"
+# key = "N"
+# mods = "Control|Shift"
 
 
 [env]

@@ -1,11 +1,13 @@
 [
   {
     "context": "Workspace",
-    "bindings": {}
+    "bindings": {
+    }
   },
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
+      "cmd-n": "workspace::NewTerminal",
       "ctrl-w v": "pane::SplitRight",
       "ctrl-w s": "pane::SplitDown",
       "cmd-shift-h": "workspace::ActivateNextPane",
@@ -14,8 +16,8 @@
       "cmd-shift-k": "workspace::ActivatePaneUp",
       "shift-h": "pane::ActivatePreviousItem",
       "shift-l": "pane::ActivateNextItem",
-      // "shift-j": "pane::SwapItemLeft",
-      // "shift-k": "pane::SwapItemRight",
+      "shift-j": "pane::SwapItemLeft",
+      "shift-k": "pane::SwapItemRight",
       "shift-q": "pane::CloseActiveItem"
     }
   },
@@ -24,5 +26,5 @@
     "bindings": {
       "escape": ["workspace::SendKeystrokes", "cmd-s escape"]
     }
-  }
+  },
 ]

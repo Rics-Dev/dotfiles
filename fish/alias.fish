@@ -69,8 +69,6 @@ alias -- ..="cd .." # Go up one level
 alias -- ...="cd ../.." # Go up two levels
 alias -- ....="cd ../../.." # Go up three levels
 
-alias fzn='nvim $(fzf)'
-
 function rmf
     echo "Are you sure you want to delete '$argv'? (y/n)"
     read confirm
@@ -97,37 +95,45 @@ function nvf
     if test -n "$file"
         nvim $file
     end
+        commandline -f repaint
 end
 bind \cv nvf
 
-# Ctrl+F - Fuzzy file finder (insert path at cursor)
+# Ctrl+F - Fuzzy file finder (cd into directory)
+function fzf-dev
+    set -l dir "$HOME/Developer"
+    set -l selected (fd . $dir --type d | fzf --height 40% --reverse --preview 'bat --color=always --style=numbers {}')
+    if test -n "$selected"
+        cd "$selected"
+    end
+    commandline -f repaint
+end
+bind \cf fzf-dev
+
+
+function fzf-dotfiles
+    set -l dir "$HOME/.dotfiles"
+    set -l selected (fd . $dir --type d | fzf --height 40% --reverse --preview 'bat --color=always --style=numbers {}')
+    if test -n "$selected"
+        cd "$selected"
+    end
+        commandline -f repaint
+    commandline -f repaint
+end
+bind \co fzf-dotfiles
+
+
+# Fuzzy file finder (insert path at cursor)
 function fzf-file-widget
+    set -l dir (pwd)
     set -l selected (fzf --height 40% --reverse --preview 'bat --color=always --style=numbers {}')
     if test -n "$selected"
         commandline -i -- (string escape "$selected")
     end
     commandline -f repaint
 end
-bind \cf fzf-file-widget
+bind \e\cf fzf-file-widget
 
-# Ctrl+Alt+F - Fuzzy directory finder (cd into directory)
-function fzf-dir-widget
-    set -l selected (fd --type d --hidden | fzf --height 40% --reverse --preview 'tree -C {} | head -200')
-    if test -n "$selected"
-        cd "$selected"
-        commandline -f repaint
-    end
-end
-bind \e\cf fzf-dir-widget
-
-# Ctrl+R - Enhanced history search
-function fzf-history-widget
-    history | fzf --height 80% --reverse | read -l command
-    if test -n "$command"
-        commandline -rb $command
-    end
-end
-bind \cr fzf-history-widget
 
 # Ctrl+Z - Attach to zellij session (with ANSI color codes stripped)
 function fzf-zellij-sessions
@@ -137,3 +143,14 @@ function fzf-zellij-sessions
     end
 end
 bind \cz fzf-zellij-sessions
+
+
+
+# Ctrl+R - Enhanced history search
+# function fzf-history-widget
+#     history | fzf --height 80% --reverse | read -l command
+#     if test -n "$command"
+#         commandline -rb $command
+#     end
+# end
+# bind \cr fzf-history-widget

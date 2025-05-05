@@ -1,16 +1,58 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 local config = {}
-
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
+-- Define your custom Ghostty color scheme
+config.color_schemes = {
+	["GhosttyTheme"] = {
+		-- The default text color
+		foreground = "#abb2bf",
+		-- The default background color
+		background = "#0F1219",
+
+		-- Cursor colors
+		cursor_bg = "#5ab0f6",
+		cursor_fg = "#0F1219",
+
+		-- Selection colors
+		selection_bg = "#2c313a",
+		selection_fg = "#abb2bf",
+
+		-- ANSI colors
+		ansi = {
+			"#3f4451", -- Black (0)
+			"#ef5f6b", -- Red (1)
+			"#98c379", -- Green (2)
+			"#e5c07b", -- Yellow (3)
+			"#5ab0f6", -- Blue (4)
+			"#c678dd", -- Purple (5)
+			"#56b6c2", -- Cyan (6)
+			"#d7dae0", -- White (7)
+		},
+		brights = {
+			"#4f5666", -- Bright Black (8)
+			"#ff616e", -- Bright Red (9)
+			"#a5e075", -- Bright Green (10)
+			"#ebc275", -- Bright Yellow (11)
+			"#61afef", -- Bright Blue (12)
+			"#de73ff", -- Bright Purple (13)
+			"#4dbdcb", -- Bright Cyan (14)
+			"#e6e6e6", -- Bright White (15)
+		},
+	},
+}
+
+-- Use the custom color scheme
+
 config = {
-	enable_wayland = true,
+	--enable_wayland = true,
 	animation_fps = 240,
 	max_fps = 240,
-	color_scheme = "OneDark (base16)",
+	color_scheme = "GhosttyTheme",
+	--color_scheme = "OneDark (base16)",
 	default_cursor_style = "BlinkingBlock",
 	automatically_reload_config = true,
 	window_close_confirmation = "NeverPrompt",
@@ -19,8 +61,8 @@ config = {
 	check_for_updates = false,
 	use_fancy_tab_bar = true,
 	tab_bar_at_bottom = false,
-	font_size = 14,
-	font = wezterm.font("JetBrainsMonoNL Nerd Font"),
+	font_size = 15,
+	font = wezterm.font("JetBrains Mono NL"),
 	-- font = wezterm.font({
 	-- 	family = "JetBrainsMono Nerd Font",
 	-- 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },

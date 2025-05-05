@@ -3,7 +3,7 @@
 -- Add any additional keymaps here
 
 -- Close current buffer
-vim.keymap.set("n", "<C-q>", ":bd<CR>", { desc = "Close current buffer" })
+vim.keymap.set("n", "<S-q>", ":bd<CR>", { desc = "Close current buffer" })
 
 vim.keymap.set("n", "<C-p>", function()
   require("fzf-lua").files({ cwd = vim.fn.getcwd() })
