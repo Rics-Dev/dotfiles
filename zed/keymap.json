@@ -6,9 +6,9 @@
   },
   {
     "context": "Editor && vim_mode == normal",
-    "bindings": {
+  "bindings": {
       "cmd-s n": "workspace::NewTerminal",
-      "cmd-s w": "pane::CloseActiveItem",
+      "cmd-s x": "pane::CloseActiveItem",
       "cmd-s :": "pane::SplitRight",
       "cmd-s ;": "pane::SplitDown",
       "cmd-s h": "workspace::ActivatePaneLeft",
@@ -17,8 +17,8 @@
       "cmd-s k": "workspace::ActivatePaneUp",
       "shift-h": "pane::ActivatePreviousItem",
       "shift-l": "pane::ActivateNextItem",
-      "shift-j": "pane::SwapItemLeft",
-      "shift-k": "pane::SwapItemRight",
+      // "shift-j": "pane::SwapItemLeft",
+      // "shift-k": "pane::SwapItemRight",
       "shift-q": "pane::CloseActiveItem"
     }
   },
@@ -27,5 +27,5 @@
     "bindings": {
       "escape": ["workspace::SendKeystrokes", "cmd-s escape"]
     }
-  },
+  }
 ]

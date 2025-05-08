@@ -5,6 +5,7 @@ set -gx ANDROID_HOME "$HOME/Library/Android/Sdk"
 set -gx EMULATORS "$ANDROID_HOME/emulator"
 #set -gx PLATFORM_TOOLS "$ANDROID_HOME/platform-tools"
 set -gx FLUTTER "$HOME/Developer/tools/flutter/bin"
+set -gx FLUTTER_EXE "$HOME/.pub-cache/bin"
 set -gx HOMEBREW /opt/homebrew/bin
 set -gx NODE /opt/homebrew/opt/node@22/bin
 set -gx GEM_HOME "/opt/homebrew/lib/ruby/gems/3.4.0"
@@ -36,6 +37,7 @@ fish_add_path \
     #~/.cargo/bin \
     $GEM_BIN \
     $FLUTTER \
+    $FLUTTER_EXE \
     $NODE \
     $RUBY \
     $BUN \
@@ -48,10 +50,15 @@ fish_add_path \
     #$CHROME_EXECUTABLE \
     $ANDROID_HOME
 if status is-interactive
-    # Interactive session configurations
     source ~/.config/fish/alias.fish
 
-        carapace _carapace | source
+
+
+    if functions -q run_fastfetch
+        run_fastfetch
+    end
+
+    carapace _carapace | source
 
     if command -q atuin
         atuin init fish | source

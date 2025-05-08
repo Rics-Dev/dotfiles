@@ -69,6 +69,19 @@ alias -- ..="cd .." # Go up one level
 alias -- ...="cd ../.." # Go up two levels
 alias -- ....="cd ../../.." # Go up three levels
 
+function y
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    yazi $argv --cwd-file="$tmp"
+    if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        builtin cd -- "$cwd"
+    end
+    rm -f -- "$tmp"
+    commandline -f repaint
+end
+bind \cl y
+
+
+
 function rmf
     echo "Are you sure you want to delete '$argv'? (y/n)"
     read confirm
@@ -135,6 +148,13 @@ end
 bind \e\cf fzf-file-widget
 
 
+
+function ff
+    command  aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
+    commandline -f repaint
+end
+
+
 # Ctrl+Z - Attach to zellij session (with ANSI color codes stripped)
 function fzf-zellij-sessions
     zellij list-sessions | sed 's/\x1b\[[0-9;]*m//g' | awk '{print $1}' | fzf --height 20% | read -l session
@@ -144,6 +164,41 @@ function fzf-zellij-sessions
 end
 bind \cz fzf-zellij-sessions
 
+
+function remu
+    set -l avds (emulator -list-avds)
+    if test (count $avds) -eq 0
+        echo "No AVDs found."
+        return 1
+    end
+
+    set -l selected (printf '%s\n' $avds | fzf --height 40% --reverse --prompt="Select emulator > ")
+    if test -n "$selected"
+        echo "Starting emulator: $selected"
+        command emulator -avd $selected
+    else
+        echo "No emulator selected."
+    end
+end
+
+
+function resim
+    set -l devices (xcrun simctl list devices available | grep -E "Booted|Shutdown" | awk -F '[()]' '{print $1 " (" $2 ")"}' | sed 's/ *$//')
+    if test (count $devices) -eq 0
+        echo "No available iOS simulators found."
+        return 1
+    end
+
+    set -l selected (printf '%s\n' $devices | fzf --height 40% --reverse --prompt="Select iOS simulator > ")
+    if test -n "$selected"
+        set -l udid (xcrun simctl list devices | grep "$selected" | awk -F '[()]' '{print $3}')
+        echo "Booting iOS simulator: $selected"
+        open -a Simulator
+        xcrun simctl boot $udid 2>/dev/null
+    else
+        echo "No simulator selected."
+    end
+end
 
 
 # Ctrl+R - Enhanced history search

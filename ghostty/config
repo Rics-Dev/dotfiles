@@ -1,11 +1,15 @@
 # By default Reload config with shft + cmd + , 
+auto-update-channel = tip
+auto-update = download
+
 theme = Flow
 
-font-family = "JetBrains Mono NL"
+font-family = "JetBrainsMonoNL Nerd Font"
+#font-feature = -liga
+#font-family = "GeistMono Nerd Font"
 font-size = 15
 adjust-cell-height = 0
 adjust-font-baseline = 0
-
 
 cursor-style = block
 cursor-style-blink = true
@@ -15,9 +19,10 @@ mouse-hide-while-typing = true
 
 
 
-background-opacity = 0.95
+background-opacity = 0.97
 background-blur = true
 background-blur-radius = 20
+window-theme = dark
 window-save-state = always
 window-padding-x = 10
 window-padding-y = 10,0
@@ -44,7 +49,6 @@ shell-integration = detect
 # keybindings
 keybind = cmd+s>r=reload_config
 keybind = cmd+s>x=close_surface
-#keybind = cmd+s>n=new_window
 keybind = cmd+f=write_scrollback_file:open
 
 keybind = global:cmd+;=toggle_quick_terminal
