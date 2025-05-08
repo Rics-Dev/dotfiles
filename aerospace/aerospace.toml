@@ -15,11 +15,11 @@ after-login-command = []
 # ]
 
 # Notify Sketchybar about workspace change
-exec-on-workspace-change = [
-    '/bin/bash',
-    '-c',
-    '/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change AEROSPACE_FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE AEROSPACE_PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE',
-]
+# exec-on-workspace-change = [
+#     '/bin/bash',
+#     '-c',
+#     '/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+# ]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -69,10 +69,10 @@ preset = 'qwerty'
 [gaps]
 inner.horizontal = 10
 inner.vertical = 10
-outer.left = 10
+outer.left = 8
 outer.bottom = 10
-outer.top = 50
-outer.right = 10
+outer.top = 10
+outer.right = 8
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes

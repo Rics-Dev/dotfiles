@@ -28,11 +28,11 @@ sbar.default({
   background = {
     height = 28,
     corner_radius = 9,
-    border_width = 1,
-    border_color = colors.with_alpha(colors.bg2, 0.7),
+    border_width = 2,
+    border_color = colors.bg2,
     image = {
       corner_radius = 9,
-      border_color = colors.with_alpha(colors.grey, 0.6),
+      border_color = colors.grey,
       border_width = 1
     }
   },
@@ -41,10 +41,10 @@ sbar.default({
       border_width = 2,
       corner_radius = 9,
       border_color = colors.popup.border,
-      color = colors.with_alpha(colors.popup.bg, 0.35),
+      color = colors.popup.bg,
       shadow = { drawing = true },
     },
-    blur_radius = 30,
+    blur_radius = 50,
   },
   padding_left = 5,
   padding_right = 5,

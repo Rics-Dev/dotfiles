@@ -6,7 +6,6 @@ local whitelist = { ["Spotify"] = true,
 
 local media_cover = sbar.add("item", {
   position = "right",
-  padding_right = 60,
   background = {
     image = {
       string = "media.artwork",
@@ -35,8 +34,8 @@ local media_artist = sbar.add("item", {
     width = 0,
     font = { size = 9 },
     color = colors.with_alpha(colors.white, 0.6),
-    max_chars = 25,
-    y_offset = -8,
+    max_chars = 18,
+    y_offset = 6,
   },
 })
 
@@ -47,11 +46,10 @@ local media_title = sbar.add("item", {
   padding_right = 0,
   icon = { drawing = false },
   label = {
-    font = { size = 10 },
-    -- color = colors.with_alpha(colors.white, 0.6),
+    font = { size = 11 },
     width = 0,
-    max_chars = 55,
-    y_offset = 6,
+    max_chars = 16,
+    y_offset = -5,
   },
 })
 
@@ -80,10 +78,8 @@ local function animate_detail(detail)
   if interrupt > 0 and (not detail) then return end
 
   sbar.animate("tanh", 30, function()
-    -- media_artist:set({ label = { width = detail and "dynamic" or 0 } })
-    -- media_title:set({ label = { width = detail and "dynamic" or 0 } })
-    media_artist:set({ label = { width = detail and "dynamic" } })
-    media_title:set({ label = { width = detail and "dynamic" } })
+    media_artist:set({ label = { width = detail and "dynamic" or 0 } })
+    media_title:set({ label = { width = detail and "dynamic" or 0 } })
   end)
 end
 

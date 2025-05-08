@@ -10,36 +10,53 @@ local popup_width = 250
 
 local wifi_up = sbar.add("item", "widgets.wifi1", {
   position = "right",
-  padding_left = 0,
-  padding_right = 25,
+  padding_left = -5,
   width = 0,
+  icon = {
+    padding_right = 0,
+    font = {
+      style = settings.font.style_map["Bold"],
+      size = 9.0,
+    },
+    string = icons.wifi.upload,
+  },
   label = {
     font = {
       family = settings.font.numbers,
       style = settings.font.style_map["Bold"],
-      size = 10.0,
+      size = 9.0,
     },
     color = colors.red,
-    string = "Unknown SSID",
+    string = "??? Bps",
   },
-  y_offset = 0,
+  y_offset = 4,
 })
 
-wifi_up:subscribe({"wifi_change", "system_woke"}, function(env)
-  sbar.exec("ipconfig getsummary en0 | awk -F ' SSID : '  '/ SSID : / {print $2}'", function(result)
-    local ssid = result:gsub("\n", "") -- Remove newline characters
-    wifi_up:set({
-      label = {
-        string = ssid,
-        color = colors.red
-      }
-    })
-  end)
-end)
+local wifi_down = sbar.add("item", "widgets.wifi2", {
+  position = "right",
+  padding_left = -5,
+  icon = {
+    padding_right = 0,
+    font = {
+      style = settings.font.style_map["Bold"],
+      size = 9.0,
+    },
+    string = icons.wifi.download,
+  },
+  label = {
+    font = {
+      family = settings.font.numbers,
+      style = settings.font.style_map["Bold"],
+      size = 9.0,
+    },
+    color = colors.blue,
+    string = "??? Bps",
+  },
+  y_offset = -4,
+})
 
 local wifi = sbar.add("item", "widgets.wifi.padding", {
   position = "right",
-  padding_right = 6,
   label = { drawing = false },
 })
 
@@ -47,9 +64,35 @@ local wifi = sbar.add("item", "widgets.wifi.padding", {
 local wifi_bracket = sbar.add("bracket", "widgets.wifi.bracket", {
   wifi.name,
   wifi_up.name,
+  wifi_down.name
 }, {
   background = { color = colors.bg1 },
-  popup = { align = "left", height = 30 }
+  popup = { align = "center", height = 30 }
+})
+
+local ssid = sbar.add("item", {
+  position = "popup." .. wifi_bracket.name,
+  icon = {
+    font = {
+      style = settings.font.style_map["Bold"]
+    },
+    string = icons.wifi.router,
+  },
+  width = popup_width,
+  align = "center",
+  label = {
+    font = {
+      size = 15,
+      style = settings.font.style_map["Bold"]
+    },
+    max_chars = 18,
+    string = "????????????",
+  },
+  background = {
+    height = 2,
+    color = colors.grey,
+    y_offset = -15
+  }
 })
 
 local hostname = sbar.add("item", {
@@ -111,24 +154,24 @@ local router = sbar.add("item", {
 
 sbar.add("item", { position = "right", width = settings.group_paddings })
 
--- wifi_up:subscribe("network_update", function(env)
---   local up_color = (env.upload == "000 Bps") and colors.grey or colors.red
---   local down_color = (env.download == "000 Bps") and colors.grey or colors.blue
---   wifi_up:set({
---     icon = { color = up_color },
---     label = {
---       string = env.upload,
---       color = up_color
---     }
---   })
---   wifi_down:set({
---     icon = { color = down_color },
---     label = {
---       string = env.download,
---       color = down_color
---     }
---   })
--- end)
+wifi_up:subscribe("network_update", function(env)
+  local up_color = (env.upload == "000 Bps") and colors.grey or colors.red
+  local down_color = (env.download == "000 Bps") and colors.grey or colors.blue
+  wifi_up:set({
+    icon = { color = up_color },
+    label = {
+      string = env.upload,
+      color = up_color
+    }
+  })
+  wifi_down:set({
+    icon = { color = down_color },
+    label = {
+      string = env.download,
+      color = down_color
+    }
+  })
+end)
 
 wifi:subscribe({"wifi_change", "system_woke"}, function(env)
   sbar.exec("ipconfig getifaddr en0", function(ip)
@@ -156,6 +199,9 @@ local function toggle_details()
     sbar.exec("ipconfig getifaddr en0", function(result)
       ip:set({ label = result })
     end)
+    sbar.exec("ipconfig getsummary en0 | awk -F ' SSID : '  '/ SSID : / {print $2}'", function(result)
+      ssid:set({ label = result })
+    end)
     sbar.exec("networksetup -getinfo Wi-Fi | awk -F 'Subnet mask: ' '/^Subnet mask: / {print $2}'", function(result)
       mask:set({ label = result })
     end)
@@ -168,6 +214,7 @@ local function toggle_details()
 end
 
 wifi_up:subscribe("mouse.clicked", toggle_details)
+wifi_down:subscribe("mouse.clicked", toggle_details)
 wifi:subscribe("mouse.clicked", toggle_details)
 wifi:subscribe("mouse.exited.global", hide_details)
 
@@ -180,6 +227,7 @@ local function copy_label_to_clipboard(env)
   end)
 end
 
+ssid:subscribe("mouse.clicked", copy_label_to_clipboard)
 hostname:subscribe("mouse.clicked", copy_label_to_clipboard)
 ip:subscribe("mouse.clicked", copy_label_to_clipboard)
 mask:subscribe("mouse.clicked", copy_label_to_clipboard)
