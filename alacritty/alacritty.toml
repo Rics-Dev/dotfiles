@@ -42,16 +42,16 @@ background = "0x3b4559"
 text = "0xd7dae0"
 
 [window]
-opacity = 0.97
+opacity = 0.95
 decorations = "buttonless"
 blur = true
 dynamic_padding = true
 title = "Alacritty"
-dynamic_title = true  
+dynamic_title = true
 
 [window.padding]
-x = 12
-y = 12
+x = 10
+y = 10
 
 [font]
 size = 15
@@ -69,9 +69,9 @@ style = "Italic"
 [font.bold_italic]
 style = "Bold Italic"
 
-[font.offset]
-x = 0
-y = 4
+# [font.offset]
+# x = 0
+# y = 4
 
 [cursor.style]
 blinking = "On"

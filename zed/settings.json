@@ -46,7 +46,12 @@
   },
   "terminal": {
     "font_family": "JetBrainsMonoNL Nerd Font"
+  },
+  "project_panel": {
+    "auto_fold_dirs": false
+
   }
+
   // "lsp": {
   //   "discord_presence": {
   //     "initialization_options": {

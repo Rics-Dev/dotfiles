@@ -9,5 +9,11 @@ vim.keymap.set("n", "<C-p>", function()
   require("fzf-lua").files({ cwd = vim.fn.getcwd() })
 end, { desc = "Open file finder" })
 
-vim.keymap.set("n", "<c-t>", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
+vim.keymap.set("n", "<c-t>", function()
+  Snacks.terminal(nil, { cwd = LazyVim.root() })
+end, { desc = "Terminal (Root Dir)" })
 vim.keymap.set("t", "<c-t>", "<cmd>close<cr>", { desc = "Hide/Close Terminal" })
+
+-- Global keymap (not buffer-local)
+vim.keymap.set("n", "<M-CR>", vim.lsp.buf.code_action, { desc = "LSP Code Action" })
+
