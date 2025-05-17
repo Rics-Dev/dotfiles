@@ -9,15 +9,16 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 FONT="SF Pro"
 PADDINGS=3
 
-# Remove any existing debug log
+# Reset debug log
 rm -f /tmp/sketchybar_debug.log
 touch /tmp/sketchybar_debug.log
+echo "Starting SketchyBar configuration..." >> /tmp/sketchybar_debug.log
 
-# Get the current workspace info
+# Initial workspace information
 AEROSPACE_FOCUSED_MONITOR_NO=$(aerospace list-workspaces --focused)
-AEROSPACE_LIST_OF_WINDOWS_IN_FOCUSED_MONITOR=$(aerospace list-windows --workspace $AEROSPACE_FOCUSED_MONITOR_NO | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
+echo "Initial focused workspace: $AEROSPACE_FOCUSED_MONITOR_NO" >> /tmp/sketchybar_debug.log
 
-# Enhanced bar with better aesthetics
+# Enhanced bar with improved aesthetics and positioning
 bar=(
   height=45
   color=$BAR_COLOR
@@ -28,16 +29,19 @@ bar=(
   shadow_color=$SHADOW_COLOR
   position=top
   sticky=on
-  padding_right=10
-  padding_left=10
+  padding_right=12
+  padding_left=12
   y_offset=-5
   margin=-2
   topmost=window
+  notch_width=0
+  display=all
 )
 
 sketchybar --bar "${bar[@]}"
+echo "Bar configuration applied" >> /tmp/sketchybar_debug.log
 
-# Improved defaults with better typography and spacing
+# Improved defaults with better typography, spacing and visual feedback
 defaults=(
   updates=when_shown
   icon.font="$FONT:Regular:14.0"
@@ -49,10 +53,10 @@ defaults=(
   label.padding_left=$PADDINGS
   label.padding_right=$PADDINGS
   label.shadow.drawing=on
-  label.shadow.distance=2
-  label.shadow.color=0xaa000000
-  padding_right=$PADDINGS
-  padding_left=$PADDINGS
+  label.shadow.distance=1
+  label.shadow.color=0x55000000
+  padding_right=5
+  padding_left=5
   background.height=30
   background.corner_radius=12
   background.border_width=2
@@ -65,12 +69,17 @@ defaults=(
   popup.background.shadow.distance=3
   popup.background.shadow.color=$SHADOW_COLOR
   scroll_texts=on
+  # Enhanced animation support
+  animate=on
+  animation.duration=0.2
+  animation.easing_function=ease_out_expo
 )
 
 sketchybar --default "${defaults[@]}"
+echo "Default styles applied" >> /tmp/sketchybar_debug.log
 
-# Load all modules
-echo "Loading modules..." >> /tmp/sketchybar_debug.log
+# Load core modules
+echo "Loading core modules..." >> /tmp/sketchybar_debug.log
 source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
 source "$ITEM_DIR/front_app.sh"
@@ -78,12 +87,21 @@ source "$ITEM_DIR/calendar.sh"
 source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/volume.sh"
 
+# Load new modules (if they exist, otherwise silently continue)
+echo "Loading enhanced modules..." >> /tmp/sketchybar_debug.log
+[ -f "$ITEM_DIR/weather.sh" ] && source "$ITEM_DIR/weather.sh"
+[ -f "$ITEM_DIR/cpu.sh" ] && source "$ITEM_DIR/cpu.sh"
+[ -f "$ITEM_DIR/memory.sh" ] && source "$ITEM_DIR/memory.sh"
+[ -f "$ITEM_DIR/music.sh" ] && source "$ITEM_DIR/music.sh"
+[ -f "$ITEM_DIR/quick_actions.sh" ] && source "$ITEM_DIR/quick_actions.sh"
+
 # Create an aesthetically pleasing bracket for right side items
 right_bracket=(
   background.color=$BACKGROUND_1
   background.border_color=$BACKGROUND_2
   background.corner_radius=12
   background.border_width=2
+  background.drawing=on
 )
 
 # Create a bracket for the left side items
@@ -92,16 +110,52 @@ left_bracket=(
   background.border_color=$BACKGROUND_2
   background.corner_radius=12
   background.border_width=2
+  background.drawing=on
 )
 
-sketchybar --add bracket right_side battery calendar volume volume_icon \
+# Create a bracket for the center items if they exist
+center_bracket=(
+  background.color=$BACKGROUND_1
+  background.border_color=$BACKGROUND_2
+  background.corner_radius=12
+  background.border_width=2
+  background.drawing=on
+)
+
+# Define right side items based on what's available
+right_items=()
+core_right_items=(battery calendar volume volume_icon)
+for item in "${core_right_items[@]}"; do
+  right_items+=($item)
+done
+
+# Add new modules to right bracket if they exist
+[ -f "$ITEM_DIR/weather.sh" ] && right_items+=(weather)
+[ -f "$ITEM_DIR/cpu.sh" ] && right_items+=(cpu)
+[ -f "$ITEM_DIR/memory.sh" ] && right_items+=(memory)
+
+# Apply right bracket
+sketchybar --add bracket right_side "${right_items[@]}" \
            --set right_side "${right_bracket[@]}"
-           
+
+# Define left side items
 sketchybar --add bracket left_side apple.logo front_app \
            --set left_side "${left_bracket[@]}"
 
+# Define center items if they exist
+center_items=()
+[ -f "$ITEM_DIR/music.sh" ] && center_items+=(music.prev music.play music.next music.title)
+
+# Apply center bracket if items exist
+if [ ${#center_items[@]} -gt 0 ]; then
+  sketchybar --add bracket center_bracket "${center_items[@]}" \
+             --set center_bracket "${center_bracket[@]}"
+fi
+
+# Enable hotloading for development
 sketchybar --hotload on
 
+# Final update to ensure all items are rendered correctly
 sketchybar --update
 
-echo "Sketchybar configuration loaded successfully!" >> /tmp/sketchybar_debug.log
+echo "SketchyBar configuration loaded successfully!" >> /tmp/sketchybar_debug.log

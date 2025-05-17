@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# General Icons
+# General Icons with improved selection
 LOADING=􀖇
 APPLE=􀣺
 PREFERENCES=􀺽
@@ -16,11 +16,16 @@ SPOTIFY_NEXT=􀊐
 SPOTIFY_SHUFFLE=􀊝
 SPOTIFY_REPEAT=􀊞
 
-# Battery Icons
+# Battery Icons - more granular representation
 BATTERY_100=􀛨
+BATTERY_90=􀺸
 BATTERY_75=􀺸
+BATTERY_60=􀺶
 BATTERY_50=􀺶
-BATTERY_25=􀛩
+BATTERY_40=􀛩
+BATTERY_30=􀛩
+BATTERY_20=􀛪
+BATTERY_10=􀛪
 BATTERY_0=􀛪
 BATTERY_CHARGING=􀢋
 
@@ -30,7 +35,70 @@ VOLUME_66=􀊧
 VOLUME_33=􀊥
 VOLUME_10=􀊡
 VOLUME_0=􀊣
+VOLUME_MUTED=􀊡
 
-# WiFi
+# WiFi with signal strength
 WIFI_CONNECTED=􀙇
 WIFI_DISCONNECTED=􀙈
+WIFI_LOW=􀙅
+WIFI_MEDIUM=􀙆
+WIFI_HIGH=􀙇
+
+# Weather Icons
+WEATHER_SUN=􀆮
+WEATHER_CLOUD=􀇔
+WEATHER_RAIN=􀇖
+WEATHER_SNOW=􀇗
+WEATHER_STORM=􀇘
+WEATHER_MOON=􀆺
+WEATHER_PARTLY_CLOUDY=􀇕
+
+# Time Icons
+TIME_MORNING=􀐫
+TIME_AFTERNOON=􀐰
+TIME_EVENING=􀐳
+TIME_NIGHT=􀑊
+
+# System Monitoring
+CPU=􀫥
+MEMORY=􀫦
+DISK=􀨪
+NETWORK_UP=􀅧
+NETWORK_DOWN=􀅧
+TEMPERATURE=􀇬
+
+# Calendar and Time
+CALENDAR=􀉉
+CLOCK=􀐫
+
+# Music Controls
+MUSIC_PLAY=􀊄
+MUSIC_PAUSE=􀊆
+MUSIC_PREV=􀊊
+MUSIC_NEXT=􀊌
+MUSIC_SHUFFLE=􀊝
+MUSIC_REPEAT=􀊞
+
+# New Application Icons
+CODE=􀤙
+TERMINAL=􀆍
+BROWSER=􀎭
+MAIL=􀍕
+MESSAGES=􀌳
+VIDEO=􀍹
+PHOTO=􀎫
+DOCUMENT=􀈷
+
+# Workspaces and Windows
+WORKSPACE=􀏭
+WINDOW=􀏜
+WINDOW_STACK=􀏞
+ADD=􀅼
+REMOVE=􀅺
+
+# Quick Actions
+FULLSCREEN=􀏒
+MAXIMIZE=􀏋
+MINIMIZE=􀏃
+CLOSE=􀆄
+SCREENSHOT=􀌁
