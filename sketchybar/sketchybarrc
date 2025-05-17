@@ -79,13 +79,13 @@ defaults=(
   
   # Background styling for items
   background.height=30            # Background height for clickable area
-  background.corner_radius=12     # Rounded corners for modern look
+  background.corner_radius=6     # Rounded corners for modern look
   background.border_width=2       # Border for visual definition
   background.border_color=$BACKGROUND_2 # Default border color
   
   # Popup styling
   popup.background.border_width=2         # Consistent border thickness
-  popup.background.corner_radius=12       # Matching rounded corners
+  popup.background.corner_radius=6       # Matching rounded corners
   popup.background.border_color=$POPUP_BORDER_COLOR
   popup.background.color=$POPUP_BACKGROUND_COLOR
   popup.blur_radius=30                    # Backdrop blur for modern look

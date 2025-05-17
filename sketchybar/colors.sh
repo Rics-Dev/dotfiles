@@ -1,51 +1,53 @@
 #!/bin/bash
 
-### Enhanced Catppuccin Theme with improved visual hierarchy and contrast ratios
-export BLACK=0xff181926
-export WHITE=0xffcad3f5
-export RED=0xffed8796
-export GREEN=0xffa6da95
-export BLUE=0xff8aadf4
-export YELLOW=0xffeed49f
-export ORANGE=0xfff5a97f
-export MAGENTA=0xffc6a0f6
-export GREY=0xff939ab7
+# Minimalist Dark Theme Color Palette
+# Focus on darker tones with subtle accents
+
+export BLACK=0xff000000
+export WHITE=0xfffffffa
+export RED=0xff785A5A
+export GREEN=0xff5A785A
+export BLUE=0xff5A5A78
+export YELLOW=0xff787858
+export ORANGE=0xff786E5A
+export MAGENTA=0xff785A78
+export GREY=0xff444444
 export TRANSPARENT=0x00000000
 
-# Enhanced background colors with improved contrast for better legibility
-export BG0=0xff1e1e2e      # Solid background - improved contrast
-export BG1=0x903c3e4f      # Semi-transparent background - increased opacity
-export BG2=0x90494d64      # Semi-transparent border - increased opacity
+# Dark background colors with minimal opacity
+export BG0=0xff0a0a0a      # Almost black solid background
+export BG1=0x60181818      # Very subtle semi-transparent background
+export BG2=0x40202020      # Even more subtle borders
 
-# Additional colors for visual depth and interaction states
-export HIGHLIGHT=0xff89dceb # Cyan for highlights
-export SUBTLE=0xff585b70    # Subtle accent
-export LAVENDER=0xffb4befe  # Lavender for special highlights
-export MAROON=0xffeba0ac    # Maroon for warnings
-export PEACH=0xfffab387     # Peach for notifications
-export TEAL=0xff94e2d5      # Teal for success states
-export MAUVE=0xffcba6f7     # Mauve for active states
+# Minimal accent colors
+export HIGHLIGHT=0xff5A5A78 # Subtle blue for highlights
+export SUBTLE=0xff333333    # Very dark subtle accent
+export LAVENDER=0xff5A5A78  # Matching highlight for consistency
+export MAROON=0xff785A5A    # Muted red for warnings
+export PEACH=0xff786E5A     # Muted peach for notifications
+export TEAL=0xff5A7870      # Muted teal for success states
+export MAUVE=0xff785A78     # Muted purple for active states
 
-# Battery indicators with improved color gradient
-export BATTERY_100=0xffa6da95  # Green - full
-export BATTERY_75=0xffb4befe   # Lavender - good
-export BATTERY_50=0xffeed49f   # Yellow - medium
-export BATTERY_25=0xfff5a97f   # Orange - low
-export BATTERY_0=0xffed8796    # Red - critical
+# Battery indicators with more subtle colors
+export BATTERY_100=0xff5A785A  # Muted green - full
+export BATTERY_75=0xff5A6E78   # Muted cyan - good
+export BATTERY_50=0xff787858   # Muted yellow - medium
+export BATTERY_25=0xff786E5A   # Muted orange - low
+export BATTERY_0=0xff785A5A    # Muted red - critical
 
-# General bar colors with improved contrast and visual appeal
-export BAR_COLOR=0x801e1e2e          # Semi-transparent for cleaner look
-export BAR_BORDER_COLOR=0xaa494d64   # Slightly more visible border
-export BACKGROUND_1=0x903c3e4f       # Improved opacity for better contrast
-export BACKGROUND_2=0x90494d64       # Improved opacity for better contrast
-export ICON_COLOR=$WHITE             # Keep icons white for legibility
-export LABEL_COLOR=$WHITE            # Keep labels white for legibility
-export HIGHLIGHT_COLOR=$BLUE         # Color for highlighted elements
-export POPUP_BACKGROUND_COLOR=0xee1e1e2e  # More opaque for better readability
-export POPUP_BORDER_COLOR=$LAVENDER      # Lavender border for popups
-export SHADOW_COLOR=0xaa181926           # Semi-transparent shadow
+# Bar colors with minimal approach
+export BAR_COLOR=0x60050505          # Very dark semi-transparent for minimal look
+export BAR_BORDER_COLOR=0x20202020   # Almost invisible border
+export BACKGROUND_1=0x40181818       # Very subtle background for modules
+export BACKGROUND_2=0x30202020       # Even more subtle border
+export ICON_COLOR=$WHITE             # Keep icons visible but not bright
+export LABEL_COLOR=$WHITE            # Keep labels visible but not bright
+export HIGHLIGHT_COLOR=$BLUE         # Subtle highlight
+export POPUP_BACKGROUND_COLOR=0xaa0a0a0a  # Dark popup background
+export POPUP_BORDER_COLOR=0x40303030      # Subtle popup border
+export SHADOW_COLOR=0x20000000            # Minimal shadow
 
-# Status indicators with clear semantic meaning
+# Status indicators with clear semantic meaning but muted colors
 export NORMAL=$GREEN
 export WARNING=$YELLOW
 export CRITICAL=$RED
@@ -57,12 +59,12 @@ export MEMORY_COLOR=$PEACH
 export NETWORK_COLOR=$TEAL
 export MUSIC_COLOR=$LAVENDER
 
-# Hover and interaction state colors
-export HOVER_BACKGROUND=0xa5494d64     # Slightly lighter background for hover states
-export ACTIVE_BACKGROUND=0xc03c3e4f    # More opaque background for active/pressed states
-export HOVER_BORDER=0xb5585b70         # Brighter border for hover states
-export ACTIVE_BORDER=$LAVENDER         # Highlight border for active states
+# Hover and interaction state colors (more minimal)
+export HOVER_BACKGROUND=0x40303030     # Very subtle hover state
+export ACTIVE_BACKGROUND=0x60252525    # Subtle active/pressed state
+export HOVER_BORDER=0x40404040         # Subtle hover border
+export ACTIVE_BORDER=0x605A5A78        # Subtle highlight border
 
 # Animation colors for transitions
-export TRANSITION_FROM=0x003c3e4f      # Start with transparent
-export TRANSITION_TO=0x903c3e4f        # End with semi-transparent
+export TRANSITION_FROM=0x00181818      # Start with transparent
+export TRANSITION_TO=0x40181818        # End with subtle semi-transparent
