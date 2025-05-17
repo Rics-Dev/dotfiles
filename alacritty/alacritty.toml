@@ -51,7 +51,7 @@ dynamic_title = true
 
 [window.padding]
 x = 10
-y = 10
+# y = 10
 
 [font]
 size = 15

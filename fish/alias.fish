@@ -3,6 +3,7 @@
 # TMux aliases
 alias ta="tmux attach" # Just attach
 alias tls="tmux ls" # List sessions
+
 # Function to create a new named TMux session
 function tn
     if test (count $argv) -eq 0
@@ -29,6 +30,41 @@ function tk
     end
     tmux kill-session -t $argv[1]
 end
+
+# Ctrl+T - Fuzzy find and attach to tmux sessions
+function fzf-tmux-sessions --description "Fuzzy-find and manage tmux sessions"
+    # Check if tmux is installed
+    if not command -v tmux >/dev/null
+        echo "tmux is not installed."
+        return 1
+    end
+
+    # Check if there are any tmux sessions
+    if not tmux list-sessions >/dev/null 2>&1
+        echo "No tmux sessions found. Create a new one with 'tn <session-name>'."
+        return 1
+    end
+
+    # Get session names only (simpler format for fzf)
+    set -l sessions (tmux list-sessions -F "#{session_name}")
+
+    # Construct fzf command with preview and keybindings
+    set -l selected (printf '%s\n' $sessions | fzf \
+        --height 50% \
+        --reverse \
+        --prompt='Select tmux session > ' \
+        --header='Enter: Attach | Ctrl-K: Kill ' \
+        --bind='ctrl-k:execute(tmux kill-session -t {} >/dev/null 2>&1)+reload(tmux list-sessions -F "#{session_name}")')
+
+    # If a session was selected, attach to it
+    if test -n "$selected"
+        tmux attach-session -t "$selected" >/dev/null 2>&1
+    end
+
+    # Repaint commandline to refresh prompt
+    commandline -f repaint
+end
+bind \ct fzf-tmux-sessions
 
 # Zellij aliases
 alias zj="zellij" # Shortcut for zellij
@@ -62,7 +98,7 @@ alias gco="git checkout" # Switch branches
 alias gb="git branch" # List branches
 alias gd="git diff" # Show changes
 alias gcl="git clone" # Clone a repository
-alias nv="nvim" # Open neovim
+alias v="nvim" # Open neovim
 alias cl="clear" # Clear the terminal
 alias search="rg" # Use ripgrep for fast searching
 alias -- ..="cd .." # Go up one level

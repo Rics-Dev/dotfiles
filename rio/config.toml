@@ -36,7 +36,7 @@ padding-x = 10
 # (default is [0, 0])
 #
 # Example:
-padding-y = [10, 0]
+# padding-y = [0, 0]
 
 # Option as Alt
 #
@@ -131,10 +131,10 @@ args = []
 [window]
 # width = 600
 # height = 400
-# mode = "windowed"
+mode = "Windowed"
 opacity = 0.95
 blur = true
-decorations = "Transparent"
+decorations = "Buttonless"
 macos-use-shadow = true
 windows-corner-preference = "Round"
 
@@ -335,42 +335,6 @@ args = ["--login"]
 #
 
 
-# [colors]
-# background = '#0F1219'
-# foreground = '#abb2bf'
-# cursor = '#5ab0f6'
-# cursor-text = '#0F1219'
-# selection-background = '#3b4559'
-# selection-foreground = '#d7dae0'
-# black = '#3f4451'
-# red = '#e06c75'
-# green = '#98c379'
-# yellow = '#e5c07b'
-# blue = '#61afef'
-# magenta = '#c678dd'
-# cyan = '#56b6c2'
-# white = '#d7dae0'
-# bright-black = '#4f5666'
-# bright-red = '#ff616e'
-# bright-green = '#a5e075'
-# bright-yellow = '#ebc275'
-# bright-blue = '#5ab0f6'
-# bright-magenta = '#de73ff'
-# bright-cyan = '#4dbdcb'
-# bright-white = '#e6e6e6'
-
-
-# Example:
-# [colors]
-# background = '#0F0D0E'
-# foreground = '#F9F4DA'
-# cursor = '#F38BA3'
-# tabs = '#443d40'
-# tabs-active = '#F38BA3'
-# green = '#0BA95B'
-# red = '#ED203D'
-# blue = '#12B5E5'
-# yellow = '#FCBA28'
 
 # Bindings
 #

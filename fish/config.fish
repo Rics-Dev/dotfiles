@@ -1,4 +1,6 @@
 # Environment Variables
+# set -x COLORTERM truecolor
+
 set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
 set -gx ANDROID_HOME "$HOME/Library/Android/Sdk"
 #set -gx CHROME_EXECUTABLE /usr/bin/chromium
