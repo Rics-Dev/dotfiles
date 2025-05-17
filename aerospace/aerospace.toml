@@ -8,18 +8,18 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-# after-startup-command = [
-#     # JankyBorders has a built-in detection of already running process,
-#     # so it won't be run twice on AeroSpace restart
-#     'exec-and-forget /opt/homebrew/opt/sketchybar/bin/sketchybar',
-# ]
+after-startup-command = [
+    # JankyBorders has a built-in detection of already running process,
+    # so it won't be run twice on AeroSpace restart
+    'exec-and-forget /opt/homebrew/opt/sketchybar/bin/sketchybar',
+]
 
 # Notify Sketchybar about workspace change
-# exec-on-workspace-change = [
-#     '/bin/bash',
-#     '-c',
-#     '/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
-# ]
+exec-on-workspace-change = [
+    '/bin/bash',
+    '-c',
+    '/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change AEROSPACE_FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE AEROSPACE_PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE',
+]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -71,7 +71,7 @@ inner.horizontal = 10
 inner.vertical = 10
 outer.left = 8
 outer.bottom = 10
-outer.top = 10
+outer.top = 40
 outer.right = 8
 
 # 'main' binding mode declaration
@@ -243,7 +243,7 @@ if.app-id="com.mitchellh.ghostty"
 run= ["layout floating", "move-node-to-workspace 2"]
 
 [[on-window-detected]]
-if.app-id="com.raphaelamorim.rio"
+if.app-id="org.alacritty"
 run= ["move-node-to-workspace 2"]
 
 [[on-window-detected]]
@@ -261,7 +261,7 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id="md.obsidian"
-run= ["move-node-to-workspace O"]
+run= ["move-node-to-workspace o"]
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
