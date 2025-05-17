@@ -1,4 +1,8 @@
 #!/bin/bash
 
-#sketchybar --set $NAME icon="$(date '+%a %d. %b')" label="$(date '+%H:%M')"
-sketchybar --set "$NAME" label="$(date '+%m/%d %H:%M')"
+# Get current date and time in more detailed format
+DATE=$(date "+%a %b %d")
+TIME=$(date "+%H:%M")
+
+# Format the display
+sketchybar --set "$NAME" label="$DATE $TIME"

@@ -2,9 +2,9 @@
 
 calendar=(
   icon=􀐫
-  icon.font="$FONT:Black:12.0"
-  icon.padding_right=0
-  label.align=right
+  icon.font="$FONT:Black:13.0"
+  icon.padding_right=5
+  label.align=center
   padding_left=15
   update_freq=30
   script="$PLUGIN_DIR/calendar.sh"
