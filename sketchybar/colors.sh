@@ -1,6 +1,6 @@
 #!/bin/bash
 
-### Catppuccin
+### Enhanced Catppuccin Theme
 export BLACK=0xff181926
 export WHITE=0xffcad3f5
 export RED=0xffed8796
@@ -11,9 +11,16 @@ export ORANGE=0xfff5a97f
 export MAGENTA=0xffc6a0f6
 export GREY=0xff939ab7
 export TRANSPARENT=0x00000000
-export BG0=0xff1e1e2e
-export BG1=0x603c3e4f
-export BG2=0x60494d64
+
+# Enhanced background colors with slightly more opacity for better contrast
+export BG0=0xff1e1e2e      # Solid background
+export BG1=0x803c3e4f      # Semi-transparent background
+export BG2=0x80494d64      # Semi-transparent border
+
+# Additional colors for visual depth
+export HIGHLIGHT=0xff89dceb # Cyan for highlights
+export SUBTLE=0xff585b70    # Subtle accent
+export LAVENDER=0xffb4befe  # Lavender for special highlights
 
 export BATTERY_1=0xffa6da95
 export BATTERY_2=0xffeed49f
@@ -21,14 +28,13 @@ export BATTERY_3=0xfff5a97f
 export BATTERY_4=0xffee99a0
 export BATTERY_5=0xffed8796
 
-# General bar colors
-export BAR_COLOR=$BG0
-export BAR_BORDER_COLOR=$BG2
-export BACKGROUND_1=$BG1
-export BACKGROUND_2=$BG2
-export ICON_COLOR=$WHITE # Color of all icons
-export LABEL_COLOR=$WHITE # Color of all labels
-export POPUP_BACKGROUND_COLOR=$BAR_COLOR
-export POPUP_BORDER_COLOR=$WHITE
-export SHADOW_COLOR=$BLACK
-
+# General bar colors with improved contrast
+export BAR_COLOR=0x801e1e2e          # More transparent for cleaner look
+export BAR_BORDER_COLOR=0xaa494d64   # Slightly more visible border
+export BACKGROUND_1=0x803c3e4f       # Semi-transparent background
+export BACKGROUND_2=0x80494d64       # Semi-transparent border
+export ICON_COLOR=$WHITE             # Keep icons white for legibility
+export LABEL_COLOR=$WHITE            # Keep labels white for legibility
+export POPUP_BACKGROUND_COLOR=0xee1e1e2e  # More opaque for better readability
+export POPUP_BORDER_COLOR=0xffcad3f5      # White border for popups
+export SHADOW_COLOR=0xaa181926             # Semi-transparent shadow

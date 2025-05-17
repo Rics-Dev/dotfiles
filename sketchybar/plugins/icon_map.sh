@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+FONT="sketchybar-app-font:Regular:16.0"
+
 ### START-OF-ICON-MAP
 function __icon_map() {
     case "$1" in
@@ -795,3 +797,9 @@ function __icon_map() {
     esac
 }
 ### END-OF-ICON-MAP
+
+# Call the function with the app name
+__icon_map "$1"
+
+# Return the actual icon - this is the key part
+echo $icon_result

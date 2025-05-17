@@ -9,16 +9,23 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 FONT="SF Pro"
 PADDINGS=3
 
+# Remove any existing debug log
+rm -f /tmp/sketchybar_debug.log
+touch /tmp/sketchybar_debug.log
+
+# Get the current workspace info
 AEROSPACE_FOCUSED_MONITOR_NO=$(aerospace list-workspaces --focused)
 AEROSPACE_LIST_OF_WINDOWS_IN_FOCUSED_MONITOR=$(aerospace list-windows --workspace $AEROSPACE_FOCUSED_MONITOR_NO | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
 
-
+# Enhanced bar with better aesthetics
 bar=(
   height=45
   color=$BAR_COLOR
   border_width=2
   border_color=$BAR_BORDER_COLOR
-  shadow=off
+  shadow=on
+  shadow_distance=3
+  shadow_color=$SHADOW_COLOR
   position=top
   sticky=on
   padding_right=10
@@ -26,17 +33,16 @@ bar=(
   y_offset=-5
   margin=-2
   topmost=window
-  color=0x00000000
-  border_color=0x00000000
 )
 
 sketchybar --bar "${bar[@]}"
 
+# Improved defaults with better typography and spacing
 defaults=(
   updates=when_shown
   icon.font="$FONT:Regular:14.0"
   icon.color=$ICON_COLOR
-  icon.padding_left=$PADDINS
+  icon.padding_left=$PADDINGS
   icon.padding_right=$PADDINGS
   label.font="$FONT:Semibold:13.0"
   label.color=$LABEL_COLOR
@@ -44,44 +50,58 @@ defaults=(
   label.padding_right=$PADDINGS
   label.shadow.drawing=on
   label.shadow.distance=2
-  label.shadow.color=0xff000000
+  label.shadow.color=0xaa000000
   padding_right=$PADDINGS
   padding_left=$PADDINGS
-  background.height=26
-  background.corner_radius=9
+  background.height=30
+  background.corner_radius=12
   background.border_width=2
   popup.background.border_width=2
-  popup.background.corner_radius=9
+  popup.background.corner_radius=12
   popup.background.border_color=$POPUP_BORDER_COLOR
   popup.background.color=$POPUP_BACKGROUND_COLOR
-  popup.blur_radius=20
+  popup.blur_radius=30
   popup.background.shadow.drawing=on
+  popup.background.shadow.distance=3
+  popup.background.shadow.color=$SHADOW_COLOR
   scroll_texts=on
 )
 
 sketchybar --default "${defaults[@]}"
 
+# Load all modules
+echo "Loading modules..." >> /tmp/sketchybar_debug.log
 source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
 source "$ITEM_DIR/front_app.sh"
-
 source "$ITEM_DIR/calendar.sh"
 source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/volume.sh"
-source "$ITEM_DIR/svim.sh"
 
+# Create an aesthetically pleasing bracket for right side items
 right_bracket=(
   background.color=$BACKGROUND_1
   background.border_color=$BACKGROUND_2
-  background.corner_radius=9
+  background.corner_radius=12
   background.border_width=2
 )
 
-sketchybar --add bracket right_side battery  calendar  volume volume_icon \
+# Create a bracket for the left side items
+left_bracket=(
+  background.color=$BACKGROUND_1
+  background.border_color=$BACKGROUND_2
+  background.corner_radius=12
+  background.border_width=2
+)
+
+sketchybar --add bracket right_side battery calendar volume volume_icon \
            --set right_side "${right_bracket[@]}"
+           
+sketchybar --add bracket left_side apple.logo front_app \
+           --set left_side "${left_bracket[@]}"
 
 sketchybar --hotload on
 
 sketchybar --update
 
-echo "sketchybar configuation loaded.."
+echo "Sketchybar configuration loaded successfully!" >> /tmp/sketchybar_debug.log
