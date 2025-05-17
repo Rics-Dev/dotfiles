@@ -3,7 +3,6 @@
 zen_on() {
   sketchybar --set wifi drawing=off \
              --set apple.logo drawing=off \
-             --set '/cpu.*/' drawing=off \
              --set calendar icon.drawing=off \
              --set separator drawing=off \
              --set front_app drawing=off \
@@ -18,7 +17,6 @@ zen_on() {
 zen_off() {
   sketchybar --set wifi drawing=on \
              --set apple.logo drawing=on \
-             --set '/cpu.*/' drawing=on \
              --set calendar icon.drawing=on \
              --set separator drawing=on \
              --set front_app drawing=on \
