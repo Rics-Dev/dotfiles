@@ -117,10 +117,16 @@ do shell script "open -a obsidian"
 '
 '''
 
+alt-cmd-ctrl-d = '''exec-and-forget osascript -e '
+do shell script "open -a discord"
+'
+'''
+
+
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-cmd-ctrl-e = 'layout tiles horizontal vertical'
-alt-cmd-ctrl-d = 'layout accordion horizontal vertical'
+alt-cmd-ctrl-v = 'layout accordion horizontal vertical'
 alt-cmd-ctrl-semicolon = 'fullscreen'
 alt-cmd-ctrl-f = [
     'resize width 1024',
@@ -262,6 +268,10 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-id="md.obsidian"
 run= ["move-node-to-workspace o"]
+
+[[on-window-detected]]
+if.app-id="com.hnc.Discord"
+run= ["move-node-to-workspace d"]
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode

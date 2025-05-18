@@ -9,7 +9,7 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
     space=(
       space="$sid"
       icon="$sid"
-      icon.highlight_color=$BLUE
+      icon.highlight_color=$WHITE
       icon.padding_left=10
       icon.padding_right=10
       display=$m
@@ -25,9 +25,9 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
       script="$PLUGIN_DIR/space.sh"
     )
 
-    sketchybar --add space space.$sid left \
-               --set space.$sid "${space[@]}" \
-               --subscribe space.$sid mouse.clicked
+sketchybar --add space space.$sid left \
+           --set space.$sid "${space[@]}" \
+           --subscribe space.$sid mouse.clicked aerospace_workspace_change
 
     apps=$(aerospace list-windows --workspace $sid | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
 

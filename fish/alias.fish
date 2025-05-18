@@ -99,6 +99,7 @@ alias gb="git branch" # List branches
 alias gd="git diff" # Show changes
 alias gcl="git clone" # Clone a repository
 alias v="nvim" # Open neovim
+alias nv="nvim" # Open neovim
 alias cl="clear" # Clear the terminal
 alias search="rg" # Use ripgrep for fast searching
 alias -- ..="cd .." # Go up one level
@@ -162,9 +163,9 @@ bind \cf fzf-dev
 
 function fzf-dotfiles
     set -l dir "$HOME/.dotfiles"
-    set -l selected (fd . $dir --type d | fzf --height 40% --reverse --preview 'bat --color=always --style=numbers {}')
+    set -l selected (fd . $dir --type f | fzf --height 40% --reverse --preview 'bat --color=always --style=numbers {}')
     if test -n "$selected"
-        cd "$selected"
+        nvim "$selected"
     end
         commandline -f repaint
     commandline -f repaint
