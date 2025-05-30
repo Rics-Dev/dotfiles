@@ -1,0 +1,196 @@
+#!/bin/bash
+
+# ======================================================
+# SketchyBar Configuration - Enhanced Version
+# ======================================================
+# A modern, high-performance status bar for macOS
+# https://felixkratz.github.io/SketchyBar/
+# ======================================================
+
+# ---- Directory Configuration ----
+ITEM_DIR="$CONFIG_DIR/items"     # Directory containing item definitions
+PLUGIN_DIR="$CONFIG_DIR/plugins" # Directory containing plugin scripts
+FONT="SF Pro"                    # Main font for all items
+PADDINGS=3                       # Default padding value
+
+# ---- Load Color and Icon Definitions ----
+source "$CONFIG_DIR/colors.sh"   # Load color variables
+source "$CONFIG_DIR/icons.sh"    # Load icon variables
+
+# ---- Debug Configuration ----
+# Reset and initialize debug log
+rm -f /tmp/sketchybar_debug.log
+touch /tmp/sketchybar_debug.log
+echo "Starting SketchyBar configuration at $(date)" >> /tmp/sketchybar_debug.log
+
+# ---- Get Initial Workspace Information ----
+AEROSPACE_FOCUSED_MONITOR_NO=$(aerospace list-workspaces --focused)
+echo "Initial focused workspace: $AEROSPACE_FOCUSED_MONITOR_NO" >> /tmp/sketchybar_debug.log
+
+# ---- Primary Bar Configuration ----
+# Enhanced bar with improved aesthetics and positioning
+bar=(
+  height=45                       # Bar height - slightly taller for better readability
+  color=$TRANSPARENT                # Semi-transparent background color
+  border_width=0                  # Border thickness for visual definition
+  border_color=$TRANSPARENT  # Border color with improved contrast
+  shadow=on                       # Enable shadow for depth
+  shadow_distance=3               # Shadow offset for better visual separation
+  shadow_color=$SHADOW_COLOR      # Semi-transparent shadow
+  position=top                    # Position at top of screen
+  sticky=on                       # Always visible, even in fullscreen
+  padding_right=14                # Increased right padding for breathing room
+  padding_left=14                 # Increased left padding for breathing room
+  y_offset=-5                     # Slight offset from top edge
+  margin=-2                       # Negative margin for seamless appearance
+  topmost=window                  # Ensure bar appears above windows but below fullscreen apps
+  notch_width=0                   # Automatic notch detection
+  display=all                     # Show on all displays
+)
+
+# Apply bar configuration
+sketchybar --bar "${bar[@]}"
+echo "Bar configuration applied" >> /tmp/sketchybar_debug.log
+
+# ---- Default Item Styling ----
+# Improved defaults with better typography, spacing and visual feedback
+defaults=(
+  updates=when_shown              # Update only when visible for better performance
+  icon.font="$FONT:Regular:14.0"  # Icon font with comfortable size
+  icon.color=$ICON_COLOR          # Icon color with good contrast
+  icon.padding_left=$PADDINGS     # Consistent padding
+  icon.padding_right=$PADDINGS    # Consistent padding
+  icon.y_offset=0                 # Centered vertical alignment
+  
+  label.font="$FONT:Semibold:13.0" # Text with semibold weight for better legibility
+  label.color=$LABEL_COLOR        # Text color with good contrast
+  label.padding_left=$PADDINGS    # Consistent padding
+  label.padding_right=$PADDINGS   # Consistent padding
+  label.y_offset=0                # Centered vertical alignment
+  
+  # Enhanced visibility with subtle shadow
+  label.shadow.drawing=on
+  label.shadow.distance=1
+  label.shadow.color=0x55000000
+  
+  # Consistent spacing
+  padding_right=5
+  padding_left=5
+  
+  # Background styling for items
+  background.height=30            # Background height for clickable area
+  background.corner_radius=6     # Rounded corners for modern look
+  background.border_width=2       # Border for visual definition
+  background.border_color=$BACKGROUND_2 # Default border color
+  
+  # Popup styling
+  popup.background.border_width=2         # Consistent border thickness
+  popup.background.corner_radius=6       # Matching rounded corners
+  popup.background.border_color=$POPUP_BORDER_COLOR
+  popup.background.color=$POPUP_BACKGROUND_COLOR
+  popup.blur_radius=30                    # Backdrop blur for modern look
+  popup.background.shadow.drawing=on      # Shadow for visual depth
+  popup.background.shadow.distance=3      # Consistent shadow distance
+  popup.background.shadow.color=$SHADOW_COLOR
+  
+  # Text behavior
+  scroll_texts=on                 # Enable text scrolling for overflow
+  
+  # Animation configuration
+  animate=on                      # Enable animations
+  animation.duration=0.2          # Quick but noticeable
+  animation.easing_function=ease_out_expo # Smooth easing
+)
+
+# Apply default styling
+sketchybar --default "${defaults[@]}"
+echo "Default styles applied" >> /tmp/sketchybar_debug.log
+
+# ---- Load Core Modules ----
+echo "Loading core modules..." >> /tmp/sketchybar_debug.log
+source "$ITEM_DIR/apple.sh"      # Apple menu and logo
+source "$ITEM_DIR/spaces.sh"     # Workspace/space management
+source "$ITEM_DIR/front_app.sh"  # Current application display
+source "$ITEM_DIR/calendar.sh"   # Date and time
+source "$ITEM_DIR/battery.sh"    # Battery status
+source "$ITEM_DIR/volume.sh"     # Volume control
+source "$ITEM_DIR/wifi.sh"       # WiFi status and control
+
+# ---- Load Optional Enhanced Modules ----
+echo "Loading enhanced modules..." >> /tmp/sketchybar_debug.log
+# Each module is loaded conditionally if it exists
+[ -f "$ITEM_DIR/weather.sh" ] && source "$ITEM_DIR/weather.sh"   # Weather information
+[ -f "$ITEM_DIR/cpu.sh" ] && source "$ITEM_DIR/cpu.sh"           # CPU usage
+[ -f "$ITEM_DIR/memory.sh" ] && source "$ITEM_DIR/memory.sh"     # Memory usage
+[ -f "$ITEM_DIR/network.sh" ] && source "$ITEM_DIR/network.sh"   # Network status
+[ -f "$ITEM_DIR/music.sh" ] && source "$ITEM_DIR/music.sh"       # Music controls
+[ -f "$ITEM_DIR/quick_actions.sh" ] && source "$ITEM_DIR/quick_actions.sh" # Action buttons
+
+# ---- Bracket Configurations ----
+# Brackets visually group related items
+
+# Right side bracket styling
+right_bracket=(
+  background.color=$BACKGROUND_1
+  background.border_color=$BACKGROUND_2
+  background.corner_radius=12
+  background.border_width=2
+  background.drawing=on
+)
+
+# Left side bracket styling
+left_bracket=(
+  background.color=$BACKGROUND_1
+  background.border_color=$BACKGROUND_2
+  background.corner_radius=12
+  background.border_width=2
+  background.drawing=on
+)
+
+# Center bracket styling
+center_bracket=(
+  background.color=$BACKGROUND_1
+  background.border_color=$BACKGROUND_2
+  background.corner_radius=12
+  background.border_width=2
+  background.drawing=on
+)
+
+# ---- Define Bracket Items ----
+
+# Core right side items
+right_items=(battery wifi calendar volume volume_icon)
+
+# Conditionally add optional modules to right bracket
+[ -f "$ITEM_DIR/weather.sh" ] && right_items+=(weather)
+[ -f "$ITEM_DIR/cpu.sh" ] && right_items+=(cpu)
+[ -f "$ITEM_DIR/memory.sh" ] && right_items+=(memory)
+[ -f "$ITEM_DIR/network.sh" ] && right_items+=(network)
+
+# Apply right bracket with all items
+sketchybar --add bracket right_side "${right_items[@]}" \
+           --set right_side "${right_bracket[@]}"
+
+# Apply left bracket with core items
+sketchybar --add bracket left_side apple.logo front_app \
+           --set left_side "${left_bracket[@]}"
+
+# Define and conditionally apply center items
+center_items=()
+[ -f "$ITEM_DIR/music.sh" ] && center_items+=(music.prev music.play music.next music.title)
+
+# Apply center bracket if items exist
+if [ ${#center_items[@]} -gt 0 ]; then
+  sketchybar --add bracket center_bracket "${center_items[@]}" \
+             --set center_bracket "${center_bracket[@]}"
+fi
+
+# ---- Final Configuration ----
+
+# Enable hot reloading for development
+sketchybar --hotload on
+
+# Final update to ensure all items are rendered correctly
+sketchybar --update
+
+echo "SketchyBar configuration loaded successfully at $(date)" >> /tmp/sketchybar_debug.log

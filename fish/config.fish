@@ -17,6 +17,7 @@ set -gx LDFLAGS "-L/opt/homebrew/opt/node@22/lib -L/opt/homebrew/opt/ruby/lib"
 set -gx CPPFLAGS "-I/opt/homebrew/opt/node@22/include -I/opt/homebrew/opt/ruby/include"
 set -gx POSTGRESQL /Library/PostgreSQL/17/bin
 set -gx MYSQL /usr/local/mysql/bin/
+set -gx CHROME_EXECUTABLE "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
 #set -gx CEF_PATH "$HOME/.local/share/cef"
 #set -gx LD_LIBRARY_PATH "$LD_LIBRARY_PATH:$HOME/.local/share/cef"
 #set -gx NDK_HOME "$ANDROID_HOME/ndk/28.0.12433566"

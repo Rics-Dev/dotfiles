@@ -1,45 +1,7 @@
-[colors.primary]
-background = "0x0F1219"
-foreground = "0xabb2bf"
-bright_foreground = "0xd7dae0"
-
-[colors.cursor]
-text = "0x0F1219"
-cursor = "0x5ab0f6"
-
-[colors.normal]
-black = "0x3f4451"
-red = "0xe06c75"
-green = "0x98c379"
-yellow = "0xe5c07b"
-blue = "0x61afef"
-magenta = "0xc678dd"
-cyan = "0x56b6c2"
-white = "0xd7dae0"
-
-[colors.bright]
-black = "0x4f5666"
-red = "0xff616e"
-green = "0xa5e075"
-yellow = "0xebc275"
-blue = "0x5ab0f6"
-magenta = "0xde73ff"
-cyan = "0x4dbdcb"
-white = "0xe6e6e6"
-
-[colors.dim]
-black = "0x2e333d"
-red = "0xc84a56"
-green = "0x7ea560"
-yellow = "0xc9a662"
-blue = "0x4e94cd"
-magenta = "0xa462bd"
-cyan = "0x479aa5"
-white = "0x9199a5"
-
-[colors.selection]
-background = "0x3b4559"
-text = "0xd7dae0"
+[general]
+import = [
+  "./themes/flow.toml"
+]
 
 [window]
 opacity = 0.95

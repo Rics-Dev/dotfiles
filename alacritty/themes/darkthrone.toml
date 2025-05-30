@@ -1,0 +1,42 @@
+[colors.primary]
+background = "0x000000"  # Pure black background
+foreground = "0xc1c1c1"  # Light grey foreground
+bright_foreground = "0xffffff"  # White for bright text
+
+[colors.cursor]
+text = "0x000000"  # Black text on cursor
+cursor = "0x5f8787"  # Teal cursor
+
+[colors.normal]
+black = "0x000000"     # alt_bg - Pure black
+red = "0x5f8787"       # diag_red - Dark teal
+green = "0xc1c1c1"     # property - Light grey
+yellow = "0x888888"    # func - Medium grey
+blue = "0xaaaaaa"      # constant - Light grey
+magenta = "0x999999"   # keyword - Medium grey
+cyan = "0xffffff"      # string - Pure white
+white = "0xc1c1c1"     # fg - Light grey
+
+[colors.bright]
+black = "0x505050"     # comment - Dark grey
+red = "0x5f8787"       # diag_red - Dark teal
+green = "0xc1c1c1"     # property - Light grey
+yellow = "0x888888"    # func - Medium grey
+blue = "0xaaaaaa"      # constant - Light grey
+magenta = "0x999999"   # keyword - Medium grey
+cyan = "0xffffff"      # string - Pure white
+white = "0xffffff"     # Pure white
+
+[colors.dim]
+black = "0x000000"     # Pure black
+red = "0x4a6666"       # Dimmed teal
+green = "0x9a9a9a"     # Dimmed light grey
+yellow = "0x6a6a6a"    # Dimmed medium grey
+blue = "0x888888"      # Dimmed constant
+magenta = "0x777777"   # Dimmed keyword
+cyan = "0xcccccc"      # Dimmed white
+white = "0x9a9a9a"     # Dimmed foreground
+
+[colors.selection]
+background = "0x333333"  # visual - Dark grey selection
+text = "0xc1c1c1"       # Light grey text on selection
