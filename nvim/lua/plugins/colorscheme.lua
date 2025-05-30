@@ -1,12 +1,4 @@
 return {
-  -- {
-  --   "kdheepak/monochrome.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     vim.cmd("colorscheme monochrome")
-  --   end,
-  -- },
   -- flow theme
   {
     "Rics-Dev/flow.nvim",
@@ -46,7 +38,7 @@ return {
   --   priority = 1000,
   --   config = function()
   --     require("black-metal").setup({
-  --       theme = "darkthrone",
+  --       theme = "khold",
   --     })
   --     require("black-metal").load()
   --   end,

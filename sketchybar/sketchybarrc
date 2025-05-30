@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# ======================================================
-# SketchyBar Configuration - Enhanced Version
-# ======================================================
-# A modern, high-performance status bar for macOS
-# https://felixkratz.github.io/SketchyBar/
-# ======================================================
 
 # ---- Directory Configuration ----
 ITEM_DIR="$CONFIG_DIR/items"     # Directory containing item definitions
@@ -41,7 +35,7 @@ bar=(
   sticky=on                       # Always visible, even in fullscreen
   padding_right=14                # Increased right padding for breathing room
   padding_left=14                 # Increased left padding for breathing room
-  y_offset=-5                     # Slight offset from top edge
+  y_offset=-2                     # Slight offset from top edge
   margin=-2                       # Negative margin for seamless appearance
   topmost=window                  # Ensure bar appears above windows but below fullscreen apps
   notch_width=0                   # Automatic notch detection
@@ -114,7 +108,6 @@ source "$ITEM_DIR/front_app.sh"  # Current application display
 source "$ITEM_DIR/calendar.sh"   # Date and time
 source "$ITEM_DIR/battery.sh"    # Battery status
 source "$ITEM_DIR/volume.sh"     # Volume control
-source "$ITEM_DIR/wifi.sh"       # WiFi status and control
 
 # ---- Load Optional Enhanced Modules ----
 echo "Loading enhanced modules..." >> /tmp/sketchybar_debug.log
@@ -159,7 +152,7 @@ center_bracket=(
 # ---- Define Bracket Items ----
 
 # Core right side items
-right_items=(battery wifi calendar volume volume_icon)
+right_items=(battery  calendar volume volume_icon)
 
 # Conditionally add optional modules to right bracket
 [ -f "$ITEM_DIR/weather.sh" ] && right_items+=(weather)
