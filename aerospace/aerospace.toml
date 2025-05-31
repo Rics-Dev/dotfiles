@@ -126,7 +126,7 @@ alt-cmd-ctrl-f = [
     'layout floating'
 ]
 alt-cmd-ctrl-t = ['layout tiling']
-alt-cmd-ctrl-r = ['reload-config']
+alt-cmd-ctrl-r = ['reload-config', 'exec-and-forget sketchybar --trigger reload_spaces']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-cmd-ctrl-h = 'focus left'

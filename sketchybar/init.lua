@@ -24,6 +24,15 @@ sbar.add("item", {
     collectgarbage("collect")
   end
 end)
+
+-- Add event handler for reloading spaces (triggered by srhd)
+sbar.add("item", {
+    drawing = false,
+    updates = true,
+}):subscribe("reload_spaces", function(env)
+    -- Option 1: Just reload the entire SketchyBar (cleanest approach)
+    sbar.exec("sketchybar --reload")
+end)
 sbar.end_config()
 
 -- Run the event loop of the sketchybar module (without this there will be no
