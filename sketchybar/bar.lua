@@ -8,15 +8,17 @@ sbar.bar({
   corner_radius = 12,
   border_width = 1,
   border_color = colors.bar.border,
+  -- Disable shadow for faster transitions
   shadow = {
-    drawing = true,
-    color = colors.bar.shadow,
-    distance = 8,
-    angle = 270
+    drawing = false,
   },
   margin = 6,
   y_offset = 4,
   position = "top",
   sticky = true,
-  topmost = "window"
+  topmost = "window",
+  -- Add these properties for faster fullscreen transitions
+  hidden = "off",
+  display = "main",
+  blur_radius = 0, -- Disable blur for performance
 })

@@ -5,20 +5,34 @@ local app_icons = require("helpers.app_icons")
 local cache = require("helpers.cache")
 local throttle = require("helpers.throttle")
 
--- Enhanced configuration
 local config = {
-	animation_duration = 8, -- Slightly increased for smoother feel
-	hover_animation_duration = 8, -- Faster hover responses
-	max_app_icons = 6, -- Limit app icons per space for cleaner look
-	icon_spacing = " ", -- Space between app icons
-	update_throttle = 0.1, -- Throttle updates to prevent spam
-	cache_ttl = 2, -- Cache workspace data for 2 seconds
+	animation_duration = 4, -- Reduced from 8 for faster transitions
+	hover_animation_duration = 4, -- Reduced from 8
+	max_app_icons = 6,
+	icon_spacing = " ",
+	update_throttle = 0.05, -- Reduced from 0.1 for more responsive updates
+	cache_ttl = 2,
 	workspace_padding = 3,
-	modern_styling = true, -- Enable enhanced visual effects
+	modern_styling = false, -- Disable for performance in fullscreen
+	disable_shadows_in_fullscreen = true, -- New option
 }
 
 local spaces = {}
 local current_focused_workspace = nil
+
+-- Helper function to validate workspace ID (now supports letters and numbers)
+local function is_valid_workspace_id(workspace_str)
+	if not workspace_str or workspace_str == "" then
+		return false
+	end
+	-- Allow single letters (a-z, A-Z) or numbers (1-9, 10+)
+	return workspace_str:match("^[a-zA-Z]$") or workspace_str:match("^%d+$")
+end
+
+-- Helper function to get display string for workspace
+local function get_workspace_display(workspace_id)
+	return tostring(workspace_id)
+end
 
 local function create_space(workspace_id)
 	if spaces[workspace_id] then
@@ -33,7 +47,7 @@ local function create_space(workspace_id)
 				family = settings.font.numbers,
 				style = settings.font.style_map["Bold"],
 			},
-			string = tostring(workspace_id),
+			string = get_workspace_display(workspace_id),
 			padding_left = 14,
 			padding_right = 10,
 			color = colors.white,
@@ -254,6 +268,27 @@ local function update_workspace_apps(workspace_id)
 	)
 end
 
+-- Enhanced workspace sorting function (numbers first, then letters)
+local function sort_workspaces(workspace_list)
+	table.sort(workspace_list, function(a, b)
+		local a_is_num = tonumber(a) ~= nil
+		local b_is_num = tonumber(b) ~= nil
+		
+		-- Numbers come before letters
+		if a_is_num and not b_is_num then
+			return true
+		elseif not a_is_num and b_is_num then
+			return false
+		elseif a_is_num and b_is_num then
+			-- Both numbers, sort numerically
+			return tonumber(a) < tonumber(b)
+		else
+			-- Both letters, sort alphabetically
+			return tostring(a) < tostring(b)
+		end
+	end)
+	return workspace_list
+end
 
 local function update_workspaces()
 	throttle("update_workspaces", config.update_throttle, function()
@@ -263,18 +298,18 @@ local function update_workspaces()
 				local focused_workspace = nil
 				local all_workspace_data = {}
 
-				-- Parse all workspace data
+				-- Parse all workspace data (now supports letters and numbers)
 				if all_workspaces_output and all_workspaces_output ~= "" then
 					for line in all_workspaces_output:gmatch("[^\r\n]+") do
 						local workspace_str, is_focused_str = line:match("^%s*(.-):(.*)")
 						if workspace_str and is_focused_str then
-							local workspace_id = tonumber(workspace_str)
+							workspace_str = workspace_str:match("^%s*(.-)%s*$") -- trim whitespace
 							local is_focused = is_focused_str:match("true") ~= nil
 
-							if workspace_id and workspace_id > 0 then
-								table.insert(all_workspace_data, { id = workspace_id, focused = is_focused })
+							if is_valid_workspace_id(workspace_str) then
+								table.insert(all_workspace_data, { id = workspace_str, focused = is_focused })
 								if is_focused then
-									focused_workspace = workspace_id
+									focused_workspace = workspace_str
 								end
 							end
 						end
@@ -284,20 +319,20 @@ local function update_workspaces()
 				-- Update current focused workspace immediately
 				current_focused_workspace = focused_workspace
 
-				-- Get workspaces with windows
+				-- Get workspaces with windows (now supports letters and numbers)
 				sbar.exec("aerospace list-workspaces --monitor focused --empty no", function(non_empty_output)
 					local workspace_ids_with_windows = {}
 
 					if non_empty_output and non_empty_output ~= "" then
 						for line in non_empty_output:gmatch("[^\r\n]+") do
-							local workspace_id = tonumber(line:match("^%s*(.-)%s*$"))
-							if workspace_id and workspace_id > 0 then
-								workspace_ids_with_windows[workspace_id] = true
+							local workspace_str = line:match("^%s*(.-)%s*$")
+							if is_valid_workspace_id(workspace_str) then
+								workspace_ids_with_windows[workspace_str] = true
 							end
 						end
 					end
 
-					-- Create list of workspaces to show (with windows OR focused) - EXACT ORIGINAL LOGIC
+					-- Create list of workspaces to show (with windows OR focused)
 					local workspaces_to_show = {}
 					local workspace_set = {}
 
@@ -311,54 +346,107 @@ local function update_workspaces()
 						end
 					end
 
-					-- Sort workspace IDs to maintain consistent order
-					table.sort(workspaces_to_show)
+					-- CRITICAL FIX: Sort workspace IDs BEFORE processing them
+					workspaces_to_show = sort_workspaces(workspaces_to_show)
 
-					-- Clean up removed workspaces and create new ones
+					-- Clean up removed workspaces first
 					cleanup_removed_workspaces(workspaces_to_show)
 
-					for _, workspace_id in ipairs(workspaces_to_show) do
-						if not spaces[workspace_id] then
-							create_space(workspace_id)
+					-- Check if we need to reorder existing workspaces
+					local existing_order = {}
+					for workspace_id in pairs(spaces) do
+						table.insert(existing_order, workspace_id)
+					end
+					existing_order = sort_workspaces(existing_order)
+
+					local needs_reorder = false
+					-- Check if current order matches desired order
+					if #existing_order ~= #workspaces_to_show then
+						needs_reorder = true
+					else
+						for i, workspace_id in ipairs(workspaces_to_show) do
+							if existing_order[i] ~= workspace_id then
+								needs_reorder = true
+								break
+							end
 						end
-						update_workspace_apps(workspace_id)
 					end
 
-					local workspace_count_after = 0
-					for _ in pairs(spaces) do
-						workspace_count_after = workspace_count_after + 1
-					end
+					-- If order changed, recreate all workspaces in correct order
+					if needs_reorder then
+						-- Store current workspace states
+						local workspace_states = {}
+						for workspace_id, space in pairs(spaces) do
+							workspace_states[workspace_id] = {
+								icon_highlight = space:query().icon.highlight,
+								label_highlight = space:query().label.highlight,
+							}
+						end
 
+						-- Remove all existing workspaces
+						for workspace_id, space in pairs(spaces) do
+							if space.bracket then
+								sbar.remove(space.bracket.name)
+							end
+							sbar.remove("space.padding." .. workspace_id)
+							sbar.remove("space." .. workspace_id)
+						end
+						spaces = {}
+
+						-- Recreate workspaces in sorted order
+						for _, workspace_id in ipairs(workspaces_to_show) do
+							create_space(workspace_id)
+							update_workspace_apps(workspace_id)
+						end
+					else
+						-- Just create new workspaces if no reordering needed
+						for _, workspace_id in ipairs(workspaces_to_show) do
+							if not spaces[workspace_id] then
+								create_space(workspace_id)
+							end
+							update_workspace_apps(workspace_id)
+						end
+					end
 
 					-- Enhanced highlighting animation with modern effects
-					for workspace_id, space in pairs(spaces) do
-						local selected = workspace_id == current_focused_workspace
+					-- Process in sorted order again to ensure consistent visual state
+					local sorted_existing_workspaces = {}
+					for workspace_id in pairs(spaces) do
+						table.insert(sorted_existing_workspaces, workspace_id)
+					end
+					sorted_existing_workspaces = sort_workspaces(sorted_existing_workspaces)
 
-						sbar.animate("tanh", config.animation_duration, function()
-							space:set({
-								icon = {
-									highlight = selected,
-									color = selected and colors.accent.primary or colors.white,
-								},
-								label = { highlight = selected },
-								background = {
-									border_color = selected and colors.with_alpha(colors.accent.primary, 0.8)
-										or colors.with_alpha(colors.grey, 0.25),
-									color = selected and colors.with_alpha(colors.accent.primary, 0.12) or colors.bg1,
-									shadow = { drawing = selected and config.modern_styling },
-								},
-							})
+					for _, workspace_id in ipairs(sorted_existing_workspaces) do
+						local space = spaces[workspace_id]
+						if space then
+							local selected = workspace_id == current_focused_workspace
 
-							if space.bracket then
-								space.bracket:set({
+							sbar.animate("tanh", config.animation_duration, function()
+								space:set({
+									icon = {
+										highlight = selected,
+										color = selected and colors.accent.primary or colors.white,
+									},
+									label = { highlight = selected },
 									background = {
-										border_color = selected and colors.with_alpha(colors.accent.primary, 0.3)
-											or colors.with_alpha(colors.white, 0.08),
+										border_color = selected and colors.with_alpha(colors.accent.primary, 0.8)
+											or colors.with_alpha(colors.grey, 0.25),
+										color = selected and colors.with_alpha(colors.accent.primary, 0.12) or colors.bg1,
 										shadow = { drawing = selected and config.modern_styling },
 									},
 								})
-							end
-						end)
+
+								if space.bracket then
+									space.bracket:set({
+										background = {
+											border_color = selected and colors.with_alpha(colors.accent.primary, 0.3)
+												or colors.with_alpha(colors.white, 0.08),
+											shadow = { drawing = selected and config.modern_styling },
+										},
+									})
+								end
+							end)
+						end
 					end
 				end)
 			end
@@ -380,7 +468,7 @@ local space_window_observer = sbar.add("item", {
 
 -- Enhanced workspace change handler with immediate feedback
 space_window_observer:subscribe("aerospace_workspace_change", function(env)
-	local focused_id = tonumber(env.FOCUSED_WORKSPACE)
+	local focused_id = env.FOCUSED_WORKSPACE -- Keep as string to support letters
 
 	if focused_id == current_focused_workspace then
 		return
@@ -439,85 +527,6 @@ space_window_observer:subscribe("space_windows_change", function(env)
 	cache.clear("workspace_apps_")
 	update_workspaces()
 end)
-
--- local spaces_indicator = sbar.add("item", {
---   position = "left",
---   padding_left = 5,
---   padding_right = 2,
---   icon = {
---     padding_left = 10,
---     padding_right = 10,
---     color = colors.grey,
---     string = icons.switch.on,
---     font = { size = 14 }
---   },
---   label = {
---     width = 0,
---     padding_left = 0,
---     padding_right = 10,
---     string = "Workspaces",
---     color = colors.white,
---     font = {
---       size = 12,
---       style = settings.font.style_map["Semibold"]
---     }
---   },
---   background = {
---     color = colors.transparent,
---     border_color = colors.transparent,
---     corner_radius = 8,
---     height = 24
---   }
--- })
-
--- -- Enhanced indicator interactions
--- spaces_indicator:subscribe("swap_menus_and_spaces", function(env)
---   local currently_on = spaces_indicator:query().icon.value == icons.switch.on
---   sbar.animate("tanh", config.hover_animation_duration, function()
---     spaces_indicator:set({
---       icon = {
---         string = currently_on and icons.switch.off or icons.switch.on,
---         color = currently_on and colors.accent.error or colors.grey
---       }
---     })
---   end)
--- end)
---
--- spaces_indicator:subscribe("mouse.entered", function(env)
---   sbar.animate("tanh", config.hover_animation_duration, function()
---     spaces_indicator:set({
---       background = {
---         color = colors.with_alpha(colors.grey, 0.15),
---         border_color = colors.with_alpha(colors.white, 0.2),
---       },
---       icon = { color = colors.white },
---       label = {
---         width = "dynamic",
---         string = "Workspaces"
---       }
---     })
---   end)
--- end)
---
--- spaces_indicator:subscribe("mouse.exited", function(env)
---   sbar.animate("tanh", config.hover_animation_duration, function()
---     spaces_indicator:set({
---       background = {
---         color = colors.transparent,
---         border_color = colors.transparent,
---       },
---       icon = { color = colors.grey },
---       label = {
---         width = 0,
---         string = "Workspaces"
---       }
---     })
---   end)
--- end)
---
--- spaces_indicator:subscribe("mouse.clicked", function(env)
---   sbar.trigger("swap_menus_and_spaces")
--- end)
 
 -- Enhanced system wake handler with staggered updates
 sbar.add("item", {
