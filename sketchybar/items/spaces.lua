@@ -68,7 +68,7 @@ local function create_space(workspace_id)
       sbar.exec("aerospace workspace " .. workspace_id)
       -- Faster visual feedback (reduced from 30 to 15)
       sbar.animate("tanh", 15, function()
-        space:set({ 
+        space:set({
           background = { 
             color = colors.with_alpha(colors.white, 0.08),
             border_color = colors.with_alpha(colors.white, 0.4)
@@ -77,7 +77,7 @@ local function create_space(workspace_id)
       end)
       sbar.delay(100, function() -- Reduced from 200 to 100
         sbar.animate("tanh", 15, function()
-          space:set({ 
+          space:set({
             background = { 
               color = colors.bg1,
               border_color = colors.with_alpha(colors.grey, 0.3)
@@ -141,11 +141,11 @@ end
 local function update_workspace_apps(workspace_id)
   sbar.exec("aerospace list-windows --workspace " .. workspace_id .. " --format '%{app-name}'", function(windows_output)
     local icon_line = ""
-    
+
     if windows_output and windows_output ~= "" then
       local seen_apps = {}
       local app_list = {}
-      
+
       -- Parse and deduplicate app names
       for app_name in windows_output:gmatch("[^\r\n]+") do
         app_name = app_name:match("^%s*(.-)%s*$") -- trim whitespace
@@ -154,13 +154,13 @@ local function update_workspace_apps(workspace_id)
           table.insert(app_list, app_name)
         end
       end
-      
+
       -- Build icon string from unique apps
       for _, app_name in ipairs(app_list) do
         local icon = app_icons[app_name] or app_icons["Default"] or "●"
         icon_line = icon_line .. icon .. " " -- Add space between icons for better readability
       end
-      
+
       -- Remove trailing space
       icon_line = icon_line:match("^%s*(.-)%s*$") or ""
     end
@@ -180,7 +180,7 @@ local function update_workspaces()
   sbar.exec("aerospace list-workspaces --monitor focused --format '%{workspace}:%{workspace-is-focused}'", function(all_workspaces_output)
     local focused_workspace = nil
     local all_workspace_data = {}
-    
+
     -- Parse all workspace data at once
     if all_workspaces_output and all_workspaces_output ~= "" then
       for line in all_workspaces_output:gmatch("[^\r\n]+") do
@@ -188,7 +188,7 @@ local function update_workspaces()
         if workspace_str and is_focused_str then
           local workspace_id = tonumber(workspace_str)
           local is_focused = is_focused_str:match("true") ~= nil
-          
+
           if workspace_id and workspace_id > 0 then
             table.insert(all_workspace_data, {id = workspace_id, focused = is_focused})
             if is_focused then
@@ -198,14 +198,14 @@ local function update_workspaces()
         end
       end
     end
-    
+
     -- Update current focused workspace immediately
     current_focused_workspace = focused_workspace
-    
+
     -- Get workspaces with windows
     sbar.exec("aerospace list-workspaces --monitor focused --empty no", function(non_empty_output)
       local workspace_ids_with_windows = {}
-      
+
       if non_empty_output and non_empty_output ~= "" then
         for line in non_empty_output:gmatch("[^\r\n]+") do
           local workspace_id = tonumber(line:match("^%s*(.-)%s*$"))
@@ -214,27 +214,27 @@ local function update_workspaces()
           end
         end
       end
-      
+
       -- Create list of workspaces to show (with windows OR focused)
       local workspaces_to_show = {}
       local workspace_set = {}
-      
+
       for _, workspace_data in ipairs(all_workspace_data) do
         local workspace_id = workspace_data.id
         local should_show = workspace_ids_with_windows[workspace_id] or workspace_data.focused
-        
+
         if should_show and not workspace_set[workspace_id] then
           workspace_set[workspace_id] = true
           table.insert(workspaces_to_show, workspace_id)
         end
       end
-      
+
       -- Sort workspace IDs to maintain consistent order
       table.sort(workspaces_to_show)
-      
+
       -- Clean up removed workspaces and create new ones
       cleanup_removed_workspaces(workspaces_to_show)
-      
+
       for _, workspace_id in ipairs(workspaces_to_show) do
         if not spaces[workspace_id] then
           create_space(workspace_id)
@@ -242,21 +242,21 @@ local function update_workspaces()
         -- Update app icons for each workspace
         update_workspace_apps(workspace_id)
       end
-      
+
       -- SMOOTHLY animate highlighting for all visible spaces after workspace updates
       for workspace_id, space in pairs(spaces) do
         local selected = workspace_id == current_focused_workspace
-        
+
         sbar.animate("tanh", 15, function()
           space:set({
             icon = { highlight = selected },
             label = { highlight = selected },
-            background = { 
+            background = {
               border_color = selected and colors.with_alpha(colors.white, 0.6) or colors.with_alpha(colors.grey, 0.3),
               color = selected and colors.with_alpha(colors.white, 0.08) or colors.bg1
             }
           })
-          
+
           if space.bracket then
             space.bracket:set({
               background = { border_color = selected and colors.with_alpha(colors.white, 0.2) or colors.with_alpha(colors.white, 0.1) }
@@ -405,3 +405,4 @@ sbar.add("item", {
     update_workspaces()
   end)
 end)
+

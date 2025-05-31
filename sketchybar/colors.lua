@@ -26,3 +26,4 @@ return {
     return (color & 0x00ffffff) | (math.floor(alpha * 255.0) << 24)
   end,
 }
+
