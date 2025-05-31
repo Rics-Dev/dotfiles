@@ -5,8 +5,8 @@ local app_icons = require("helpers.app_icons")
 
 local spaces = {}
 local current_focused_workspace = nil
+local animation_duration = 8 -- Reduced from 15 for snappier feel
 
--- Enhanced space creation with better styling
 local function create_space(workspace_id)
   if spaces[workspace_id] then
     return spaces[workspace_id]
