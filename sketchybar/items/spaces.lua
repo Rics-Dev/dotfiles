@@ -27,6 +27,7 @@ local function create_space(workspace_id)
 
   local space = sbar.add("space", "space." .. workspace_id, {
     space = workspace_id,
+    position = "left", -- Explicitly set position to left
     icon = {
       font = { 
         family = settings.font.numbers,
@@ -88,6 +89,7 @@ local function create_space(workspace_id)
   -- Enhanced space padding with dynamic sizing
   sbar.add("space", "space.padding." .. workspace_id, {
     space = workspace_id,
+    position = "left", -- Explicitly set position to left
     script = "",
     width = 6,
   })
@@ -421,9 +423,10 @@ space_window_observer:subscribe("space_windows_change", function(env)
   update_workspaces()
 end)
 
--- Enhanced spaces indicator with modern interactions
+-- Add spaces indicator AFTER the spaces are created (so it appears after them)
 local spaces_indicator = sbar.add("item", {
-  padding_left = -2,
+  position = "left",
+  padding_left = 5,
   padding_right = 2,
   icon = {
     padding_left = 10,
@@ -510,19 +513,3 @@ sbar.add("item", {
     update_workspaces()
   end)
 end)
-
--- Performance monitoring (optional, can be removed in production)
-if os.getenv("SKETCHYBAR_DEBUG") then
-  local perf_monitor = sbar.add("item", {
-    drawing = false,
-    updates = true,
-  })
-  
-  perf_monitor:subscribe("routine", function()
-    local cache_stats = cache.get("__stats") or { hits = 0, misses = 0 }
-    if cache_stats.hits + cache_stats.misses > 0 then
-      local hit_ratio = cache_stats.hits / (cache_stats.hits + cache_stats.misses)
-      print(string.format("Cache hit ratio: %.2f%%", hit_ratio * 100))
-    end
-  end)
-end
