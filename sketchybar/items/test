@@ -243,26 +243,24 @@ local function update_workspaces()
         update_workspace_apps(workspace_id)
       end
       
-      -- SMOOTHLY animate highlighting for all visible spaces after workspace updates
+      -- IMMEDIATELY update highlighting for all visible spaces
       for workspace_id, space in pairs(spaces) do
         local selected = workspace_id == current_focused_workspace
         
-        sbar.animate("tanh", 15, function()
-          space:set({
-            icon = { highlight = selected },
-            label = { highlight = selected },
-            background = { 
-              border_color = selected and colors.with_alpha(colors.white, 0.6) or colors.with_alpha(colors.grey, 0.3),
-              color = selected and colors.with_alpha(colors.white, 0.08) or colors.bg1
-            }
+        space:set({
+          icon = { highlight = selected },
+          label = { highlight = selected },
+          background = { 
+            border_color = selected and colors.with_alpha(colors.white, 0.6) or colors.with_alpha(colors.grey, 0.3),
+            color = selected and colors.with_alpha(colors.white, 0.08) or colors.bg1
+          }
+        })
+        
+        if space.bracket then
+          space.bracket:set({
+            background = { border_color = selected and colors.with_alpha(colors.white, 0.2) or colors.with_alpha(colors.white, 0.1) }
           })
-          
-          if space.bracket then
-            space.bracket:set({
-              background = { border_color = selected and colors.with_alpha(colors.white, 0.2) or colors.with_alpha(colors.white, 0.1) }
-            })
-          end
-        end)
+        end
       end
     end)
   end)
@@ -302,7 +300,7 @@ local spaces_indicator = sbar.add("item", {
   }
 })
 
--- Workspace change handler - OPTIMIZED with smooth animations
+-- Workspace change handler - OPTIMIZED for speed and proper highlighting
 space_window_observer:subscribe("aerospace_workspace_change", function(env)
   local focused_id = tonumber(env.FOCUSED_WORKSPACE)
   
@@ -310,29 +308,27 @@ space_window_observer:subscribe("aerospace_workspace_change", function(env)
     return
   end
   
-  current_focused_workspace = focused_id
-  
-  -- IMMEDIATELY animate highlighting for existing spaces
+  -- IMMEDIATELY update highlighting for existing spaces
   for workspace_id, space in pairs(spaces) do
     local selected = workspace_id == focused_id
     
-    sbar.animate("tanh", 15, function()
-      space:set({
-        icon = { highlight = selected },
-        label = { highlight = selected },
-        background = { 
-          border_color = selected and colors.with_alpha(colors.white, 0.6) or colors.with_alpha(colors.grey, 0.3),
-          color = selected and colors.with_alpha(colors.white, 0.08) or colors.bg1
-        }
+    space:set({
+      icon = { highlight = selected },
+      label = { highlight = selected },
+      background = { 
+        border_color = selected and colors.with_alpha(colors.white, 0.6) or colors.with_alpha(colors.grey, 0.3),
+        color = selected and colors.with_alpha(colors.white, 0.08) or colors.bg1
+      }
+    })
+    
+    if space.bracket then
+      space.bracket:set({
+        background = { border_color = selected and colors.with_alpha(colors.white, 0.2) or colors.with_alpha(colors.white, 0.1) }
       })
-      
-      if space.bracket then
-        space.bracket:set({
-          background = { border_color = selected and colors.with_alpha(colors.white, 0.2) or colors.with_alpha(colors.white, 0.1) }
-        })
-      end
-    end)
+    end
   end
+  
+  current_focused_workspace = focused_id
   
   -- Update workspaces (this will show only workspaces with windows OR focused)
   update_workspaces()
