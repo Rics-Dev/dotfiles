@@ -9,6 +9,21 @@ sbar.begin_config()
 require("bar")
 require("default")
 require("items")
+-- Performance monitoring
+if os.getenv("SKETCHYBAR_DEBUG") then
+  require("helpers.performance")
+end
+
+-- Cleanup timer
+sbar.add("item", {
+  drawing = false,
+  updates = true,
+}):subscribe("routine", function()
+  if math.random() < 0.1 then -- 10% chance per routine
+    require("helpers.cache").cleanup()
+    collectgarbage("collect")
+  end
+end)
 sbar.end_config()
 
 -- Run the event loop of the sketchybar module (without this there will be no

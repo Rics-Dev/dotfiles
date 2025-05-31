@@ -31,25 +31,35 @@ local cpu = sbar.add("graph", "widgets.cpu" , 42, {
   padding_right = settings.paddings + 6
 })
 
+local cpu_history = {}
+local max_history = 60
+
 cpu:subscribe("cpu_update", function(env)
-  -- Also available: env.user_load, env.sys_load
   local load = tonumber(env.total_load)
+  -- Store history for trend analysis
+  table.insert(cpu_history, load)
+  if #cpu_history > max_history then
+    table.remove(cpu_history, 1)
+  end
   cpu:push({ load / 100. })
 
+  -- Dynamic color based on load and trend
   local color = colors.blue
-  if load > 30 then
-    if load < 60 then
-      color = colors.yellow
-    elseif load < 80 then
-      color = colors.orange
-    else
-      color = colors.red
-    end
+  local trend = #cpu_history > 1 and (cpu_history[#cpu_history] - cpu_history[#cpu_history - 1]) or 0
+  if load > 80 then
+    color = trend > 5 and colors.red or colors.orange
+  elseif load > 60 then
+    color = colors.orange
+  elseif load > 30 then
+    color = colors.yellow
   end
 
   cpu:set({
     graph = { color = color },
-    label = "cpu " .. env.total_load .. "%",
+    label = {
+      string = "cpu " .. env.total_load .. "%",
+      color = load > 70 and colors.white or colors.grey
+    },
   })
 end)
 

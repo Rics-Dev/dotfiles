@@ -29,6 +29,20 @@ local remaining_time = sbar.add("item", {
   },
 })
 
+local battery_health = sbar.add("item", {
+  position = "popup." .. battery.name,
+  icon = {
+    string = "Health:",
+    width = 100,
+    align = "left"
+  },
+  label = {
+    string = "Unknown",
+    width = 100,
+    align = "right"
+  },
+})
+
 
 battery:subscribe({"routine", "power_source_change", "system_woke"}, function()
   sbar.exec("pmset -g batt", function(batt_info)
@@ -77,15 +91,34 @@ battery:subscribe({"routine", "power_source_change", "system_woke"}, function()
   end)
 end)
 
+-- Enhanced battery info with health check
 battery:subscribe("mouse.clicked", function(env)
   local drawing = battery:query().popup.drawing
-  battery:set( { popup = { drawing = "toggle" } })
+  battery:set({ popup = { drawing = "toggle" } })
 
   if drawing == "off" then
     sbar.exec("pmset -g batt", function(batt_info)
       local found, _, remaining = batt_info:find(" (%d+:%d+) remaining")
       local label = found and remaining .. "h" or "No estimate"
-      remaining_time:set( { label = label })
+      remaining_time:set({ label = label })
+    end)
+    
+    -- Get battery health
+    sbar.exec("system_profiler SPPowerDataType | grep 'Maximum Capacity' | awk '{print $3}'", function(health)
+      local health_num = tonumber(health)
+      local health_color = colors.green
+      if health_num and health_num < 80 then
+        health_color = colors.red
+      elseif health_num and health_num < 90 then
+        health_color = colors.orange
+      end
+      
+      battery_health:set({
+        label = {
+          string = health_num and (health_num .. "%") or "Unknown",
+          color = health_color
+        }
+      })
     end)
   end
 end)
