@@ -4,18 +4,10 @@ local settings = require("settings")
 
 local popup_width = 250
 
--- Bluetooth icon (you can add this to your icons.lua file)
-local bluetooth_icons = {
-  connected = "󰂯", -- NerdFont bluetooth connected
-  disconnected = "󰂲", -- NerdFont bluetooth disconnected
-  sf_connected = "􀦣", -- SF Symbol bluetooth
-  sf_disconnected = "􀦤", -- SF Symbol bluetooth off
-}
-
--- Use SF Symbols by default, fallback to NerdFont
+-- Bluetooth icons - using simple approach since icons module might not have bluetooth yet
 local bt_icon = {
-  connected = (settings.icons == "NerdFont") and bluetooth_icons.connected or bluetooth_icons.sf_connected,
-  disconnected = (settings.icons == "NerdFont") and bluetooth_icons.disconnected or bluetooth_icons.sf_disconnected,
+  connected = "􀟜", -- SF Symbol bluetooth.fill
+  disconnected = "􀟝", -- SF Symbol bluetooth.slash.fill
 }
 
 local bluetooth = sbar.add("item", "widgets.bluetooth", {
@@ -71,69 +63,135 @@ local bluetooth_status = sbar.add("item", {
 
 -- Function to update bluetooth status
 local function update_bluetooth_status()
-  sbar.exec("system_profiler SPBluetoothDataType | grep 'Bluetooth Power' | awk -F': ' '{print $2}'", function(power_status)
-    local is_on = power_status and power_status:match("On") ~= nil
-    
-    bluetooth:set({
-      icon = {
-        string = is_on and bt_icon.connected or bt_icon.disconnected,
-        color = is_on and colors.blue or colors.grey
-      }
-    })
-    
-    bluetooth_status:set({
-      label = {
-        string = is_on and "On" or "Off",
-        color = is_on and colors.green or colors.red
-      }
-    })
-    
-    if is_on then
-      -- Get connected devices
-      sbar.exec("system_profiler SPBluetoothDataType | grep -A 1 'Connected: Yes' | grep -v 'Connected: Yes' | awk -F': ' '{print $1}' | sed 's/^[[:space:]]*//'", function(devices)
-        -- Remove old device items
-        sbar.exec("sketchybar --query bluetooth.device.* 2>/dev/null", function()
-          sbar.remove('/bluetooth\\.device\\..*/')
-        end)
+  -- Use blueutil for more reliable status checking
+  sbar.exec("which blueutil", function(blueutil_check)
+    if blueutil_check and blueutil_check ~= "" then
+      -- Use blueutil if available
+      sbar.exec("blueutil -p", function(power_status)
+        local is_on = power_status and power_status:match("1") ~= nil
         
-        if devices and devices ~= "" then
-          local device_count = 0
-          for device in devices:gmatch("[^\r\n]+") do
-            if device and device ~= "" then
-              sbar.add("item", "bluetooth.device." .. device_count, {
+        bluetooth:set({
+          icon = {
+            string = is_on and bt_icon.connected or bt_icon.disconnected,
+            color = is_on and colors.blue or colors.grey
+          }
+        })
+        
+        bluetooth_status:set({
+          label = {
+            string = is_on and "On" or "Off",
+            color = is_on and colors.green or colors.red
+          }
+        })
+        
+        if is_on then
+          -- Get connected devices using blueutil
+          sbar.exec("blueutil --connected", function(devices)
+            -- Safe remove - only remove if items exist
+            local items_to_remove = {"bluetooth.device.0", "bluetooth.device.1", "bluetooth.device.2", "bluetooth.device.3", "bluetooth.device.4", "bluetooth.device.none"}
+            for _, item in ipairs(items_to_remove) do
+              pcall(function() sbar.remove(item) end)
+            end
+            
+            if devices and devices ~= "" then
+              local device_count = 0
+              for device in devices:gmatch("[^\r\n]+") do
+                if device and device ~= "" and device_count < 5 then
+                  -- Parse device info (format: "address, name, connected")
+                  local name = device:match("^[^,]+,%s*([^,]+)")
+                  if name then
+                    sbar.add("item", "bluetooth.device." .. device_count, {
+                      position = "popup." .. bluetooth.name,
+                      icon = {
+                        string = "🎧", -- Generic device icon
+                        width = 30,
+                        align = "left"
+                      },
+                      label = {
+                        string = name,
+                        width = popup_width - 30,
+                        align = "left",
+                        color = colors.white
+                      }
+                    })
+                    device_count = device_count + 1
+                  end
+                end
+              end
+              
+              if device_count == 0 then
+                -- No devices connected
+                sbar.add("item", "bluetooth.device.none", {
+                  position = "popup." .. bluetooth.name,
+                  icon = { drawing = false },
+                  label = {
+                    string = "No devices connected",
+                    width = popup_width,
+                    align = "center",
+                    color = colors.grey
+                  }
+                })
+              end
+            else
+              -- No devices connected
+              sbar.add("item", "bluetooth.device.none", {
                 position = "popup." .. bluetooth.name,
-                icon = {
-                  string = "🎧", -- Generic device icon
-                  width = 30,
-                  align = "left"
-                },
+                icon = { drawing = false },
                 label = {
-                  string = device,
-                  width = popup_width - 30,
-                  align = "left",
-                  color = colors.white
+                  string = "No devices connected",
+                  width = popup_width,
+                  align = "center",
+                  color = colors.grey
                 }
               })
-              device_count = device_count + 1
             end
-          end
+          end)
         else
-          -- No devices connected
+          -- Remove device items when bluetooth is off
+          local items_to_remove = {"bluetooth.device.0", "bluetooth.device.1", "bluetooth.device.2", "bluetooth.device.3", "bluetooth.device.4", "bluetooth.device.none"}
+          for _, item in ipairs(items_to_remove) do
+            pcall(function() sbar.remove(item) end)
+          end
+        end
+      end)
+    else
+      -- Fallback to system_profiler if blueutil not available
+      sbar.exec("defaults read /Library/Preferences/com.apple.Bluetooth ControllerPowerState 2>/dev/null || echo '0'", function(power_status)
+        local is_on = power_status and power_status:match("1") ~= nil
+        
+        bluetooth:set({
+          icon = {
+            string = is_on and bt_icon.connected or bt_icon.disconnected,
+            color = is_on and colors.blue or colors.grey
+          }
+        })
+        
+        bluetooth_status:set({
+          label = {
+            string = is_on and "On" or "Off",
+            color = is_on and colors.green or colors.red
+          }
+        })
+        
+        -- Safe remove for fallback method too
+        local items_to_remove = {"bluetooth.device.0", "bluetooth.device.1", "bluetooth.device.2", "bluetooth.device.3", "bluetooth.device.4", "bluetooth.device.none"}
+        for _, item in ipairs(items_to_remove) do
+          pcall(function() sbar.remove(item) end)
+        end
+        
+        if is_on then
           sbar.add("item", "bluetooth.device.none", {
             position = "popup." .. bluetooth.name,
             icon = { drawing = false },
             label = {
-              string = "No devices connected",
+              string = "Install 'blueutil' for device info",
               width = popup_width,
               align = "center",
-              color = colors.grey
+              color = colors.orange
             }
           })
         end
       end)
-    else
-      -- Remove device items when bluetooth is off
-      sbar.remove('/bluetooth\\.device\\..*/')
     end
   end)
 end
@@ -146,14 +204,20 @@ local function toggle_bluetooth_details()
     update_bluetooth_status()
   else
     bluetooth:set({ popup = { drawing = false } })
-    sbar.remove('/bluetooth\\.device\\..*/')
+    local items_to_remove = {"bluetooth.device.0", "bluetooth.device.1", "bluetooth.device.2", "bluetooth.device.3", "bluetooth.device.4", "bluetooth.device.none"}
+    for _, item in ipairs(items_to_remove) do
+      pcall(function() sbar.remove(item) end)
+    end
   end
 end
 
 -- Function to hide bluetooth popup
 local function hide_bluetooth_details()
   bluetooth:set({ popup = { drawing = false } })
-  sbar.remove('/bluetooth\\.device\\..*/')
+  local items_to_remove = {"bluetooth.device.0", "bluetooth.device.1", "bluetooth.device.2", "bluetooth.device.3", "bluetooth.device.4", "bluetooth.device.none"}
+  for _, item in ipairs(items_to_remove) do
+    pcall(function() sbar.remove(item) end)
+  end
 end
 
 -- Function to toggle bluetooth on/off (requires blueutil: brew install blueutil)

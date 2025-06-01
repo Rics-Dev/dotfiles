@@ -6,14 +6,14 @@ local settings = require("settings")
 local toggle_button = sbar.add("item", "widgets.toggle", {
   position = "right",
   icon = {
-    string = "􀆇", -- SF Symbol for eye (visible)
+    string = "􀆊",
     font = {
       style = settings.font.style_map["Bold"],
       size = 14.0,
     },
     color = colors.white,
-    padding_left = 8,
-    padding_right = 8,
+    padding_left = 9,
+    padding_right = 12,
   },
   label = { drawing = false },
   background = {
@@ -35,7 +35,7 @@ sbar.add("bracket", "widgets.toggle.bracket", { toggle_button.name }, {
     border_color = colors.grey,
     corner_radius = 11,
     border_width = 1,
-  }
+  },
 })
 
 -- State tracking
@@ -68,7 +68,7 @@ local function toggle_widgets()
   sbar.animate("tanh", 8, function()
     toggle_button:set({
       icon = {
-        string = widgets_visible and "􀆇" or "􀆈", -- eye / eye.slash
+        string = widgets_visible and "􀆊" or "􀆉", -- chevron.right / chevron.left
         color = widgets_visible and colors.white or colors.grey,
       },
       background = {
@@ -127,5 +127,5 @@ toggle_button:subscribe("mouse.exited", handle_hover_exit)
 -- Add spacing after toggle button
 sbar.add("item", "widgets.toggle.spacing", {
   position = "right",
-  width = 10
+  width = 5
 })
