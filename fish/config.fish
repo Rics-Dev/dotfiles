@@ -61,6 +61,7 @@ if status is-interactive
         run_fastfetch
     end
 
+
     carapace _carapace | source
 
     if command -q atuin
@@ -74,6 +75,8 @@ if status is-interactive
     if command -q starship
         starship init fish | source
     end
+
+    tv init fish | source
 
 end
 

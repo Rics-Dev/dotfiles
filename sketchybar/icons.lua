@@ -35,10 +35,18 @@ local icons = {
       disconnected = "􀙈",
       router = "􁓤",
     },
+        bluetooth = {
+      connected = "􀦣",
+      disconnected = "􀦤",
+    },
     media = {
       back = "􀊊",
       forward = "􀊌",
       play_pause = "􀊈",
+    },
+        toggle = {
+      visible = "",
+      hidden = "",
     },
   },
 

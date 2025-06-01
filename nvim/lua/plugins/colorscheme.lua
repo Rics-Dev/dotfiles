@@ -1,12 +1,11 @@
 return {
-  -- flow theme
   {
     "Rics-Dev/flow.nvim",
     lazy = false,
     priority = 1000,
     config = function()
       require("flow").setup({
-        transparent_background = true,
+        transparent_background = false,
       })
       vim.cmd("colorscheme flow")
     end,

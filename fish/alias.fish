@@ -31,8 +31,8 @@ function tk
     tmux kill-session -t $argv[1]
 end
 
-# Ctrl+T - Fuzzy find and attach to tmux sessions
-function fzf-tmux-sessions --description "Fuzzy-find and manage tmux sessions"
+# Ctrl+T - Television-powered tmux session management
+function tv-tmux-sessions --description "Television-powered tmux session management"
     # Check if tmux is installed
     if not command -v tmux >/dev/null
         echo "tmux is not installed."
@@ -45,16 +45,8 @@ function fzf-tmux-sessions --description "Fuzzy-find and manage tmux sessions"
         return 1
     end
 
-    # Get session names only (simpler format for fzf)
-    set -l sessions (tmux list-sessions -F "#{session_name}")
-
-    # Construct fzf command with preview and keybindings
-    set -l selected (printf '%s\n' $sessions | fzf \
-        --height 50% \
-        --reverse \
-        --prompt='Select tmux session > ' \
-        --header='Enter: Attach | Ctrl-K: Kill ' \
-        --bind='ctrl-k:execute(tmux kill-session -t {} >/dev/null 2>&1)+reload(tmux list-sessions -F "#{session_name}")')
+    # Use television to select session with preview
+    set -l selected (tmux list-sessions -F "#{session_name}" | tv --preview 'tmux list-windows -t {0} -F "#{window_index}: #{window_name} #{?window_active,(active),}"')
 
     # If a session was selected, attach to it
     if test -n "$selected"
@@ -64,7 +56,7 @@ function fzf-tmux-sessions --description "Fuzzy-find and manage tmux sessions"
     # Repaint commandline to refresh prompt
     commandline -f repaint
 end
-bind \ct fzf-tmux-sessions
+bind \e\ct tv-tmux-sessions
 
 # Zellij aliases
 alias zj="zellij" # Shortcut for zellij
@@ -241,6 +233,26 @@ alias zjh="zellij --help" # Show Zellij help
 # end
 
 
+# Git function to add all, commit, and push in one command
+function gacp
+    if test (count $argv) -eq 0
+        echo "Usage: gacp <commit-message>"
+        echo "Example: gacp 'Fix bug in user authentication'"
+        return 1
+    end
+    
+    # Add all changes
+    git add .
+    
+    # Commit with the provided message
+    git commit -m "$argv"
+    
+    # Push to the current branch
+    git push
+    
+    echo "✅ Successfully added, committed, and pushed changes!"
+end
+
 # General aliases
 alias ls="eza --icons --color=auto" # Replace ls with eza, enable icons and color
 alias ll="eza -la --icons --color=auto" # List all files in long format with icons and color
@@ -280,108 +292,211 @@ function mkcd
     cd $argv[1]
 end
 
-# Fuzzy find files and open in Neovim (requires bat for preview)
-function nvf
-    set -l file (fzf --height 80% --reverse --preview 'bat --color=always --style=numbers --line-range :500 {}' --preview-window right:60%)
+# Ctrl+V - Television-powered file finder and open in Neovim
+function tv-nvim-files --description "Television-powered file finder for Neovim"
+    set -l file (tv files --preview 'bat --color=always --style=numbers --line-range :50 {0}')
     if test -n "$file"
         nvim $file
     end
-        commandline -f repaint
+    commandline -f repaint
 end
-bind \cv nvf
+bind \cv tv-nvim-files
 
-# Ctrl+F - Fuzzy file finder (cd into directory)
-function fzf-dev
+# Ctrl+F - Television-powered directory navigation to ~/Developer
+function tv-dev-dirs --description "Television-powered Developer directory navigation"
     set -l dir "$HOME/Developer"
-    set -l selected (fd . $dir --type d | fzf --height 40% --reverse --preview 'bat --color=always --style=numbers {}')
+    if not test -d "$dir"
+        echo "Developer directory not found at $dir"
+        return 1
+    end
+    
+    set -l selected (fd . $dir --type d | tv --preview 'eza -la --icons {0} | head -20')
     if test -n "$selected"
         cd "$selected"
     end
     commandline -f repaint
 end
-bind \cf fzf-dev
+bind \cf tv-dev-dirs
 
-
-function fzf-dotfiles
+# Ctrl+O - Television-powered dotfiles editor
+function tv-dotfiles --description "Television-powered dotfiles editor"
     set -l dir "$HOME/.dotfiles"
-    set -l selected (fd . $dir --type f | fzf --height 40% --reverse --preview 'bat --color=always --style=numbers {}')
+    if not test -d "$dir"
+        echo "Dotfiles directory not found at $dir"
+        return 1
+    end
+    
+    set -l selected (fd . $dir --type f | tv --preview 'bat --color=always --style=numbers --line-range :50 {0}')
     if test -n "$selected"
         nvim "$selected"
     end
-        commandline -f repaint
     commandline -f repaint
 end
-bind \co fzf-dotfiles
+bind \co tv-dotfiles
 
-
-# Fuzzy file finder (insert path at cursor)
-function fzf-file-widget
-    set -l dir (pwd)
-    set -l selected (fzf --height 40% --reverse --preview 'bat --color=always --style=numbers {}')
+# Alt+Ctrl+F - Television file widget (insert path at cursor)
+function tv-file-widget --description "Television file widget - insert path at cursor"
+    set -l selected (tv files --preview 'bat --color=always --style=numbers --line-range :30 {0}')
     if test -n "$selected"
         commandline -i -- (string escape "$selected")
     end
     commandline -f repaint
 end
-bind \e\cf fzf-file-widget
+bind \e\cf tv-file-widget
 
-
-
-function ff
-    command  aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
+# Television-powered window focus (using aerospace)
+function ff --description "Television-powered window focus with aerospace"
+    if not command -v aerospace >/dev/null
+        echo "aerospace is not installed."
+        return 1
+    end
+    
+    set -l window (aerospace list-windows --all | tv --preview 'echo "Window ID: {1}\nApp: {2}\nTitle: {3}"')
+    if test -n "$window"
+        set -l window_id (echo $window | awk '{print $1}')
+        aerospace focus --window-id $window_id
+    end
     commandline -f repaint
 end
 
-
-# Ctrl+Z - Attach to zellij session (with ANSI color codes stripped)
-function fzf-zellij-sessions
-    zellij list-sessions | sed 's/\x1b\[[0-9;]*m//g' | awk '{print $1}' | fzf --height 20% | read -l session
-    if test -n "$session"
-        zellij attach $session
+# Ctrl+Z - Television-powered Zellij session manager
+function tv-zellij-sessions --description "Television-powered Zellij session management"
+    if not command -v zellij >/dev/null
+        echo "zellij is not installed."
+        return 1
     end
+    
+    # Get clean session names (strip ANSI codes)
+    set -l sessions (zellij list-sessions 2>/dev/null | sed 's/\x1b\[[0-9;]*m//g' | awk '{print $1}' | grep -v '^$')
+    
+    if test (count $sessions) -eq 0
+        echo "No Zellij sessions found."
+        return 1
+    end
+    
+    set -l selected (printf '%s\n' $sessions | tv --preview 'echo "Session: {0}"')
+    if test -n "$selected"
+        zellij attach $selected
+    end
+    commandline -f repaint
 end
-bind \cz fzf-zellij-sessions
+bind \cz tv-zellij-sessions
 
-
-function remu
-    set -l avds (emulator -list-avds)
+# Television-powered Android emulator selector
+function remu --description "Television-powered Android emulator selector"
+    if not command -v emulator >/dev/null
+        echo "Android emulator not found in PATH."
+        return 1
+    end
+    
+    set -l avds (emulator -list-avds 2>/dev/null)
     if test (count $avds) -eq 0
         echo "No AVDs found."
         return 1
     end
 
-    set -l selected (printf '%s\n' $avds | fzf --height 40% --reverse --prompt="Select emulator > ")
+    set -l selected (printf '%s\n' $avds | tv --preview 'echo "Android Virtual Device: {0}"')
     if test -n "$selected"
         echo "Starting emulator: $selected"
-        command emulator -avd $selected
+        command emulator -avd $selected &
+        disown
     else
         echo "No emulator selected."
     end
 end
 
-
-function resim
-    set -l devices (xcrun simctl list devices available | grep -E "Booted|Shutdown" | awk -F '[()]' '{print $1 " (" $2 ")"}' | sed 's/ *$//')
+# Television-powered iOS simulator selector
+function resim --description "Television-powered iOS simulator selector"
+    if not command -v xcrun >/dev/null
+        echo "Xcode command line tools not found."
+        return 1
+    end
+    
+    set -l devices (xcrun simctl list devices available 2>/dev/null | grep -E "Booted|Shutdown" | sed 's/^ *//' | sed 's/ *$//')
     if test (count $devices) -eq 0
         echo "No available iOS simulators found."
         return 1
     end
 
-    set -l selected (printf '%s\n' $devices | fzf --height 40% --reverse --prompt="Select iOS simulator > ")
+    set -l selected (printf '%s\n' $devices | tv --preview 'echo "iOS Simulator: {0}"')
     if test -n "$selected"
-        set -l udid (xcrun simctl list devices | grep "$selected" | awk -F '[()]' '{print $3}')
-        echo "Booting iOS simulator: $selected"
-        open -a Simulator
-        xcrun simctl boot $udid 2>/dev/null
+        set -l device_name (echo "$selected" | sed 's/ (.*//')
+        set -l udid (xcrun simctl list devices 2>/dev/null | grep "$device_name" | head -1 | sed 's/.*(\([^)]*\)).*/\1/')
+        if test -n "$udid"
+            echo "Booting iOS simulator: $selected"
+            open -a Simulator
+            xcrun simctl boot $udid 2>/dev/null
+        else
+            echo "Could not find UDID for simulator"
+        end
     end
 end
 
+# Television-powered enhanced history search
+function tv-history --description "Television-powered command history search"
+    # Use television's built-in shell history integration if available
+    # Otherwise fall back to history command
+    if command -v tv >/dev/null
+        set -l command (history | tv --preview 'echo "Command: {0}"')
+        if test -n "$command"
+            commandline -rb $command
+        end
+    else
+        echo "Television not found. Please install television."
+    end
+    commandline -f repaint
+end
 
-# Ctrl+R - Enhanced history search
-# function fzf-history-widget
-#     history | fzf --height 80% --reverse | read -l command
-#     if test -n "$command"
-#         commandline -rb $command
-#     end
-# end
-# bind \cr fzf-history-widget
+# Smart file finder - uses television with different channels based on context
+function tvf --description "Smart television file finder"
+    switch $argv[1]
+        case git
+            # Search git-tracked files only
+            tv git-repos
+        case env
+            # Search environment variables
+            tv env
+        case text
+            # Search within file contents
+            tv text
+        case '*'
+            # Default to files channel with bat preview
+            tv files --preview 'bat --color=always --style=numbers --line-range :50 {0}'
+    end
+end
+
+# Television-powered process selector
+function tvps --description "Television-powered process selector and manager"
+    if not command -v ps >/dev/null
+        echo "ps command not found."
+        return 1
+    end
+    
+    set -l process (ps aux | sed 1d | tv --preview 'echo "PID: {2}\nCommand: {11}\nCPU: {3}%\nMemory: {4}%\nUser: {1}"')
+    if test -n "$process"
+        set -l pid (echo $process | awk '{print $2}')
+        echo "Selected process PID: $pid"
+        echo "Command: "(echo $process | awk '{for(i=11;i<=NF;i++) printf "%s ", $i; print ""}')
+        echo ""
+        echo "Actions: [k]ill, [i]nfo, [Enter] to cancel"
+        read -l action
+        switch $action
+            case k
+                kill $pid
+                echo "Sent TERM signal to process $pid"
+            case i
+                ps -p $pid -o pid,ppid,user,cpu,pmem,vsz,rss,tty,stat,start,time,comm,args
+        end
+    end
+end
+
+# Quick aliases for television channels
+alias tve="tv env"           # Environment variables
+alias tvf="tv files"         # Files (default)
+alias tvg="tv git-repos"     # Git repositories
+alias tvt="tv text"          # Text search
+alias tva="tv alias"         # Aliases (if available)
+
+# Television with common preview commands
+alias tvb="tv --preview 'bat --color=always --style=numbers {0}'"  # Files with bat preview
+alias tve="tv --preview 'eza -la --icons {0}'"                     # Directories with eza preview

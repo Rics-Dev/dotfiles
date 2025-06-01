@@ -1,0 +1,22 @@
+# Flow Theme for Television
+# general
+background = '#0F1219'
+border_fg = '#4f5666'
+text_fg = '#abb2bf'
+dimmed_text_fg = '#4f5666'
+# input
+input_text_fg = '#5ab0f6'
+result_count_fg = '#5ab0f6'
+# results
+result_name_fg = '#61afef'
+result_line_number_fg = '#ebc275'
+result_value_fg = '#d7dae0'
+selection_fg = '#a5e075'
+selection_bg = '#3b4559'
+match_fg = '#ff616e'
+# preview
+preview_title_fg = '#e5c07b'
+# modes
+channel_mode_fg = '#de73ff'
+remote_control_mode_fg = '#a5e075'
+send_to_channel_mode_fg = '#4dbdcb'
