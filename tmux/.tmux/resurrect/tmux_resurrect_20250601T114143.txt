@@ -1,0 +1,7 @@
+pane	mounir	1	1	:*	1	~/D/o/mounir	:/Users/ric/Developer/opensource/mounir	0	nvim	:nvim /Users/ric/.dotfiles/tmux/tmux.conf
+pane	mounir	1	1	:*	2	~/D/o/mounir	:/Users/ric/Developer/opensource/mounir	0	fish	:
+pane	mounir	1	1	:*	3	~/D/o/mounir	:/Users/ric/Developer/opensource/mounir	1	fish	:
+pane	mounir	2	0	:-	1	~/D/o/mounir	:/Users/ric/Developer/opensource/mounir	1	fish	:
+window	mounir	1	:mounir	1	:*	e687,156x41,0,0{78x41,0,0,0,77x41,79,0[77x20,79,0,2,77x20,79,21,3]}	:
+window	mounir	2	:mounir	0	:-	b2be,156x41,0,0,1	:
+state	mounir	

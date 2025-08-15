@@ -140,7 +140,7 @@ keybinds clear-defaults=true {
         bind "Alt l" { MoveFocus "right"; }
         bind "Alt Shift l" { GoToNextTab; }
         bind "Alt Shift m" { ToggleFocusFullscreen; }
-        bind "Alt n" { NewPane; }
+        bind "Ctrl Alt n" { NewPane; }
         bind "Ctrl Shift q" { Quit; }
         bind "Alt t" { NewTab; }
         bind "Alt x" { CloseFocus; }

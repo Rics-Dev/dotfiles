@@ -56,7 +56,35 @@ function tv-tmux-sessions --description "Television-powered tmux session managem
     # Repaint commandline to refresh prompt
     commandline -f repaint
 end
-bind \e\ct tv-tmux-sessions
+bind \cx tv-tmux-sessions
+
+# Function to display TMux aliases and shortcuts
+function tmux-help --description "Show all TMux aliases and shortcuts"
+    echo "🖥️  TMux Aliases & Shortcuts:"
+    echo ""
+    echo "Basic Commands:"
+    echo "  ta                    - Attach to most recent session"
+    echo "  tls                   - List all sessions"
+    echo "  tn <session-name>     - Create new named session"
+    echo "  ts <session-name>     - Attach to specific session"
+    echo "  tk <session-name>     - Kill specific session"
+    echo ""
+    echo "Interactive:"
+    echo "  Ctrl+Alt+T           - Television session picker with preview"
+    echo ""
+    echo "Example Workflow:"
+    echo "  tn work              - Create 'work' session"
+    echo "  tn personal          - Create 'personal' session"
+    echo "  tls                  - See all sessions"
+    echo "  ts work              - Switch to 'work' session"
+    echo "  Ctrl+Alt+T           - Interactive session switcher"
+    echo "  tk personal          - Kill 'personal' session"
+    echo ""
+    echo "💡 Pro tip: Use Ctrl+Alt+T for quick visual session switching!"
+end
+
+# Alias for quick access
+alias th="tmux-help"
 
 # Zellij aliases
 alias zj="zellij" # Shortcut for zellij
@@ -294,7 +322,7 @@ end
 
 # Ctrl+V - Television-powered file finder and open in Neovim
 function tv-nvim-files --description "Television-powered file finder for Neovim"
-    set -l file (tv files --preview 'bat --color=always --style=numbers --line-range :50 {0}')
+    set -l file (tv files  'bat --color=always --style=numbers --line-range :50 {0}')
     if test -n "$file"
         nvim $file
     end
@@ -310,7 +338,7 @@ function tv-dev-dirs --description "Television-powered Developer directory navig
         return 1
     end
     
-    set -l selected (fd . $dir --type d | tv --preview 'eza -la --icons {0} | head -20')
+    set -l selected (fd . $dir --type d | tv  'eza -la --icons {0} | head -20')
     if test -n "$selected"
         cd "$selected"
     end
@@ -326,7 +354,7 @@ function tv-dotfiles --description "Television-powered dotfiles editor"
         return 1
     end
     
-    set -l selected (fd . $dir --type f | tv --preview 'bat --color=always --style=numbers --line-range :50 {0}')
+    set -l selected (fd . $dir --type f | tv 'bat --color=always --style=numbers --line-range :50 {0}')
     if test -n "$selected"
         nvim "$selected"
     end

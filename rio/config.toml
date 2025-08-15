@@ -3,7 +3,7 @@
 #
 # Default is `false`
 #
-hide-cursor-when-typing = true
+hide-cursor-when-typing = false
 
 # Ignore theme selection foreground color
 #
@@ -44,7 +44,7 @@ padding-x = 10
 # Possible choices: 'both', 'left' and 'right'.
 #
 # Example:
-option-as-alt = 'both'
+option-as-alt = 'right'
 
 # Line height
 #
@@ -131,7 +131,7 @@ args = []
 [window]
 # width = 600
 # height = 400
-mode = "Windowed"
+mode = "Maximized"
 opacity = 0.95
 blur = true
 decorations = "Buttonless"
@@ -194,26 +194,26 @@ filters = []
 #
 # You can also specify extra fonts to load
 [fonts]
-extras = [{ family = "JetBrainsMonoNL Nerd Font" }]
+extras = [{ family = "Google Sans Code" }]
 size = 15
 
 [fonts.regular]
-family = "JetBrainsMonoNL Nerd Font"
+family = "Google Sans Code"
 style = "Normal"
 weight = 400
 
 [fonts.bold]
-family = "JetBrainsMonoNL Nerd Font"
+family = "Google Sans Code"
 style = "Normal"
 weight = 700
 
 [fonts.italic]
-family = "JetBrainsMonoNL Nerd Font"
+family = "Google Sans Code"
 style = "Italic"
 weight = 400
 
 [fonts.bold-italic]
-family = "JetBrainsMonoNL Nerd Font"
+family = "Google Sans Code"
 style = "Italic"
 weight = 700
 #

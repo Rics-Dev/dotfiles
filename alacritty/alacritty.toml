@@ -10,6 +10,7 @@ blur = false
 dynamic_padding = true
 title = "Alacritty"
 dynamic_title = true
+startup_mode = "Maximized"
 
 [window.padding]
 x = 10

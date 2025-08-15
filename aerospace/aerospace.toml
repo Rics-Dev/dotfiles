@@ -5,15 +5,15 @@
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
 after-login-command = []
 
-after-startup-command = ['exec-and-forget sketchybar']
+# after-startup-command = ['exec-and-forget sketchybar']
 
 # Notify Sketchybar about workspace change
-exec-on-workspace-change = ['/bin/bash', '-c',
-    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
-]
+# exec-on-workspace-change = ['/bin/bash', '-c',
+#     'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+# ]
 
 # Start AeroSpace at login
-start-at-login = true
+# start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -58,12 +58,12 @@ preset = 'qwerty'
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 10
-inner.vertical = 10
-outer.left = 8
+inner.horizontal = 8
+inner.vertical = 8
+outer.left = 5
 outer.bottom = 5
-outer.top = 52
-outer.right = 8
+outer.top = 5
+outer.right = 5
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -113,6 +113,10 @@ do shell script "open -a discord"
 '
 '''
 
+alt-cmd-ctrl-y = '''exec-and-forget osascript -e '
+tell application "YouTube Music" to activate
+'
+'''
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
@@ -264,6 +268,9 @@ run= ["move-node-to-workspace o"]
 if.app-id="com.hnc.Discord"
 run= ["move-node-to-workspace d"]
 
+[[on-window-detected]]
+if.app-id="com.github.th-ch.youtube-music"
+run= ["move-node-to-workspace y"]
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 

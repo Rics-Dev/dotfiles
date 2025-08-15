@@ -6,7 +6,7 @@ local settings = require("settings")
 local toggle_button = sbar.add("item", "widgets.toggle", {
   position = "right",
   icon = {
-    string = "􀆊",
+    string = icons.toggle.visible,
     font = {
       style = settings.font.style_map["Bold"],
       size = 14.0,
@@ -40,35 +40,66 @@ sbar.add("bracket", "widgets.toggle.bracket", { toggle_button.name }, {
 
 -- State tracking
 local widgets_visible = true
-local widget_names = {
-  "widgets.battery",
-  "widgets.battery.bracket",
-  "widgets.battery.padding",
-  "widgets.volume1",
-  "widgets.volume2", 
-  "widgets.volume.bracket",
-  "widgets.volume.padding",
-  "widgets.wifi1",
-  "widgets.wifi2",
-  "widgets.wifi.padding",
-  "widgets.wifi.bracket",
-  "widgets.cpu",
-  "widgets.cpu.bracket", 
-  "widgets.cpu.padding",
-  "widgets.bluetooth",
-  "widgets.bluetooth.bracket",
-  "widgets.bluetooth.padding",
-}
 
--- Function to toggle widgets visibility
+local widget_items_cache = nil
+local cache_timestamp = 0
+local cache_ttl = 10 -- Cache for 10 seconds
+
+local function get_widget_items()
+  local current_time = os.time()
+
+  if widget_items_cache and (current_time - cache_timestamp) < cache_ttl then
+    return widget_items_cache
+  end
+
+  local widget_items = {}
+
+  local success, sketchybar_result = pcall(function()
+    local handle = io.popen("sketchybar --query bar 2>/dev/null")
+    if handle then
+      local result = handle:read("*a")
+      handle:close()
+      return result
+    end
+    return ""
+  end)
+
+  if success and sketchybar_result and sketchybar_result ~= "" then
+    for item in sketchybar_result:gmatch('"([^"]*widgets%.[^"]*)"') do
+      if not item:match("toggle") then -- Exclude toggle items
+        table.insert(widget_items, item)
+      end
+    end
+  end
+
+  local seen = {}
+  local unique_items = {}
+  for _, item in ipairs(widget_items) do
+    if not seen[item] then
+      seen[item] = true
+      local success_verify, query_result = pcall(function()
+        return sbar.query(item)
+      end)
+      if success_verify and query_result then
+        table.insert(unique_items, item)
+      end
+    end
+  end
+
+  table.sort(unique_items)
+
+  widget_items_cache = unique_items
+  cache_timestamp = current_time
+
+  return unique_items
+end
+
 local function toggle_widgets()
   widgets_visible = not widgets_visible
-  
-  -- Animate the toggle button
   sbar.animate("tanh", 8, function()
     toggle_button:set({
       icon = {
-        string = widgets_visible and "􀆊" or "􀆉", -- chevron.right / chevron.left
+        string = widgets_visible and icons.toggle.visible or icons.toggle.hidden,
         color = widgets_visible and colors.white or colors.grey,
       },
       background = {
@@ -78,18 +109,39 @@ local function toggle_widgets()
     })
   end)
   
-  -- Toggle widget visibility
-  for _, widget_name in ipairs(widget_names) do
-    sbar.set(widget_name, { drawing = widgets_visible })
+  local widget_patterns = {
+    "/^widgets\\.battery/",
+    "/^widgets\\.volume/", 
+    "/^widgets\\.wifi/",
+    "/^widgets\\.cpu/",
+    "/^widgets\\.bluetooth/"
+  }
+  
+  -- Bulk toggle using regex patterns (much faster than individual calls)
+  for _, pattern in ipairs(widget_patterns) do
+    pcall(function()
+      sbar.set(pattern, { drawing = widgets_visible })
+    end)
   end
   
-  -- Also hide any open popups when hiding widgets
+  -- Close any open popups when hiding widgets
   if not widgets_visible then
-    sbar.set("widgets.battery", { popup = { drawing = false } })
-    sbar.set("widgets.volume.bracket", { popup = { drawing = false } })
-    sbar.set("widgets.wifi.bracket", { popup = { drawing = false } })
-    sbar.set("widgets.bluetooth", { popup = { drawing = false } })
+    local popup_widgets = {
+      "widgets.battery",
+      "widgets.volume.bracket", 
+      "widgets.wifi.bracket",
+      "widgets.bluetooth"
+    }
+    
+    for _, widget in ipairs(popup_widgets) do
+      pcall(function()
+        sbar.set(widget, { popup = { drawing = false } })
+      end)
+    end
   end
+  
+  -- Clear cache on toggle to refresh widget list next time
+  widget_items_cache = nil
 end
 
 -- Function to handle hover effects
@@ -129,3 +181,10 @@ sbar.add("item", "widgets.toggle.spacing", {
   position = "right",
   width = 5
 })
+
+-- Export functions for external use if needed
+return {
+  toggle_widgets = toggle_widgets,
+  get_widget_items = get_widget_items,
+  is_visible = function() return widgets_visible end
+}

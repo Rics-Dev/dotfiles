@@ -1,0 +1,5 @@
+pane	fideligo	1	1	:*	1	~/D/u/p/fideligo	:/Users/ric/Developer/uni/pfe/fideligo	1	fish	:
+pane	mounir	1	1	:*	1	~/D/o/mounir	:/Users/ric/Developer/opensource/mounir	1	fish	:
+window	fideligo	1	:fideligo	1	:*	b2c2,156x41,0,0,5	:
+window	mounir	1	:mounir	1	:*	b2bd,156x41,0,0,0	:
+state	fideligo	
