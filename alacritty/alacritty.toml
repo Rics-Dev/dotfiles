@@ -1,10 +1,8 @@
 [general]
-import = [
-  "./themes/flow.toml"
-]
+import = ["./themes/flow.toml"]
 
 [window]
-opacity = 0.95
+opacity = 0.97
 decorations = "buttonless"
 blur = false
 dynamic_padding = true
@@ -46,6 +44,9 @@ multiplier = 3
 
 [mouse]
 hide_when_typing = true
+
+[selection]
+save_to_clipboard = true
 
 [env]
 TERM = "xterm-256color"

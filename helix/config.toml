@@ -19,10 +19,10 @@ after-delay.enable = true
 
 [editor.inline-diagnostics]
 cursor-line = "warning" # Show warnings and errors inline on the cursor line
-other-lines = "disable" # Disable inline diagnostics on other lines
-prefix-len = 1          # Use one horizontal bar before the diagnostic text
-max-wrap = 20           # Wrap diagnostic text after 20 characters
-max-diagnostics = 10    # Show up to 10 diagnostics per line
+# other-lines = "disable" # Disable inline diagnostics on other lines
+prefix-len = 1       # Use one horizontal bar before the diagnostic text
+max-wrap = 20        # Wrap diagnostic text after 20 characters
+max-diagnostics = 10 # Show up to 10 diagnostics per line
 
 [keys.normal]
 C-j = "@10j"

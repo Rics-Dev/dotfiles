@@ -1,39 +1,26 @@
-# By default Reload config with shft + cmd + , 
-auto-update-channel = tip
-auto-update = download
-
 theme = Flow
 
 font-family = "JetBrainsMonoNL Nerd Font"
 #font-feature = -liga
 #font-family = "GeistMono Nerd Font"
-font-size = 15
-adjust-cell-height = 0
-adjust-font-baseline = 0
+font-size = 16
 
 cursor-style = block
-cursor-style-blink = true
-cursor-invert-fg-bg = true
 shell-integration-features = no-cursor
-mouse-hide-while-typing = true
-
+#cursor-style-blink = false
 
 
 background-opacity = 0.97
 background-blur = true
 background-blur-radius = 20
 window-theme = dark
-window-save-state = always
-window-padding-x = 10
-window-padding-y = 10,0
 window-padding-balance = true
 window-new-tab-position = end
 window-padding-color = extend
 window-save-state = always
-window-colorspace="display-p3"
 #window-decoration = none
 #fullscreen = true
-#maximize = true
+maximize = true
 
 
 unfocused-split-opacity=0.98
@@ -43,45 +30,45 @@ split-divider-color=444444
 
 # extras
 #copy-on-select = clipboard
-shell-integration = detect
+# shell-integration = detect
 
 
-# keybindings
-keybind = cmd+s>r=reload_config
-keybind = cmd+s>x=close_surface
-keybind = cmd+f=write_scrollback_file:open
-
-keybind = global:cmd+;=toggle_quick_terminal
-# tabs
-keybind = cmd+s>n=new_tab
-keybind = cmd+s>shift+l=next_tab
-keybind = cmd+s>shift+h=previous_tab
-keybind = cmd+s>shift+j=move_tab:-1
-keybind = cmd+s>shift+k=move_tab:+1
-# quick tab switch
-keybind = cmd+s>1=goto_tab:1
-keybind = cmd+s>2=goto_tab:2
-keybind = cmd+s>3=goto_tab:3
-keybind = cmd+s>4=goto_tab:4
-keybind = cmd+s>5=goto_tab:5
-keybind = cmd+s>6=goto_tab:6
-keybind = cmd+s>7=goto_tab:7
-keybind = cmd+s>8=goto_tab:8
-keybind = cmd+s>9=goto_tab:9
-# split
-keybind = cmd+s>:=new_split:right
-keybind = cmd+s>;=new_split:down
-keybind = cmd+s>j=goto_split:bottom
-keybind = cmd+s>k=goto_split:top
-keybind = cmd+s>h=goto_split:left
-keybind = cmd+s>l=goto_split:right
-keybind = cmd+s>z=toggle_split_zoom
-keybind = cmd+s>e=equalize_splits
-keybind = cmd+shift+k=resize_split:up,10
-keybind = cmd+shift+j=resize_split:down,10
-keybind = cmd+shift+h=resize_split:left,10
-keybind = cmd+shift+l=resize_split:right,10
-
-keybind = cmd+s>i=increase_font_size:1
-keybind = cmd+s>d=decrease_font_size:1
-keybind = cmd+s>à=reset_font_size
+# # keybindings
+# keybind = cmd+s>r=reload_config
+# keybind = cmd+s>x=close_surface
+# keybind = cmd+f=write_scrollback_file:open
+#
+# keybind = global:cmd+;=toggle_quick_terminal
+# # tabs
+# keybind = cmd+s>n=new_tab
+# keybind = cmd+s>shift+l=next_tab
+# keybind = cmd+s>shift+h=previous_tab
+# keybind = cmd+s>shift+j=move_tab:-1
+# keybind = cmd+s>shift+k=move_tab:+1
+# # quick tab switch
+# keybind = cmd+s>1=goto_tab:1
+# keybind = cmd+s>2=goto_tab:2
+# keybind = cmd+s>3=goto_tab:3
+# keybind = cmd+s>4=goto_tab:4
+# keybind = cmd+s>5=goto_tab:5
+# keybind = cmd+s>6=goto_tab:6
+# keybind = cmd+s>7=goto_tab:7
+# keybind = cmd+s>8=goto_tab:8
+# keybind = cmd+s>9=goto_tab:9
+# # split
+# keybind = cmd+s>:=new_split:right
+# keybind = cmd+s>;=new_split:down
+# keybind = cmd+s>j=goto_split:bottom
+# keybind = cmd+s>k=goto_split:top
+# keybind = cmd+s>h=goto_split:left
+# keybind = cmd+s>l=goto_split:right
+# keybind = cmd+s>z=toggle_split_zoom
+# keybind = cmd+s>e=equalize_splits
+# keybind = cmd+shift+k=resize_split:up,10
+# keybind = cmd+shift+j=resize_split:down,10
+# keybind = cmd+shift+h=resize_split:left,10
+# keybind = cmd+shift+l=resize_split:right,10
+#
+# keybind = cmd+s>i=increase_font_size:1
+# keybind = cmd+s>d=decrease_font_size:1
+# keybind = cmd+s>à=reset_font_size
