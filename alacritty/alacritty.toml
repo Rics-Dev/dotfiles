@@ -3,7 +3,7 @@ import = ["./themes/flow.toml"]
 
 [window]
 opacity = 0.97
-decorations = "buttonless"
+decorations = "none"
 blur = false
 dynamic_padding = true
 title = "Alacritty"
@@ -12,7 +12,7 @@ startup_mode = "Maximized"
 
 [window.padding]
 x = 10
-# y = 10
+y = 10
 
 [font]
 size = 15
