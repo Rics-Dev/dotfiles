@@ -1,12 +1,185 @@
-/* ignore GTK theme */
+
+/* -----------------------------------------------------------------------------
+ * Global Styles — Flow Theme (No :root, no CSS vars)
+ * -------------------------------------------------------------------------- */
 * {
-	all: initial;
+    font-family: "JetBrainsMono Nerd Font", "SF Pro Text", "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    min-height: 0;
 }
 
-@import "current-theme.css";
-@import "styles/fonts.css";
-@import "styles/global.css";
-@import "styles/modules-center.css";
-@import "styles/modules-left.css";
-@import "styles/modules-right.css";
-@import "styles/states.css";
+window#waybar {
+   min-height: 0px; 
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}
+
+/* COLORS (Flow Theme) */
+ /* Background */        /* #0F1219 */
+ /* Foreground */        /* #abb2bf */
+ /* Border */            /* #3f4451 */
+
+ /* Palette */
+ /* red */               /* #e06c75 */
+ /* green */             /* #98c379 */
+ /* yellow */            /* #e5c07b */
+ /* blue */              /* #61afef */
+ /* magenta */           /* #c678dd */
+ /* cyan */              /* #56b6c2 */
+ /* white */             /* #d7dae0 */
+
+ /* Bright */
+ /* bright blue */       /* #5ab0f6 */
+ /* bright green */      /* #a5e075 */
+ /* bright yellow */     /* #ebc275 */
+ /* bright red */        /* #ff616e */
+
+
+
+/* -----------------------------------------------------------------------------
+ * Module Styles
+ * -------------------------------------------------------------------------- */
+#clock,
+#battery,
+#cpu,
+#memory,
+#network,
+#bluetooth,
+#pulseaudio,
+#custom-music,
+#tray,
+#workspaces,
+#window,
+#custom-lock {
+    background: #0F1219;
+    color: #abb2bf;
+    padding: 0px 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 20px;
+    border: 2px solid #3f4451;
+}
+
+/* -----------------------------------------------------------------------------
+ * Left Modules
+ * -------------------------------------------------------------------------- */
+
+#clock {
+    color: #e5c07b; /* yellow */
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+/* Workspaces */
+#workspaces {
+    /* background: #0F1219; */
+    margin-right: 10px;
+    padding: 6px 6px;
+}
+
+#workspaces button {
+    padding: 0px 20px 0px 20px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+#workspaces button.active {
+    color: #61afef;
+    /* background: rgba(198, 120, 221, 0.12); */
+    background: #61afef;
+}
+
+#workspaces button:hover {
+    /* color: #d7dae0; */
+    background: rgba(171, 178, 191, 0.18);
+}
+
+/* -----------------------------------------------------------------------------
+ * Center (Window Title)
+ * -------------------------------------------------------------------------- */
+#window {
+    background: transparent;
+    color: #9199a5; /* dim white */
+    border: none;
+    font-weight: normal;
+}
+
+/* -----------------------------------------------------------------------------
+ * Grouped Items (CPU, MEM, NET, etc.)
+ * -------------------------------------------------------------------------- */
+
+#cpu, #memory, #custom-music, #network, #bluetooth, #pulseaudio {
+    border-radius: 0;
+    margin-right: 0;
+    margin-left: 0;
+    border: none;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+#hardware, #tools {
+    background: #0F1219;
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    border: 2px solid #3f4451;
+    padding: 0px 5px;
+}
+
+/* First and last rounded corners in group */
+#cpu, #custom-music {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+#memory, #pulseaudio {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+/* Accent colors */
+#cpu          { color: #e5c07b; }  /* yellow */
+#memory       { color: #d7dae0; }  /* white */
+#custom-music { color: #c678dd; }  /* magenta */
+#network      { color: #98c379; }  /* green */
+#bluetooth    { color: #61afef; }  /* blue */
+#pulseaudio   { color: #c678dd; }  /* magenta */
+
+/* Battery */
+#battery {
+    margin-right: 10px;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: #a5e075; /* bright green */
+}
+
+#battery.critical:not(.charging) {
+    color: #ff616e; /* bright red */
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Tray */
+#tray {
+    margin-right: 10px;
+    padding: 0 15px;
+}
+
+/* -----------------------------------------------------------------------------
+ * Animations
+ * -------------------------------------------------------------------------- */
+@keyframes blink {
+    to {
+        background-color: #ff616e;
+        color: #0F1219;
+    }
+}
+

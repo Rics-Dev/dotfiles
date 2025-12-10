@@ -7,11 +7,13 @@
 }
 
 #waybar {
-	background-color: @outline;
+	/* background-color: @outline; */
+	background-color: transparent;
 }
 #waybar > box {
 	margin: 4px;
-	background-color: @main-bg;
+	/* background-color: @main-bg; */
+	background-color: transparent;
 }
 
 button {

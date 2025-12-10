@@ -12,7 +12,7 @@
 
 	"include": [
 		// modules-left
-		"~/.config/waybar/modules/custom/user.jsonc",
+		// "~/.config/waybar/modules/custom/user.jsonc",
 		"~/.config/waybar/modules/hyprland/workspaces.jsonc",
 		"~/.config/waybar/modules/hyprland/window.jsonc",
 
