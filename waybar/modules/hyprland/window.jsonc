@@ -3,7 +3,7 @@
 		"format": "{}",
 		"rewrite": {
 			"": "Desktop",
-			"kitty": "Terminal",
+			"foot": "Terminal",
 			"zsh": "Terminal",
 			"~": "Terminal"
 		},

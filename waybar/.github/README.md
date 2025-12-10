@@ -43,14 +43,14 @@ Feel free to open a pull request if you'd like to add themes. :^)
 > **Waybar v0.14.0** introduced an [issue](https://github.com/Alexays/Waybar/issues/4354) that breaks [wildcard includes](/config.jsonc#L3-L10).
 > [Clone the `fix/v0.14.0` branch](#clone-anchor-point) as a temporary workaround.
 
-2. A **terminal emulator** (default: `kitty`)
+2. A **terminal emulator** (default: `foot`)
 
 > [!IMPORTANT]
 > If you use a different terminal emulator (e.g., `ghostty`),
-> you need to replace all invocations of `kitty` with your terminal command:
+> you need to replace all invocations of `foot` with your terminal command:
 >
 > ```diff
-> - "on-click": "kitty -e ..."
+> - "on-click": "foot -e ..."
 > + "on-click": "ghostty -e ..."
 > ```
 
@@ -138,7 +138,7 @@ You can use the [scripts](/scripts/) to interact with modules through keybinds:
 # ~/.config/hypr/hyprland.conf
 
 $mod     = SUPER
-$term    = kitty
+$term    = foot
 $scripts = ~/.config/waybar/scripts
 
 bind = $mod, B, exec, $term -e $scripts/bluetooth.sh

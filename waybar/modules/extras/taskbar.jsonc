@@ -13,7 +13,9 @@
 		// "on-click-middle":
 		// "on-click-right":
 		// "on-update":
-		"ignore-list": [ "kitty" ],
+		"ignore-list": [
+			"foot"
+		],
 		// "app_ids-mapping":
 		// "rewrite":
 		"cursor": true
