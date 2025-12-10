@@ -1,0 +1,35 @@
+# Hyprtoolkit Configuration matching Flow Theme
+# Colors derived from flowthemeColors.txt
+
+# Primary Background (0x0F1219)
+background = FF0F1219
+
+# Base Color - Using Dim Black (0x2e333d)
+base = FF2e333d
+
+# Alternate Base - Using Selection Background (0x3b4559)
+alternate_base = FF3b4559
+
+# Text Color (0xabb2bf)
+text = FFabb2bf
+
+# Bright Text - Using Bright Foreground/White (0xd7dae0)
+bright_text = FFd7dae0
+
+# Accent Color - Using Cursor/Bright Blue (0x5ab0f6)
+accent = FF5ab0f6
+
+# Secondary Accent - Using Cyan (0x56b6c2)
+accent_secondary = FF56b6c2
+
+# Font Configuration
+# Sizes
+h1_size = 20
+h2_size = 16
+h3_size = 14
+font_size = 12
+small_font_size = 10
+
+# Fonts
+font_family = JetBrainsMono Nerd Font
+font_family_monospace = JetBrainsMono Nerd Font
