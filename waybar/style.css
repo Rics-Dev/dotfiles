@@ -10,7 +10,7 @@
 }
 
 window#waybar {
-   min-height: 0px; 
+  min-height: 0px; 
   padding: 0;
   margin: 0;
   background: transparent;
@@ -56,8 +56,8 @@ window#waybar {
     background: #0F1219;
     color: #abb2bf;
     padding: 0px 15px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    /* margin-top: 5px; */
+    /* margin-bottom: 5px; */
     border-radius: 20px;
     border: 2px solid #3f4451;
 }
@@ -125,8 +125,9 @@ window#waybar {
     background: #0F1219;
     border-radius: 20px;
     margin-top: 5px;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
     margin-right: 10px;
+    margin-left: 10px;
     border: 2px solid #3f4451;
     padding: 0px 5px;
 }
@@ -175,6 +176,43 @@ window#waybar {
     padding: 0 15px;
 }
 
+#custom-zoom.not-zoomed {
+    opacity: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+#custom-zoom.zoomed {
+    background: #0F1219;
+    color: #61afef;
+    padding: 0px 16px 0px 12px;
+    border-radius: 20px;
+    border: 2px solid #3f4451;
+}
+
+#custom-special.not-special {
+    opacity: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+#custom-special.special {
+    background: #0F1219;
+    color: #61afef;
+    padding: 0px 16px 0px 12px;
+    border-radius: 20px;
+    border: 2px solid #3f4451;
+}
+
+#custom-notification {
+    background: #0F1219;
+    color: #61afef;
+    padding: 0px 16px 0px 12px;
+    border-radius: 20px;
+    border: 2px solid #3f4451;
+}
 /* -----------------------------------------------------------------------------
  * Animations
  * -------------------------------------------------------------------------- */

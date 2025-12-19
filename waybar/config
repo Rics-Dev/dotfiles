@@ -7,14 +7,17 @@
   "gtk-layer-shell": true,
   "height": 0,
   "modules-left": [
-    "clock",
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "custom/zoom"
     // "wlr/taskbar"
   ],
   "modules-center": [
-    "hyprland/window"
+    "clock"
+    // "hyprland/window"
   ],
   "modules-right": [
+    "custom/notification",
+    "custom/special",
     "group/hardware",
     "group/tools",
     // "tray",
@@ -148,6 +151,40 @@
       "",
       ""
     ]
+  },
+  "custom/zoom": {
+    "exec": "~/.config/waybar/scripts/hypr-zoom.sh",
+    "return-type": "json",
+    "format": "{text}",
+    "tooltip": true,
+    "restart-interval": 0
+  },
+  "custom/special": {
+    "exec": "~/.config/waybar/scripts/special-workspace.sh",
+    "return-type": "json",
+    "format": "{text}",
+    "tooltip": true,
+    "restart-interval": 0
+  },
+  "custom/notification": {
+    "tooltip": true,
+    "format": "<span size='16pt'>{icon}</span>",
+    "format-icons": {
+      "notification": "󱅫",
+      "none": "󰂜",
+      "dnd-notification": "󰂠",
+      "dnd-none": "󰪓",
+      "inhibited-notification": "󰂛",
+      "inhibited-none": "󰪑",
+      "dnd-inhibited-notification": "󰂛",
+      "dnd-inhibited-none": "󰪑"
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
   }
   // "wlr/taskbar": {
   //   "format": "{icon}",
