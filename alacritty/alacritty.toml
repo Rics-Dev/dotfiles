@@ -8,7 +8,8 @@ blur = false
 dynamic_padding = true
 title = "Alacritty"
 dynamic_title = true
-startup_mode = "Maximized"
+# Windowed , Maximized , Fullscreen
+startup_mode = "Windowed"
 
 [window.padding]
 x = 10
@@ -18,8 +19,7 @@ y = 10
 size = 15
 
 [font.normal]
-family = "JetBrainsMonoNL Nerd Font"
-style = "Regular"
+family = "AdwaitaMono Nerd Font Mono"
 
 [font.bold]
 style = "Bold"
