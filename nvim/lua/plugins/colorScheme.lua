@@ -38,7 +38,11 @@ return {
   --   priority = 1000,
   --   config = function()
   --     require("black-metal").setup({
-  --       theme = "khold",
+  --       theme = "thyrfing",
+  --       -- theme = "nile",
+  --       -- theme = "khold",
+  --       -- theme = "darkthrone",
+  --       -- theme = "venom",
   --     })
   --     require("black-metal").load()
   --   end,
