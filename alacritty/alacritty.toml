@@ -20,6 +20,7 @@ size = 15
 
 [font.normal]
 family = "AdwaitaMono Nerd Font Mono"
+#family = "JetBrainsMono Nerd Font Mono"
 
 [font.bold]
 style = "Bold"
