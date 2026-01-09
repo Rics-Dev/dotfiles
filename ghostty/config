@@ -1,6 +1,6 @@
 theme = Flow
 
-font-family = "JetBrainsMonoNL Nerd Font"
+font-family = "AdwaitaMono Nerd Font Mono"
 #font-feature = -liga
 #font-family = "GeistMono Nerd Font"
 font-size = 16
@@ -15,12 +15,13 @@ background-blur = true
 background-blur-radius = 20
 window-theme = dark
 window-padding-balance = true
-window-new-tab-position = end
-window-padding-color = extend
+#window-padding-color = extend
 window-save-state = always
-#window-decoration = none
+window-decoration = none
 #fullscreen = true
-maximize = true
+maximize = false
+window-padding-x = 5
+window-padding-y = 5
 
 
 unfocused-split-opacity=0.98
