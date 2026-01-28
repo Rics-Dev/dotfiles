@@ -3,7 +3,7 @@ theme = Flow
 font-family = "AdwaitaMono Nerd Font Mono"
 #font-feature = -liga
 #font-family = "GeistMono Nerd Font"
-font-size = 16
+font-size = 15
 
 cursor-style = block
 shell-integration-features = no-cursor
@@ -20,8 +20,8 @@ window-save-state = always
 window-decoration = none
 #fullscreen = true
 maximize = false
-window-padding-x = 5
-window-padding-y = 5
+window-padding-x = 8
+window-padding-y = 8
 
 
 unfocused-split-opacity=0.98

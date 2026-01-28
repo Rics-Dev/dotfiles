@@ -5,7 +5,8 @@ bright_foreground = "0xd7dae0"
 
 [colors.cursor]
 text = "0x0F1219"
-cursor = "0x5ab0f6"
+#cursor = "0x5ab0f6"
+cursor = "0xDADADA"
 
 [colors.normal]
 black = "0x3f4451"
