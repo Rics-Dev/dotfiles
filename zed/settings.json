@@ -7,7 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "helix_mode": true,
+  "helix_mode": false,
   "icon_theme": "Material Icon Theme",
   "disable_ai": true,
   "ui_font_family": "JetBrainsMonoNL Nerd Font Mono",
@@ -17,7 +17,7 @@
       "milliseconds": 1000,
     },
   },
-  "vim_mode": false,
+  "vim_mode": true,
   "features": {
     "edit_prediction_provider": "none",
   },
@@ -26,6 +26,6 @@
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "One Dark Pro",
+    "dark": "Gruvbox Dark Soft",
   },
 }
