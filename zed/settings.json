@@ -7,9 +7,37 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "helix_mode": false,
+  "agent": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-5.3-codex"
+    },
+    "favorite_models": [
+      {
+        "provider": "openrouter",
+        "model": "arcee-ai/trinity-large-preview:free"
+      },
+      {
+        "provider": "openrouter",
+        "model": "stepfun/step-3.5-flash:free"
+      },
+      {
+        "provider": "openrouter",
+        "model": "deepseek/deepseek-r1-0528:free"
+      },
+      {
+        "provider": "copilot_chat",
+        "model": "claude-opus-4.6"
+      },
+      {
+        "provider": "copilot_chat",
+        "model": "gpt-5.3-codex"
+      }
+    ],
+    "model_parameters": []
+  },
+  "disable_ai": false,
   "icon_theme": "Material Icon Theme",
-  "disable_ai": true,
   "ui_font_family": "JetBrainsMonoNL Nerd Font Mono",
   "buffer_font_family": "JetBrainsMonoNL Nerd Font Mono",
   "autosave": {
@@ -18,14 +46,11 @@
     },
   },
   "vim_mode": true,
-  "features": {
-    "edit_prediction_provider": "none",
-  },
-  "ui_font_size": 16,
+  "ui_font_size": 18,
   "buffer_font_size": 16.0,
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "Gruvbox Dark Soft",
+    "dark": "One Dark Pro",
   },
 }
