@@ -22,7 +22,19 @@
     "context": "Editor && !menu",
     "bindings": {
       "ctrl-b": "workspace::ToggleLeftDock",
-      "ctrl-j": "workspace::ToggleBottomDock"
-    }
-  }
+      "ctrl-j": "workspace::ToggleBottomDock",
+    },
+  },
+  {
+    "context": "Editor && !menu",
+    "bindings": {
+      "shift-l": "pane::ActivateNextItem",
+    },
+  },
+  {
+    "context": "Editor && !menu",
+    "bindings": {
+      "shift-h": "pane::ActivatePreviousItem",
+    },
+  },
 ]

@@ -7,31 +7,53 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "project_panel": {
+    "sort_mode": "mixed",
+    "hide_root": false,
+    "bold_folder_labels": true,
+    "auto_fold_dirs": false
+  },
+  "edit_predictions": {
+    "provider": "copilot"
+  },
   "agent": {
+    "default_profile": "ask",
     "default_model": {
+      "effort": "high",
+      "enable_thinking": false,
       "provider": "copilot_chat",
       "model": "gpt-5.3-codex"
     },
     "favorite_models": [
       {
         "provider": "openrouter",
-        "model": "arcee-ai/trinity-large-preview:free"
+        "model": "arcee-ai/trinity-large-preview:free",
+        "enable_thinking": false
       },
       {
         "provider": "openrouter",
-        "model": "stepfun/step-3.5-flash:free"
+        "model": "stepfun/step-3.5-flash:free",
+        "enable_thinking": false
       },
       {
         "provider": "openrouter",
-        "model": "deepseek/deepseek-r1-0528:free"
+        "model": "deepseek/deepseek-r1-0528:free",
+        "enable_thinking": false
       },
       {
         "provider": "copilot_chat",
-        "model": "claude-opus-4.6"
+        "model": "claude-opus-4.6",
+        "enable_thinking": false
       },
       {
         "provider": "copilot_chat",
-        "model": "gpt-5.3-codex"
+        "model": "gpt-5.3-codex",
+        "enable_thinking": false
+      },
+      {
+        "provider": "openrouter",
+        "model": "minimax/minimax-m2.5:free",
+        "enable_thinking": false
       }
     ],
     "model_parameters": []
