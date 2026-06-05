@@ -1,0 +1,305 @@
+# ============================================================
+# Flow Vivid — Helix Theme
+# Vivid edition: saturated, luminous, high-contrast accents
+# on a deep near-black base for maximum visual pop.
+# ============================================================
+
+# ── Syntax ──────────────────────────────────────────────────
+
+"variable"                    = "fg"
+"variable.builtin"            = { fg = "yellow", modifiers = ["italic"] }
+"variable.parameter"          = { fg = "param", modifiers = ["italic"] }
+"variable.other"              = "fg"
+"variable.other.member"       = "rose"
+
+"constant"                    = { fg = "yellow", modifiers = ["bold"] }
+"constant.builtin"            = { fg = "yellow", modifiers = ["bold"] }
+"constant.builtin.boolean"    = { fg = "yellow", modifiers = ["bold"] }
+"constant.character"          = "green"
+"constant.character.escape"   = { fg = "cyan", modifiers = ["bold"] }
+"constant.numeric"            = "orange"
+"constant.numeric.integer"    = "orange"
+"constant.numeric.float"      = "orange_bright"
+
+"string"                      = "green"
+"string.regexp"               = "cyan"
+"string.special"              = "cyan"
+"string.special.path"         = { fg = "sky", modifiers = ["underlined"] }
+"string.special.url"          = { fg = "sky", modifiers = ["underlined", "italic"] }
+"string.special.symbol"       = { fg = "cyan", modifiers = ["bold"] }
+
+"comment"                     = { fg = "comment", modifiers = ["italic"] }
+"comment.line"                = { fg = "comment", modifiers = ["italic"] }
+"comment.block"               = { fg = "comment", modifiers = ["italic"] }
+"comment.block.documentation" = { fg = "doc_comment", modifiers = ["italic"] }
+
+"type"                        = { fg = "yellow", modifiers = ["bold"] }
+"type.builtin"                = { fg = "yellow_soft", modifiers = ["italic"] }
+"type.parameter"              = { fg = "yellow_bright", modifiers = ["italic"] }
+"type.enum"                   = { fg = "yellow", modifiers = ["bold"] }
+"type.enum.variant"           = "yellow_soft"
+
+"attribute"                   = "gold"
+"attribute.builtin"           = { fg = "gold", modifiers = ["bold"] }
+
+"function"                    = "blue"
+"function.builtin"            = "sky"
+"function.method"             = "blue"
+"function.method.private"     = { fg = "blue_soft", modifiers = ["italic"] }
+"function.macro"              = "magenta"
+"function.special"            = "magenta"
+"constructor"                 = { fg = "rose", modifiers = ["bold"] }
+
+"keyword"                     = { fg = "magenta", modifiers = ["bold"] }
+"keyword.control"             = { fg = "magenta", modifiers = ["bold"] }
+"keyword.control.conditional" = { fg = "violet", modifiers = ["italic"] }
+"keyword.control.repeat"      = { fg = "violet", modifiers = ["italic"] }
+"keyword.control.import"      = { fg = "magenta", modifiers = ["bold"] }
+"keyword.control.return"      = { fg = "magenta_bright", modifiers = ["bold"] }
+"keyword.control.exception"   = { fg = "red", modifiers = ["bold"] }
+"keyword.operator"            = "fg_bright"
+"keyword.directive"           = "magenta"
+"keyword.function"            = { fg = "magenta", modifiers = ["bold"] }
+"keyword.storage"             = { fg = "violet", modifiers = ["bold"] }
+"keyword.storage.type"        = { fg = "violet", modifiers = ["bold"] }
+"keyword.storage.modifier"    = { fg = "violet", modifiers = ["bold"] }
+
+"operator"                    = "fg_op"
+
+"punctuation"                 = "punct"
+"punctuation.delimiter"       = "punct"
+"punctuation.bracket"         = "bracket"
+"punctuation.special"         = "cyan"
+
+"namespace"                   = "yellow_soft"
+"namespace.special"           = { fg = "gold", modifiers = ["bold"] }
+
+"label"                       = "magenta"
+
+"tag"                         = "rose"
+"tag.builtin"                 = "rose"
+"tag.attribute"               = "gold"
+"tag.delimiter"               = "fg_dim"
+
+# ── Markup ──────────────────────────────────────────────────
+
+"markup.heading"              = { fg = "sky", modifiers = ["bold"] }
+"markup.heading.marker"       = { fg = "comment" }
+"markup.heading.1"            = { fg = "sky", modifiers = ["bold"] }
+"markup.heading.2"            = { fg = "blue", modifiers = ["bold"] }
+"markup.heading.3"            = { fg = "magenta_bright", modifiers = ["bold"] }
+"markup.heading.4"            = { fg = "magenta", modifiers = ["bold"] }
+"markup.heading.5"            = { fg = "cyan", modifiers = ["bold"] }
+"markup.heading.6"            = { fg = "teal", modifiers = ["bold"] }
+"markup.list"                 = "fg"
+"markup.list.unnumbered"      = "rose"
+"markup.list.numbered"        = "orange"
+"markup.list.checked"         = { fg = "green_bright", modifiers = ["bold"] }
+"markup.list.unchecked"       = { fg = "comment" }
+"markup.bold"                 = { fg = "yellow_bright", modifiers = ["bold"] }
+"markup.italic"               = { fg = "magenta", modifiers = ["italic"] }
+"markup.strikethrough"        = { fg = "comment", modifiers = ["crossed_out"] }
+"markup.link"                 = { fg = "sky", modifiers = ["underlined"] }
+"markup.link.url"             = { fg = "teal", modifiers = ["underlined", "italic"] }
+"markup.link.label"           = { fg = "magenta_bright" }
+"markup.link.text"            = "sky"
+"markup.quote"                = { fg = "comment", modifiers = ["italic"] }
+"markup.raw"                  = "green"
+"markup.raw.inline"           = "green"
+"markup.raw.block"            = "green_soft"
+
+# ── Diff ────────────────────────────────────────────────────
+
+"diff.plus"                   = "green_bright"
+"diff.plus.gutter"            = "green_bright"
+"diff.minus"                  = "red_bright"
+"diff.minus.gutter"           = "red_bright"
+"diff.delta"                  = "yellow_bright"
+"diff.delta.moved"            = "cyan"
+"diff.delta.conflict"         = "red_bright"
+"diff.delta.gutter"           = "yellow_bright"
+
+# ── UI ──────────────────────────────────────────────────────
+
+"ui.background"               = { bg = "bg" }
+"ui.background.separator"     = { fg = "border" }
+
+"ui.cursor"                   = { fg = "bg", bg = "fg_bright" }
+"ui.cursor.normal"            = { fg = "bg", bg = "fg_bright" }
+"ui.cursor.insert"            = { fg = "bg", bg = "sky" }
+"ui.cursor.select"            = { fg = "bg", bg = "magenta" }
+"ui.cursor.match"             = { fg = "sky", modifiers = ["bold", "underlined"] }
+"ui.cursor.primary"           = { fg = "bg", bg = "fg_bright" }
+"ui.cursor.primary.normal"    = { fg = "bg", bg = "fg_bright" }
+"ui.cursor.primary.insert"    = { fg = "bg", bg = "sky" }
+"ui.cursor.primary.select"    = { fg = "bg", bg = "magenta" }
+
+"ui.gutter"                   = { bg = "bg" }
+"ui.gutter.selected"          = { bg = "bg" }
+"ui.linenr"                   = { fg = "linenr" }
+"ui.linenr.selected"          = { fg = "linenr_active", modifiers = ["bold"] }
+
+"ui.statusline"               = { fg = "fg", bg = "bg_statusline" }
+"ui.statusline.inactive"      = { fg = "comment", bg = "bg_statusline" }
+"ui.statusline.normal"        = { fg = "bg", bg = "sky", modifiers = ["bold"] }
+"ui.statusline.insert"        = { fg = "bg", bg = "green_bright", modifiers = ["bold"] }
+"ui.statusline.select"        = { fg = "bg", bg = "magenta_bright", modifiers = ["bold"] }
+"ui.statusline.separator"     = { fg = "border_bright" }
+
+"ui.bufferline"               = { fg = "comment", bg = "bg" }
+"ui.bufferline.active"        = { fg = "fg_bright", bg = "bg", modifiers = ["bold"] }
+"ui.bufferline.background"    = { bg = "bg" }
+
+"ui.popup"                    = { fg = "fg", bg = "bg_float" }
+"ui.popup.info"               = { fg = "fg", bg = "bg_float" }
+"ui.window"                   = { fg = "border_bright" }
+"ui.help"                     = { fg = "fg", bg = "bg_float" }
+
+"ui.text"                     = "fg"
+"ui.text.focus"               = { fg = "fg_bright", bg = "selection", modifiers = ["bold"] }
+"ui.text.inactive"            = "comment"
+"ui.text.info"                = { fg = "sky", modifiers = ["bold"] }
+"ui.text.directory"           = "blue"
+
+"ui.selection"                = { bg = "selection" }
+"ui.selection.primary"        = { fg = "fg_bright", bg = "selection" }
+
+"ui.picker.header"            = { bg = "bg_active" }
+"ui.picker.header.column"     = { fg = "comment", bg = "bg_active" }
+"ui.picker.header.column.active" = { fg = "sky", bg = "bg_active", modifiers = ["bold"] }
+
+"ui.highlight"                = { bg = "bg_active" }
+"ui.highlight.frameline"      = { bg = "diff_change_bg" }
+
+"ui.cursorline.primary"       = { bg = "cursorline" }
+"ui.cursorline.secondary"     = { bg = "cursorline_dim" }
+"ui.cursorcolumn.primary"     = { bg = "cursorline" }
+"ui.cursorcolumn.secondary"   = { bg = "cursorline_dim" }
+
+"ui.menu"                     = { fg = "fg", bg = "bg_float" }
+"ui.menu.selected"            = { fg = "fg_bright", bg = "bg_active", modifiers = ["bold"] }
+"ui.menu.scroll"              = { fg = "border_bright", bg = "bg_deeper" }
+
+"ui.virtual.ruler"            = { bg = "ruler" }
+"ui.virtual.whitespace"       = { fg = "border" }
+"ui.virtual.indent-guide"     = { fg = "indent" }
+"ui.virtual.inlay-hint"       = { fg = "teal", bg = "inlay_bg", modifiers = ["italic"] }
+"ui.virtual.inlay-hint.parameter" = { fg = "sky_dim", bg = "inlay_bg", modifiers = ["italic"] }
+"ui.virtual.inlay-hint.type"  = { fg = "yellow_bright", bg = "inlay_bg", modifiers = ["italic"] }
+"ui.virtual.wrap"             = { fg = "border_bright" }
+"ui.virtual.jump-label"       = { fg = "magenta_bright", modifiers = ["bold"] }
+
+"warning"                     = { fg = "yellow_bright" }
+"error"                       = { fg = "red_bright" }
+"info"                        = { fg = "sky" }
+"hint"                        = { fg = "teal" }
+
+"diagnostic"                  = { underline = { style = "curl" } }
+"diagnostic.hint"             = { underline = { color = "teal",         style = "dotted" } }
+"diagnostic.info"             = { underline = { color = "sky",          style = "dashed" } }
+"diagnostic.warning"          = { underline = { color = "yellow_bright", style = "curl" } }
+"diagnostic.error"            = { underline = { color = "red_bright",   style = "curl" } }
+"diagnostic.unnecessary"      = { fg = "comment", modifiers = ["dim"] }
+"diagnostic.deprecated"       = { fg = "comment", modifiers = ["crossed_out"] }
+
+"tabstop"                     = { fg = "yellow_bright", bg = "bg_active" }
+
+"ui.debug.breakpoint"         = { fg = "red_bright" }
+"ui.debug.active"             = { fg = "green_bright" }
+
+"markup.normal.completion"    = "fg"
+"markup.normal.hover"         = "fg"
+"markup.heading.completion"   = { fg = "sky", modifiers = ["bold"] }
+"markup.heading.hover"        = { fg = "sky", modifiers = ["bold"] }
+"markup.raw.inline.completion" = "green"
+"markup.raw.inline.hover"     = "green"
+
+# ============================================================
+# Palette — vivid edition
+# Deeper blacks, fully-saturated accents, luminous brights
+# ============================================================
+
+[palette]
+
+# ── Backgrounds (deeper/richer than original) ───────────────
+bg              = "#080b10"
+bg_deeper       = "#050709"
+bg_statusline   = "#060911"
+bg_float        = "#0c1018"
+bg_active       = "#1a1f2e"
+bg_light        = "#141926"
+
+# ── Cursorline ───────────────────────────────────────────────
+cursorline      = "#0f1520"
+cursorline_dim  = "#0c1119"
+ruler           = "#0e1420"
+inlay_bg        = "#101624"
+
+# ── Foregrounds ──────────────────────────────────────────────
+fg_bright       = "#edf0f7"
+fg              = "#c8cdd8"
+fg_dim          = "#8b93a8"
+fg_op           = "#a8b0c4"
+param           = "#dde0e8"
+
+# ── Comments ─────────────────────────────────────────────────
+comment         = "#505a72"
+doc_comment     = "#4a7aa8"
+
+# ── Line numbers ─────────────────────────────────────────────
+linenr          = "#3a4258"
+linenr_active   = "#7e8cad"
+
+# ── Selection ────────────────────────────────────────────────
+selection       = "#28304a"
+
+# ── Borders ──────────────────────────────────────────────────
+border          = "#1c2238"
+border_bright   = "#3a4260"
+bracket         = "#6a7896"
+punct           = "#8b93a8"
+
+# ── Vibrant syntax accents ───────────────────────────────────
+
+# Blues — electric
+blue            = "#4ca8f0"
+blue_soft       = "#3d8fd4"
+sky             = "#60c4ff"
+sky_dim         = "#3a9fd4"
+
+# Greens — vivid lime/emerald
+green           = "#7dd67a"
+green_soft      = "#65bb6a"
+green_bright    = "#9fe87a"
+
+# Yellows — warm amber-gold
+yellow          = "#f0c674"
+yellow_soft     = "#d4a853"
+yellow_bright   = "#ffd080"
+orange          = "#f0a060"
+orange_bright   = "#ffb870"
+gold            = "#e8a84a"
+
+# Purples/Magentas — vivid violet spectrum
+magenta         = "#d470e8"
+magenta_bright  = "#eb80ff"
+violet          = "#a870e0"
+purple          = "#b870e8"
+
+# Reds/Roses — saturated coral-red
+rose            = "#f0607a"
+red             = "#f04858"
+red_bright      = "#ff5065"
+
+# Cyans/Teals — luminous
+cyan            = "#4dd8e0"
+teal            = "#38c4b8"
+
+# ── Diffs (vivid glow backgrounds) ───────────────────────────
+diff_add_bg     = "#1a3d20"
+diff_change_bg  = "#3a2d10"
+diff_delete_bg  = "#3d1520"
+diff_text_bg    = "#152840"
+
+# ── Indent ───────────────────────────────────────────────────
+indent          = "#141c2c"

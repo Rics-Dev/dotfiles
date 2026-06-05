@@ -7,6 +7,12 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "helix_mode": true,
+  "agent_servers": {
+    "glm-acp-agent": {
+      "type": "registry"
+    }
+  },
   "proxy": "",
   "outline_panel": {
     "dock": "left"
@@ -31,12 +37,12 @@
   },
   "agent": {
     "dock": "right",
-    "default_profile": "write",
+    "default_profile": "ask",
     "default_model": {
-      "effort": "high",
-      "enable_thinking": false,
+      "effort": "xhigh",
+      "enable_thinking": true,
       "provider": "copilot_chat",
-      "model": "gpt-5.3-codex"
+      "model": "gpt-5.2-codex"
     },
     "favorite_models": [
       {
@@ -72,7 +78,7 @@
     ],
     "model_parameters": []
   },
-  "disable_ai": false,
+  "disable_ai": true,
   "icon_theme": "Material Icon Theme",
   "ui_font_family": "JetBrainsMonoNL Nerd Font Mono",
   "buffer_font_family": "JetBrainsMonoNL Nerd Font Mono",
