@@ -1,17 +1,17 @@
 theme = Flow
 
-font-family = "AdwaitaMono Nerd Font Mono"
+font-family = "JetBrainsMonoNL Nerd Font Mono"
 #font-feature = -liga
 #font-family = "GeistMono Nerd Font"
-font-size = 15
+font-size = 14
 
 cursor-style = block
 shell-integration-features = no-cursor
 #cursor-style-blink = false
 
 
-background-opacity = 0.97
-background-blur = true
+background-opacity = 1
+background-blur = false
 background-blur-radius = 20
 window-theme = dark
 window-padding-balance = true

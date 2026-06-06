@@ -6,8 +6,8 @@ color-modes = true
 #mouse = true
 bufferline = "multiple"
 clipboard-provider = "wayland"
-##continue-comments = true
-#auto-format = true
+continue-comments = false
+auto-format = true
 end-of-line-diagnostics = "hint"
 #
 [editor.cursor-shape]
@@ -15,8 +15,8 @@ insert = "bar"
 normal = "block"
 select = "block"
 #
-[editor.auto-save]
-after-delay.enable = true
+# [editor.auto-save]
+# after-delay.enable = true
 
 [editor.inline-diagnostics]
 cursor-line = "warning" # Show warnings and errors inline on the cursor line
@@ -30,13 +30,16 @@ cursor-line = "warning" # Show warnings and errors inline on the cursor line
 #C-k = "@10k"
 
 [editor.lsp]
-display-inlay-hints = true
+display-inlay-hints = false
 
 [keys.normal.space]
-y = [
+space = [
   ':sh rm -f /tmp/unique-file',
   ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file',
   ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
   ':open %sh{cat /tmp/unique-file}',
   ':redraw',
 ]
+
+[keys.normal]
+ret = ":w"

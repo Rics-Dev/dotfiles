@@ -1,5 +1,6 @@
 [colors.primary]
 background = "0x0F1219"
+#background = "0x050709"
 foreground = "0xabb2bf"
 bright_foreground = "0xd7dae0"
 

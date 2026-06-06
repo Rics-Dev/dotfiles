@@ -2,7 +2,7 @@
 import = ["./themes/flow.toml"]
 
 [window]
-opacity = 0.98
+opacity = 1
 decorations = "none"
 blur = false
 dynamic_padding = false
