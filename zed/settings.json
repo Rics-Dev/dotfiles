@@ -7,7 +7,8 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "helix_mode": true,
+  "cli_default_open_behavior": "existing_window",
+  "helix_mode": false,
   "agent_servers": {
     "glm-acp-agent": {
       "type": "registry"
@@ -87,7 +88,7 @@
       "milliseconds": 1000,
     },
   },
-  "vim_mode": false,
+  "vim_mode": true,
   "ui_font_size": 16.0,
   "buffer_font_size": 15.0,
   "theme": {

@@ -17,7 +17,6 @@ y = 8
 
 
 [font]
-
 size = 14.0
 normal = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Regular" }
 bold = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Bold" }
@@ -46,7 +45,7 @@ bold_italic = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Bold Italic"
 # y = 4
 
 [cursor.style]
-blinking = "On"
+blinking = "Off"
 shape = "Block"
 
 [scrolling]

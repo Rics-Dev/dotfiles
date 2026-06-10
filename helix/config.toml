@@ -2,7 +2,7 @@ theme = "flow"
 
 [editor]
 color-modes = true
-#line-number = "relative"
+line-number = "relative"
 #mouse = true
 bufferline = "multiple"
 clipboard-provider = "wayland"
@@ -11,7 +11,7 @@ auto-format = true
 end-of-line-diagnostics = "hint"
 #
 [editor.cursor-shape]
-insert = "bar"
+insert = "block"
 normal = "block"
 select = "block"
 #

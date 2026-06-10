@@ -1,49 +1,57 @@
-# ~/.config/rio/themes/flow.toml
+# ============================================================
+# Flow — Rio Terminal Theme
+# ============================================================
+
 [colors]
 background = "#0F1219"
 foreground = "#abb2bf"
+
 # Selection
 selection-background = "#3b4559"
 selection-foreground = "#d7dae0"
+
 # Navigation
-tabs-active = "#3b4559"
-tabs-active-foreground = "#d7dae0"
-tabs-active-highlight = "#5ab0f6"
-bar = "#0F1219"
-cursor = "#5ab0f6"
-vi-cursor = "#61afef"
+tabs        = "#090c11"
+tabs-active = "#5ab0f6"
+bar         = "#090c11"
+split       = "#23283a"
+cursor      = "#DADADA"
+vi-cursor   = "#de73ff"
+
 # Search
-search-match-background = "#5ab0f6"
-search-match-foreground = "#0F1219"
-search-focused-match-background = "#c678dd"
+search-match-background         = "#4e3e30"
+search-match-foreground         = "#e5c07b"
+search-focused-match-background = "#e5c07b"
 search-focused-match-foreground = "#0F1219"
+
 # Regular colors
-black = "#3f4451"
-blue = "#61afef"
-cyan = "#56b6c2"
-green = "#98c379"
+black   = "#3f4451"
+red     = "#e06c75"
+green   = "#98c379"
+yellow  = "#e5c07b"
+blue    = "#61afef"
 magenta = "#c678dd"
-red = "#e06c75"
-tabs = "#2e333d"
-white = "#d7dae0"
-yellow = "#e5c07b"
+cyan    = "#56b6c2"
+white   = "#d7dae0"
+
 # Dim colors
-dim-black = "#2e333d"
-dim-blue = "#4e94cd"
-dim-cyan = "#479aa5"
-dim-foreground = "#9199a5"
-dim-green = "#7ea560"
-dim-magenta = "#a462bd"
-dim-red = "#c84a56"
-dim-white = "#9199a5"
-dim-yellow = "#c9a662"
-# Light colors
-light-black = "#4f5666"
-light-blue = "#5ab0f6"
-light-cyan = "#4dbdcb"
+dim-black      = "#2e333d"
+dim-red        = "#c84a56"
+dim-green      = "#7ea560"
+dim-yellow     = "#c9a662"
+dim-blue       = "#4e94cd"
+dim-magenta    = "#a462bd"
+dim-cyan       = "#479aa5"
+dim-white      = "#9199a5"
+dim-foreground = "#697082"
+
+# Light colors (bright)
+light-black      = "#4f5666"
+light-red        = "#ff616e"
+light-green      = "#a5e075"
+light-yellow     = "#ebc275"
+light-blue       = "#5ab0f6"
+light-magenta    = "#de73ff"
+light-cyan       = "#4dbdcb"
+light-white      = "#e6e6e6"
 light-foreground = "#d7dae0"
-light-green = "#a5e075"
-light-magenta = "#de73ff"
-light-red = "#ff616e"
-light-white = "#e6e6e6"
-light-yellow = "#ebc275"
