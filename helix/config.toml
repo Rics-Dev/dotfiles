@@ -18,6 +18,9 @@ select = "block"
 # [editor.auto-save]
 # after-delay.enable = true
 
+[editor.soft-wrap]
+enable = true
+
 [editor.inline-diagnostics]
 cursor-line = "warning" # Show warnings and errors inline on the cursor line
 ## other-lines = "disable" # Disable inline diagnostics on other lines
