@@ -1,161 +1,229 @@
 # ============================================================
 # Flow — Yazi Theme
-# Derived from the Flow Helix theme
+# ============================================================
+# Palette mirrors the Neovim / Helix / Alacritty ports exactly.
+# Semantic mapping:
+#   blue        = directories, cwd, navigation accent
+#   green       = text/code files, executables, success
+#   yellow      = media (images/video/audio), permissions exec
+#   purple      = select mode, archives, conflict
+#   red         = cut marker, delete, orphan symlinks
+#   cyan        = special/empty files, predictive
+#   gold        = archives, attributes
+#   bright_blue = accent across modes, panels, titles
+#   bg_dark     = statusbar, inactive tabs, overlay panels
 # ============================================================
 
 [flavor]
 dark  = ""
 light = ""
 
-[app]
-overall = { bg = "#0F1219" }  # Uncomment if your terminal supports OSC 11
+# ── Application ─────────────────────────────────────────────
 
-[mgr]
+[manager]
 cwd             = { fg = "#5ab0f6", bold = true }
 
-find_keyword    = { fg = "#e5c07b", bold = true, italic = false, reversed = false }
-find_position   = { fg = "#c678dd", italic = true }
+find_keyword    = { fg = "#ebc275", bold = true, italic = false, reversed = false }
+find_position   = { fg = "#de73ff", italic = true }
 
 symlink_target  = { fg = "#56b6c2", italic = true }
 
-marker_copied   = { fg = "#98c379", bg = "#3b5135" }
-marker_cut      = { fg = "#e06c75", bg = "#572a32" }
-marker_marked   = { fg = "#e5c07b", bg = "#4e3e30" }
-marker_selected = { fg = "#61afef", bg = "#293b4d" }
+# Markers: each operation gets its own semantic pair (fg on tinted bg)
+marker_copied   = { fg = "#a5e075", bg = "#253b22" }
+marker_cut      = { fg = "#ff616e", bg = "#3d1820" }
+marker_marked   = { fg = "#ebc275", bg = "#3a2e14" }
+marker_selected = { fg = "#5ab0f6", bg = "#1e3248" }
 
-count_copied    = { fg = "#98c379", bold = true }
-count_cut       = { fg = "#e06c75", bold = true }
-count_selected  = { fg = "#61afef", bold = true }
+count_copied    = { fg = "#a5e075", bold = true }
+count_cut       = { fg = "#ff616e", bold = true }
+count_selected  = { fg = "#5ab0f6", bold = true }
 
 border_symbol   = "│"
-border_style    = { fg = "#23283a" }
+border_style    = { fg = "#1c2230" }
 
 syntect_theme   = ""
 
-[indicator]
-parent  = { fg = "#697082", bg = "#090c11" }
-current = { fg = "#d7dae0", bg = "#2c313a", bold = true }
-preview = { fg = "#4d89be", bg = "#2c313a" }
-padding = { open = "▐", close = "▌" }
+# ── Header tabs ─────────────────────────────────────────────
 
 [tabs]
-active   = { fg = "#d7dae0", bg = "#2c313a", bold = true }
-inactive = { fg = "#697082", bg = "#090c11" }
+active   = { fg = "#d7dae0", bg = "#20252f", bold = true }
+inactive = { fg = "#4d5566", bg = "#090c11" }
 
-sep_inner = { open = "[", close = "]" }
+sep_inner = { open = " ", close = " " }
 sep_outer = { open = "", close = "" }
+
+# ── Mode pills ──────────────────────────────────────────────
+# Colors match Neovim/Helix cursor mode mapping exactly:
+#   normal = bright_blue, select = purple, unset = yellow
 
 [mode]
 normal_main = { fg = "#0F1219", bg = "#5ab0f6", bold = true }
-normal_alt  = { fg = "#5ab0f6", bg = "#2c313a" }
+normal_alt  = { fg = "#5ab0f6", bg = "#20252f" }
 
 select_main = { fg = "#0F1219", bg = "#c678dd", bold = true }
-select_alt  = { fg = "#c678dd", bg = "#2c313a" }
+select_alt  = { fg = "#c678dd", bg = "#20252f" }
 
 unset_main  = { fg = "#0F1219", bg = "#e5c07b", bold = true }
-unset_alt   = { fg = "#e5c07b", bg = "#2c313a" }
+unset_alt   = { fg = "#e5c07b", bg = "#20252f" }
+
+# ── Status bar ──────────────────────────────────────────────
 
 [status]
-overall  = { fg = "#d7dae0", bg = "#090c11" }
+overall  = { fg = "#697082", bg = "#090c11" }
 
-sep_left  = { open = "", close = "" }
-sep_right = { open = "", close = "" }
+sep_left  = { open = " ", close = " " }
+sep_right = { open = " ", close = " " }
 
-perm_type  = { fg = "#61afef" }
-perm_read  = { fg = "#98c379" }
-perm_write = { fg = "#e06c75" }
-perm_exec  = { fg = "#e5c07b", bold = true }
-perm_sep   = { fg = "#3e4452" }
+# Permissions: use semantic syntax colors
+perm_type  = { fg = "#61afef" }          # blue = type info
+perm_read  = { fg = "#98c379" }          # green = safe/allowed
+perm_write = { fg = "#e06c75" }          # red = mutation/risk
+perm_exec  = { fg = "#e5c07b", bold = true }  # yellow = special capability
+perm_sep   = { fg = "#3a4050" }
 
 progress_label  = { fg = "#d7dae0", bold = true }
-progress_normal = { fg = "#61afef", bg = "#090c11" }
+progress_normal = { fg = "#5ab0f6", bg = "#090c11" }
 progress_error  = { fg = "#ff4757", bg = "#090c11" }
 
+# ── Header panel indicator ──────────────────────────────────
+
+[header]
+cwd    = { fg = "#5ab0f6", bold = true }
+tabs   = { fg = "#697082", bg = "#090c11" }
+
+# ── Which-key popup ─────────────────────────────────────────
+
 [which]
-cols           = 3
-mask           = { bg = "#090c11" }
-cand           = { fg = "#5ab0f6" }
-rest           = { fg = "#697082" }
-desc           = { fg = "#d7dae0" }
-separator      = " → "
-separator_style = { fg = "#3e4452" }
+cols            = 3
+mask            = { bg = "#090c11" }
+cand            = { fg = "#5ab0f6" }
+rest            = { fg = "#697082" }
+desc            = { fg = "#d7dae0" }
+separator       = " → "
+separator_style = { fg = "#3a4050" }
+
+# ── Confirm dialog ──────────────────────────────────────────
 
 [confirm]
-border  = { fg = "#23283a" }
-title   = { fg = "#5ab0f6", bold = true }
-body    = { fg = "#d7dae0" }
-list    = { fg = "#abb2bf" }
+border    = { fg = "#1c2230" }
+title     = { fg = "#5ab0f6", bold = true }
+body      = { fg = "#d7dae0" }
+list      = { fg = "#abb2bf" }
 
 btn_yes    = { fg = "#0F1219", bg = "#98c379", bold = true }
 btn_no     = { fg = "#0F1219", bg = "#e06c75", bold = true }
 btn_labels = ["Yes", "No"]
 
+# ── Spot (preview metadata) ─────────────────────────────────
+
 [spot]
-border   = { fg = "#23283a" }
+border   = { fg = "#1c2230" }
 title    = { fg = "#5ab0f6", bold = true }
 tbl_col  = { fg = "#5ab0f6", bold = true }
-tbl_cell = { fg = "#d7dae0", bg = "#2c313a" }
+tbl_cell = { fg = "#d7dae0" }
+
+# ── Notifications ───────────────────────────────────────────
 
 [notify]
 title_info  = { fg = "#5ab0f6", bold = true }
-title_warn  = { fg = "#e5c07b", bold = true }
+title_warn  = { fg = "#ebc275", bold = true }
 title_error = { fg = "#ff4757", bold = true }
-
-[pick]
-border   = { fg = "#23283a" }
-active   = { fg = "#d7dae0", bg = "#2c313a", bold = true }
-inactive = { fg = "#697082" }
-
-[input]
-border   = { fg = "#23283a" }
-title    = { fg = "#5ab0f6", bold = true }
-value    = { fg = "#d7dae0" }
-selected = { fg = "#0F1219", bg = "#5ab0f6" }
-
-[cmp]
-border   = { fg = "#23283a" }
-active   = { fg = "#d7dae0", bg = "#2c313a", bold = true }
-inactive = { fg = "#697082" }
-
-icon_file    = ""
-icon_folder  = ""
-icon_command = ""
-
-[tasks]
-border  = { fg = "#23283a" }
-title   = { fg = "#5ab0f6", bold = true }
-hovered = { fg = "#d7dae0", bg = "#2c313a", bold = true }
-
-[help]
-on      = { fg = "#e5c07b", bold = true }
-run     = { fg = "#98c379" }
-desc    = { fg = "#abb2bf" }
-hovered = { fg = "#d7dae0", bg = "#2c313a", bold = true }
-footer  = { fg = "#697082", bg = "#090c11" }
 
 icon_info  = ""
 icon_warn  = ""
 icon_error = ""
 
+# ── Pick (multi-select prompt) ───────────────────────────────
+
+[pick]
+border   = { fg = "#1c2230" }
+active   = { fg = "#d7dae0", bg = "#20252f", bold = true }
+inactive = { fg = "#4d5566" }
+
+# ── Input dialog ────────────────────────────────────────────
+
+[input]
+border   = { fg = "#3a4460" }
+title    = { fg = "#5ab0f6", bold = true }
+value    = { fg = "#d7dae0" }
+selected = { fg = "#0F1219", bg = "#5ab0f6" }
+
+# ── Completion dropdown ──────────────────────────────────────
+
+[completion]
+border   = { fg = "#1c2230" }
+active   = { fg = "#d7dae0", bg = "#20252f", bold = true }
+inactive = { fg = "#4d5566" }
+
+icon_file    = ""
+icon_folder  = ""
+icon_command = ""
+
+# ── Tasks overlay ────────────────────────────────────────────
+
+[tasks]
+border  = { fg = "#1c2230" }
+title   = { fg = "#5ab0f6", bold = true }
+hovered = { fg = "#d7dae0", bg = "#20252f", bold = true }
+
+# ── Help overlay ─────────────────────────────────────────────
+
+[help]
+on      = { fg = "#ebc275", bold = true }
+run     = { fg = "#98c379" }
+desc    = { fg = "#abb2bf" }
+hovered = { fg = "#d7dae0", bg = "#20252f", bold = true }
+footer  = { fg = "#697082", bg = "#090c11" }
+
+# ── File type coloring ───────────────────────────────────────
+# Semantic: directories = blue, executables = green+bold,
+#           media = yellow, archives = gold, documents = red,
+#           text/code = green, empty = cyan, broken = bright_red
+
 [filetype]
 rules = [
-  # Images
-  { mime = "image/*", fg = "#e5c07b" },
-  # Audio / Video
-  { mime = "{audio,video}/*", fg = "#c678dd" },
-  # Archives
-  { mime = "application/{zip,tar,gz,bz2,xz,7z,rar,zst}*", fg = "#d19a66" },
-  # Documents
-  { mime = "application/pdf", fg = "#e06c75" },
-  { mime = "application/{doc,docx,odt,rtf}*", fg = "#61afef" },
-  # Text / Code
-  { mime = "text/*", fg = "#98c379" },
-  # Empty files
-  { mime = "inode/empty", fg = "#56b6c2" },
-  # Orphan symlinks
-  { url = "*", is = "orphan", fg = "#ff4757" },
-  # Executables
-  { url = "*", is = "exec", fg = "#98c379", bold = true },
-  # Directories
+  # Directories — blue bold (primary navigation target)
   { url = "*/", fg = "#61afef", bold = true },
+
+  # Executables — bright green bold (safe to run)
+  { url = "*", is = "exec", fg = "#a5e075", bold = true },
+
+  # Orphan symlinks — bright red (broken, needs attention)
+  { url = "*", is = "orphan", fg = "#ff4757", bold = true },
+
+  # Images — yellow (visual content, warm)
+  { mime = "image/*", fg = "#e5c07b" },
+
+  # Video — bright yellow
+  { mime = "video/*", fg = "#ebc275" },
+
+  # Audio — purple (music/sound)
+  { mime = "audio/*", fg = "#c678dd" },
+
+  # Archives & compressed — gold (packed/meta)
+  { mime = "application/zip", fg = "#d19a66" },
+  { mime = "application/gzip", fg = "#d19a66" },
+  { mime = "application/x-tar", fg = "#d19a66" },
+  { mime = "application/x-bzip2", fg = "#d19a66" },
+  { mime = "application/x-xz", fg = "#d19a66" },
+  { mime = "application/x-7z-compressed", fg = "#d19a66" },
+  { mime = "application/x-rar", fg = "#d19a66" },
+  { mime = "application/zstd", fg = "#d19a66" },
+
+  # PDFs — red (documents with potential danger/locked content)
+  { mime = "application/pdf", fg = "#e06c75" },
+
+  # Office documents — blue
+  { mime = "application/msword", fg = "#61afef" },
+  { mime = "application/vnd.openxmlformats-officedocument.*", fg = "#61afef" },
+  { mime = "application/vnd.oasis.opendocument.*", fg = "#61afef" },
+
+  # Text & code — green (strings, literal data)
+  { mime = "text/*", fg = "#98c379" },
+
+  # Empty files — cyan (special, notable)
+  { mime = "inode/empty", fg = "#56b6c2" },
+
+  # Symlinks (valid) — cyan italic
+  { url = "*", is = "link", fg = "#56b6c2" },
 ]
