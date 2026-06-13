@@ -1,4 +1,4 @@
-theme = "flow"
+theme = "current"
 
 [editor]
 color-modes = true

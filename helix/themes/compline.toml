@@ -1,0 +1,219 @@
+# Compline
+
+## General
+
+"diagnostic.error" = {  fg = "red" }                                                # Diagnostics error (editing area)
+"diagnostic.hint" = { fg = "green" }                                                # Diagnostics hint (editing area)
+"diagnostic.info" = { fg = "blue" }                                                 # Diagnostics info (editing area)
+"diagnostic.warning" = { fg = "yellow" }                                            # Diagnostics warning (editing area)
+"diagnostic.unnecessary" = { modifiers = ["dim"] }                                  # Diagnostics with unnecessary tag (editing area)
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }                           # Diagnostics with deprecated tag (editing area)
+
+"error" = { fg = "red" }                                                            # Editor errors, like mis-typing a command.
+"hint" = { fg = "green" }                                                           # Code diagnostics hints (LSP).
+"info" = { fg = "blue" }                                                            # Contextual info in diagnostic messages (LSP).
+"warning" = { fg = "yellow" }                                                       # Editor warnings.
+
+## UI
+
+"ui.background" = { bg = "bg", fg = "fg" }                                          # Default background color.
+"ui.background.separator" = { fg = "fg" }                                           # Picker separator below input line
+
+"ui.bufferline.active" = { bg = "base1", fg = "fg", modifiers = ["bold"] }          # bufferline active tab
+"ui.bufferline.background" = { bg = "bg-alt" }                                      # bufferline background
+"ui.bufferline" = { fg = "fg-alt" }                                                 # bufferline inactive tab
+
+"ui.cursorcolumn.primary" = { bg = "bg-alt" }                                       # The column of the primary cursor (if cursorcolumn is enabled) 
+"ui.cursorcolumn.secondary" = { }                                                   # The columns of any other cursors (if cursorcolumn is enabled)
+"ui.cursor" = { fg = "bg", bg = "fg-alt" }                                          # Fallback cursor colour, non-primary cursors when there are multiple (shift-c).
+"ui.cursor.insert" = { fg = "fg-alt" }                                              # The cursor in insert mode (i).
+"ui.cursorline.primary" = { bg = "bg-alt" }                                         # The line of the primary cursor (if cursorline is enabled)j 
+"ui.cursorline.secondary" = { }                                                     # The lines of any other cursors (if cursorline is enabled) 
+"ui.cursor.match" = { bg = "bg", fg = "red", modifiers = ["bold"] }                 # The matching parentheses of that under the cursor.
+"ui.cursor.primary" = { bg = "fg-alt", fg = "bg" }                                  # The primary cursor when there are multiple (shift-c).
+"ui.cursor.select" = { bg = "fg-alt", fg = "base4" }                                # The cursor in select mode(v).
+
+"ui.gutter" = { bg = "bg" }                                                         # Left gutter for diagnostics and breakpoints.
+"ui.gutter.selected" = { bg = "bg" }                                                # Gutter for the line the cursor is on
+
+"ui.help" = { bg = "bg-alt", fg = "fg" }                                            # `:command` descriptions above the command line.
+
+"ui.highlight" = { bg = "base4", modifiers = ["bold"] }                             # selected contents of symbol pickers (spc-s, spc-S) and current line in buffer picker (spc-b).
+
+"ui.linenr" = { fg = "base4" }                                                      # Line numbers.
+"ui.linenr.selected" = { fg = "fg" }                                                # Current line number.
+
+"ui.menu" = { bg = "bg-alt", fg = "fg" }                                            # Autocomplete menu.
+"ui.menu.scroll" = { bg = "bg-alt", fg = "fg" }                                     # fg sets thumb color, bg sets track color of scrollbar 
+"ui.menu.selected" = { bg = "base0", fg = "fg", modifiers = ["bold"] }              # Selected autocomplete item.
+
+"ui.picker.header.column.active" = { fg = "base8" }                                 # The column name in pickers with multiple columns where the cursor is entering into.
+"ui.picker.header.column" = { fg = "base8" }                                        # Column names in pickers with multiple columns
+"ui.picker.header" = { fg = "fg" }                                                  # Header row area in pickers with multiple columns
+
+"ui.popup" = { bg = "bg-alt", fg = "fg" }                                           # Documentation popups (space-k).
+"ui.popup.info" = { bg = "bg-alt", fg = "fg" }                                      # Info popups box (space mode menu).
+
+"ui.selection" = { bg = "base4", fg = "base8" }                                     # All currently selected text.
+"ui.selection.primary" = { bg = "base4", fg = "base8" }                             # The primary selection when there are multiple.
+
+"ui.statusline.active" = { bg = "base1", fg = "fg" }                                # Status line in focused windows.
+"ui.statusline" = { bg = "base1", fg = "fg" }                                       # Status line.
+"ui.statusline.inactive" = { bg = "bg-alt", fg = "fg-alt" }                         # Status line in unfocused windows.
+"ui.statusline.insert" = { bg = "green", fg = "bg", modifiers =  ["bold"] }         # Statusline mode during insert mode (only if editor.color-modes is enabled)
+"ui.statusline.normal" = { bg = "orange", fg = "bg", modifiers =  ["bold"] }        # Statusline mode during normal mode (only if editor.color-modes is enabled)
+"ui.statusline.select" = { bg = "blue", fg = "bg", modifiers =  ["bold"] }          # Statusline mode during select mode (only if editor.color-modes is enabled)
+
+"ui.text.directory" = { fg = "blue" }                                               # Directory names in prompt completion
+"ui.text" = { fg = "fg" }                                                           # Default text color.
+"ui.text.focus" = { bg = "base4"}                                                   # Selection highlight in buffer-picker or file-picker.
+"ui.text.info" = { bg = "bg-alt", fg = "fg" }                                       # Info popup contents (space mode menu).
+
+"ui.virtual" = { fg = "base4" }                                                     # Namespace for additions to the editing area.
+"ui.virtual.jump-label" = { bg = "bg", fg = "red", modifiers = ["bold"] }           # Style for virtual jump labels
+"ui.virtual.ruler" = { fg = "base4" }                                               # Vertical rulers (colored columns in editing area).
+"ui.virtual.whitespace" = { fg = "base4" }                                          # Whitespace markers in editing area.
+"ui.virtual.wrap" = { fg = "base4" }                                                # Soft-wrap indicator
+
+"ui.window" = { fg = "base0" }                                                      # Window border between splits.
+
+## Syntax Highlighting
+
+"property" = { fg = "orange" }                                                      # Regex group names.
+"special" = { fg = "blue" }                                                         # Special symbols e.g `?` in Rust, `...` in Hare.
+"attribute" = { fg = "teal" }                                                       # Class attributes, html tag attributes.
+
+"type" = { fg = "blue" }                                                            # Variable type, like integer or string, including program defined classes, structs etc..
+"type.builtin" = { fg = "cyan" }                                                    # Primitive types of the language (string, int, float).
+"type.enum.variant" = { fg = "blue" }                                               # A variant of an enum.
+
+"constructor" = { fg = "dark=cyan" }                                                # Constructor method for a class or struct.
+
+"constant" = { fg = "base7" }                                                       # Constant value
+"constant.builtin" = { fg = "cyan" }                                                # Special constants like `true`, `false`, `none`, etc.
+"constant.builtin.boolean" = { fg = "cyan" }                                        # True or False.
+"constant.character" = { fg = "base7" }                                             # Constant of character type.
+"constant.character.escape" = { fg = "base7" }                                      # escape codes like \n.
+"constant.numeric"  = { fg = "red" }                                                # constant integer or float value.
+"constant.numeric.integer" = { fg = "red" }                                         # constant integer value.
+"constant.numeric.float" = { fg = "red" }                                           # constant float value.
+
+"string" = { fg = "green" }                                                         # String literal.
+"string.regexp" = { fg = "green" }                                                  # Regular expression literal.
+"string.special" = { fg = "green" }                                                 # Strings containing a path, URL, etc.
+"string.special.path" = { fg = "green" }                                            # String containing a file path.
+"string.special.url" = { fg = "green" }                                             # String containing a web URL.
+"string.special.symbol" = { fg = "base8" }                                          # Erlang/Elixir atoms, Ruby symbols, Clojure keywords.
+
+"comment" = { fg = "base4" }                                                        # This is a comment.
+"comment.line" = { fg = "base4" }                                                   # Line comments, like this.
+"comment.block" = { fg = "base4" }                                                  # Block comments, like /* this */ in some languages.
+"comment.block.documentation" = { fg = "base4" }                                    # Doc comments, e.g "///" in rust.
+
+"variable" = { fg = "base8" }                                                       # Variable names.
+"variable.builtin" = { fg = "cyan" }                                                # Language reserved variables: `this`, `self`, `super`, etc.
+"variable.parameter" = { fg = "cyan" }                                              # Function parameters.
+"variable.other.member" = { fg = "cyan" }                                           # Fields of composite data types (e.g. structs, unions).
+
+"label" = { fg = "blue" }                                                           # Loop labels, among other things.
+
+"punctuation" = { }                                                                 # Any punctuation symbol.
+"punctuation.delimiter" = { }                                                       # Commas, colons or other delimiter depending on the language.
+"punctuation.bracket" = { }                                                         # Parentheses, angle brackets, etc.
+
+"keyword" = { fg = "base8" }                                                        # Language reserved keywords.
+"keyword.control" = { fg = "base8" }                                                # Control keywords.
+"keyword.control.conditional" = { fg = "base8" }                                    # `if`, `else`, `elif`.
+"keyword.control.repeat" = { fg = "base8" }                                         # `for`, `while`, `loop`.
+"keyword.control.import" = { fg = "base8" }                                         # `import`, `export` `use`.
+"keyword.control.return" = { fg = "base8" }                                         # `return` in most languages.
+"keyword.control.exception" = { fg = "base8" }                                      # `try`, `catch`, `raise`/`throw` and related.
+"keyword.operator" = { fg = "base6" }                                               # `or`, `and`, `in`.
+"keyword.directive" = { fg = "base8" }                                              # Preprocessor directives (#if in C...).
+"keyword.function" = { fg = "cyan" }                                                # The keyword to define a function: "def", "fun", "fn".
+
+# "operator" = { fg = "base6" }                                                     # Logical, mathematical, and other operators.
+"operator" = { fg = "fg-alt" }                                                      # Logical, mathematical, and other operators.
+
+"function" = { fg = "cyan" }
+"function.builtin" = { fg = "cyan" }
+"function.method" = { fg = "dark-cyan" }                                            # Class / Struct methods.
+"function.macro" = { fg = "cyan" }
+"function.special" = { fg = "cyan" }                                                # Preprocessor function in C.
+
+"tag" = { rg = "orange" }                                                           # As in <body> for html, css tags.
+"tag.error" = { fg = "red" }                                                        # Erroneous closing html tags.
+
+"namespace" = { fg = "yellow" }                                                     # Namespace or module identifier.
+
+## Markup
+
+"markup.heading.1" = { fg = "red", modifiers = ["bold"] }                           # Markdown heading 1 color.
+"markup.heading.2" = { fg = "orange", modifiers = ["bold"] }                        # Markdown heading 2 color.
+"markup.heading.3" = { fg = "yellow", modifiers = ["bold"] }                        # Markdown heading 3 color.
+"markup.heading.4" = { fg = "green", modifiers = ["bold"] }                         # Markdown heading 4 color.
+"markup.heading.5" = { fg = "blue", modifiers = ["bold"] }                          # Markdown heading 5 color.
+"markup.heading.6" = { fg = "dark-cyan", modifiers = ["bold"] }                     # Markdown heading 6 color.
+"markup.heading.marker" = { fg = "base7", modifiers = ["bold"] }                    # Hashtag color on Markdown headings.
+
+"markup.list" = { fg = "red" }
+"markup.list.numbered" = { fg = "red" }                                             # Numbered list.
+"markup.list.unnumbered" = { fg = "red" }                                           # Bullet point list.
+
+"markup.bold" = { modifiers = ["bold"] }                                            # Bold text.
+"markup.italic" = { modifiers = ["italic"] }                                        # Italicised text.
+"markup.strikethrough" = { modifiers = ["crossed_out"] }                            # Crossed out text
+
+"markup.link" = { fg = "blue" }
+"markup.link.url" = { fg = "blue", underline = { style =  "line" } }                # Urls pointed to by links.
+"markup.link.label" = { fg = "orange" }                                             # Non-URL link references.
+"markup.link.text" = { fg = "fg" }                                                  # URL and image descriptions in links.
+
+"markup.quote" = { fg = "base7" }                                                   # `> Quotes` in Markdown.
+
+## Markup Interface
+
+"markup.normal" = { }
+"markup.normal.completion" = { bg = "bg-alt", fg = "fg" }                           # For completion doc popup ui.
+"markup.normal.raw" = { bg = "bg-alt", fg = "fg" }                                  # For hover popup ui.
+
+"markup.heading.completion" = { fg = "fg" }                                         # Headings for completion doc popup ui.
+"markup.heading.raw" = { fg = "fg" }                                                # Headings for hover popup ui.
+
+"markup.raw" = { fg = "green" }                                                     # Code block in Markdown.
+"markup.raw.block" = { fg = "green" }                                               # Multiline (```) codeblock in Markdown.
+"markup.raw.inline" = { fg = "green" }                                              # `Inline code block` in Markdown.
+"markup.raw.inline.completion" = { fg = "green", modifiers = ["bold"] }             # ?
+"markup.raw.inline.hover" = { fg = "green", modifiers = ["bold"] }                  # ?
+
+## Diff
+
+"diff.plus" = { fg = "green" }                                                      # Additions.
+"diff.minus" = { fg = "red" }                                                       # Deletions.
+"diff.delta" = { fg = "yellow" }                                                    # Modifications.
+"diff.delta.moved" = { fg = "orange" }                                              # Renamed or moved files.
+
+## Custom Colors
+
+[palette] 
+bg = "#1a1d21"
+bg-alt = "#22262b"
+base0 = "#0f1114"
+base1 = "#171a1e"
+base2 = "#1f2228"
+base3 = "#282c34"
+base4 = "#3d424a"
+base5 = "#515761"
+base6 = "#676d77"
+base7 = "#8b919a"
+base8 = "#e0dcd4"
+fg = "#f0efeb"
+fg-alt = "#ccc4b4"
+red = "#cdacac"
+orange = "#ccc4b4"
+green = "#b8c4b8"
+blue = "#b4bcc4"
+cyan = "#b4c0c8"
+yellow = "#d4ccb4"
+teal = "#b4c4bc"
+dark-cyan = "#98a4ac"

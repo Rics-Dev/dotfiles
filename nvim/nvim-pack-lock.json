@@ -16,10 +16,6 @@
       "rev": "ec57eb02a679737dbf4f88520a0a79cc62eb1664",
       "src": "https://github.com/dmtrKovalenko/fff.nvim"
     },
-    "flow": {
-      "rev": "e58ad3beade5a04b6636d1a18fe8b3a1291b768e",
-      "src": "https://github.com/Rics-Dev/flow"
-    },
     "mason-lspconfig.nvim": {
       "rev": "906c32c8a034dd3d51353d63226bf91aeacd927c",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"

@@ -1,5 +1,5 @@
 [general]
-import = ["./themes/flow.toml"]
+import = ["./themes/current.toml"]
 
 [window]
 opacity = 1
