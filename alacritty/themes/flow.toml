@@ -1,44 +1,78 @@
+# Flow — Alacritty Theme
+# Mirrors the Neovim / Helix palette exactly.
+# All 16 terminal colors map 1:1 with vim.g.terminal_color_N in the Neovim theme.
+
 [colors.primary]
 background = "0x0F1219"
-#background = "0x050709"
 foreground = "0xabb2bf"
 bright_foreground = "0xd7dae0"
 
 [colors.cursor]
-text = "0x0F1219"
-#cursor = "0x5ab0f6"
-cursor = "0xDADADA"
+# Cursor bg = foreground color; cursor fg = background
+text   = "0x0F1219"
+cursor = "0xd7dae0"
 
+[colors.vi_mode_cursor]
+text   = "0x0F1219"
+cursor = "0x5ab0f6"
+
+[colors.search.matches]
+foreground = "0x0F1219"
+background = "0x5ab0f6"
+
+[colors.search.focused_match]
+foreground = "0x0F1219"
+background = "0xebc275"
+
+[colors.hints.start]
+foreground = "0x0F1219"
+background = "0xebc275"
+
+[colors.hints.end]
+foreground = "0xebc275"
+background = "0x0F1219"
+
+[colors.line_indicator]
+foreground = "None"
+background = "None"
+
+[colors.footer_bar]
+foreground = "0x0F1219"
+background = "0x5ab0f6"
+
+# Normal 8 colors
 [colors.normal]
-black = "0x3f4451"
-red = "0xe06c75"
-green = "0x98c379"
-yellow = "0xe5c07b"
-blue = "0x61afef"
-magenta = "0xc678dd"
-cyan = "0x56b6c2"
-white = "0xd7dae0"
+black   = "0x3f4451"   # t_black — UI elements, not pure black
+red     = "0xe06c75"   # struct fields, tags, errors
+green   = "0x98c379"   # strings, success
+yellow  = "0xe5c07b"   # types, constants
+blue    = "0x61afef"   # functions, methods
+magenta = "0xc678dd"   # keywords, control flow
+cyan    = "0x56b6c2"   # specials, builtins
+white   = "0xd7dae0"   # bright foreground
 
+# Bright 8 colors
 [colors.bright]
-black = "0x4f5666"
-red = "0xff616e"
-green = "0xa5e075"
-yellow = "0xebc275"
-blue = "0x5ab0f6"
-magenta = "0xde73ff"
-cyan = "0x4dbdcb"
-white = "0xe6e6e6"
+black   = "0x4f5666"   # t_bright_black — dimmed UI
+red     = "0xff616e"   # errors, diff deletions
+green   = "0xa5e075"   # diff additions, success signs
+yellow  = "0xebc275"   # warnings, inlay hints
+blue    = "0x5ab0f6"   # builtin fns, search
+magenta = "0xde73ff"   # macros, jump labels
+cyan    = "0x4dbdcb"   # diff moved
+white   = "0xe6e6e6"   # brightest text
 
+# Dim colors (used by some terminal apps for low-priority text)
 [colors.dim]
-black = "0x2e333d"
-red = "0xc84a56"
-green = "0x7ea560"
-yellow = "0xc9a662"
-blue = "0x4e94cd"
-magenta = "0xa462bd"
-cyan = "0x479aa5"
-white = "0x9199a5"
+black   = "0x2e333d"
+red     = "0xb85560"
+green   = "0x7aaa60"
+yellow  = "0xbf9e60"
+blue    = "0x4e8aba"
+magenta = "0xa060bb"
+cyan    = "0x449aa5"
+white   = "0x8b919a"
 
 [colors.selection]
-background = "0x3b4559"
-text = "0xd7dae0"
+background = "0x2c3a50"
+foreground = "0xd7dae0"

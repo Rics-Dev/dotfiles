@@ -1,17 +1,29 @@
 # ============================================================
 # Flow — Helix Theme
 # ============================================================
+# Design principles (mirrored from Neovim port):
+#   purple = keywords/control flow   (bold — most visually dominant)
+#   blue   = functions/methods       (action, callable)
+#   yellow = types/constants         (data shape, bold)
+#   red    = struct fields / tags    (ownership markers)
+#   green  = strings                 (literal data — calm)
+#   cyan   = specials / builtins / escapes
+#   gold   = attributes / decorators (meta-level)
+#   comment= visually subordinate italic (4d5566 — readable but recessive)
+#   bg-hierarchy: background < popup < cursorline (all subtle, never loud)
+# ============================================================
 
 # ── Syntax ──────────────────────────────────────────────────
 
-# Identifiers & variables
+# Variables — neutral, identifiers don't compete with syntax
 "variable"                    = "bright_foreground"
 "variable.builtin"            = { fg = "yellow", modifiers = ["italic"] }
 "variable.parameter"          = { fg = "bright_foreground", modifiers = ["italic"] }
+"variable.parameter.builtin"  = { fg = "cyan", modifiers = ["italic"] }
 "variable.other"              = "bright_foreground"
 "variable.other.member"       = "red_field"
 
-# Constants
+# Constants — yellow bold mirrors type family for visual grouping
 "constant"                    = { fg = "yellow", modifiers = ["bold"] }
 "constant.builtin"            = { fg = "yellow", modifiers = ["bold"] }
 "constant.builtin.boolean"    = { fg = "yellow", modifiers = ["bold"] }
@@ -21,21 +33,21 @@
 "constant.numeric.integer"    = "yellow"
 "constant.numeric.float"      = "yellow"
 
-# Strings
+# Strings — green is calming, readable, clearly "data not code"
 "string"                      = "green"
-"string.regexp"               = "green"
+"string.regexp"               = "cyan"
 "string.special"              = "cyan"
 "string.special.path"         = { fg = "bright_blue", modifiers = ["underlined"] }
-"string.special.url"          = { fg = "bright_blue", modifiers = ["underlined"] }
+"string.special.url"          = { fg = "bright_blue", modifiers = ["underlined", "italic"] }
 "string.special.symbol"       = { fg = "cyan", modifiers = ["bold"] }
 
-# Comments
-"comment"                     = { fg = "light_gray", modifiers = ["italic"] }
-"comment.line"                = { fg = "light_gray", modifiers = ["italic"] }
-"comment.block"               = { fg = "light_gray", modifiers = ["italic"] }
+# Comments — distinctly muted. Italic makes them feel like metadata.
+"comment"                     = { fg = "comment_color", modifiers = ["italic"] }
+"comment.line"                = { fg = "comment_color", modifiers = ["italic"] }
+"comment.block"               = { fg = "comment_color", modifiers = ["italic"] }
 "comment.block.documentation" = { fg = "muted_blue", modifiers = ["italic"] }
 
-# Types
+# Types — yellow bold. Distinct from values (not bold) and keywords (purple bold).
 "type"                        = { fg = "yellow", modifiers = ["bold"] }
 "type.builtin"                = { fg = "yellow", modifiers = ["italic"] }
 "type.parameter"              = { fg = "yellow", modifiers = ["italic"] }
@@ -46,16 +58,17 @@
 "attribute"                   = "gold"
 "attribute.builtin"           = { fg = "gold", modifiers = ["bold"] }
 
-# Functions
+# Functions — blue = "things you can call"
 "function"                    = "blue"
 "function.builtin"            = "bright_blue"
 "function.method"             = "blue"
 "function.method.private"     = { fg = "blue", modifiers = ["italic"] }
-"function.macro"              = "purple"
-"function.special"            = "purple"
+"function.macro"              = "bright_purple"
+"function.special"            = "bright_purple"
 "constructor"                 = { fg = "red_field", modifiers = ["bold"] }
 
-# Keywords
+# Keywords — purple bold. The most visually dominant syntax group.
+# Control-flow variants get italic to distinguish loop/conditional from import/storage.
 "keyword"                     = { fg = "purple", modifiers = ["bold"] }
 "keyword.control"             = { fg = "purple", modifiers = ["bold"] }
 "keyword.control.conditional" = { fg = "purple", modifiers = ["italic"] }
@@ -64,38 +77,39 @@
 "keyword.control.return"      = { fg = "purple", modifiers = ["bold"] }
 "keyword.control.exception"   = { fg = "purple", modifiers = ["bold"] }
 "keyword.operator"            = "bright_foreground"
-"keyword.directive"           = "purple"
+"keyword.directive"           = "gold"
 "keyword.function"            = { fg = "purple", modifiers = ["bold"] }
 "keyword.storage"             = { fg = "purple", modifiers = ["bold"] }
 "keyword.storage.type"        = { fg = "purple", modifiers = ["bold"] }
-"keyword.storage.modifier"    = { fg = "purple", modifiers = ["bold"] }
+"keyword.storage.modifier"    = { fg = "purple", modifiers = ["italic"] }
 
-# Operators
+# Operators — neutral; they're glue, not meaning
 "operator"                    = "bright_foreground"
 
-# Punctuation
+# Punctuation — slightly dimmer bracket for readability without distraction
 "punctuation"                 = "bright_foreground"
 "punctuation.delimiter"       = "bright_foreground"
 "punctuation.bracket"         = "bracket_color"
 "punctuation.special"         = "cyan"
 
-# Namespace
-"namespace"                   = { fg = "yellow" }
-"namespace.special"           = { fg = "gold", modifiers = ["bold"] }
+# Namespaces / modules
+"namespace"                   = "yellow"
+"namespace.builtin"           = { fg = "yellow", modifiers = ["italic"] }
 
-# Labels
-"label"                       = "purple"
+# Labels (loop labels, lifetimes)
+"label"                       = "bright_purple"
 
 # Tags (HTML/XML/JSX)
 "tag"                         = "red_field"
 "tag.builtin"                 = "red_field"
 "tag.attribute"               = "gold"
 "tag.delimiter"               = "bright_foreground"
+"tag.error"                   = { fg = "error_color", modifiers = ["bold"] }
 
-# ── Markup (Markdown / Asciidoc / etc.) ─────────────────────
+# ── Markup ──────────────────────────────────────────────────
 
 "markup.heading"              = { fg = "bright_blue", modifiers = ["bold"] }
-"markup.heading.marker"       = { fg = "light_gray" }
+"markup.heading.marker"       = { fg = "comment_color" }
 "markup.heading.1"            = { fg = "bright_blue", modifiers = ["bold"] }
 "markup.heading.2"            = { fg = "blue", modifiers = ["bold"] }
 "markup.heading.3"            = { fg = "bright_purple", modifiers = ["bold"] }
@@ -105,16 +119,17 @@
 "markup.list"                 = "bright_foreground"
 "markup.list.unnumbered"      = "red_field"
 "markup.list.numbered"        = "yellow"
-"markup.list.checked"         = { fg = "green", modifiers = ["bold"] }
-"markup.list.unchecked"       = { fg = "light_gray" }
-"markup.bold"                 = { fg = "yellow", modifiers = ["bold"] }
+"markup.list.checked"         = { fg = "bright_green", modifiers = ["bold"] }
+"markup.list.unchecked"       = { fg = "comment_color" }
+"markup.bold"                 = { fg = "bright_yellow", modifiers = ["bold"] }
 "markup.italic"               = { fg = "purple", modifiers = ["italic"] }
-"markup.strikethrough"        = { modifiers = ["crossed_out"] }
+"markup.strikethrough"        = { fg = "comment_color", modifiers = ["crossed_out"] }
 "markup.link"                 = { fg = "bright_blue", modifiers = ["underlined"] }
 "markup.link.url"             = { fg = "bright_blue", modifiers = ["underlined", "italic"] }
 "markup.link.label"           = { fg = "bright_purple" }
 "markup.link.text"            = "bright_blue"
-"markup.quote"                = { fg = "light_gray", modifiers = ["italic"] }
+"markup.quote"                = { fg = "comment_color", modifiers = ["italic"] }
+"markup.math"                 = "yellow"
 "markup.raw"                  = "green"
 "markup.raw.inline"           = { fg = "green" }
 "markup.raw.block"            = { fg = "green" }
@@ -135,12 +150,12 @@
 "ui.background"               = { bg = "background" }
 "ui.background.separator"     = { fg = "border" }
 
-# Cursor
+# Cursor — mode-aware color. Each mode has a distinct hue.
 "ui.cursor"                   = { fg = "background", bg = "bright_foreground" }
 "ui.cursor.normal"            = { fg = "background", bg = "bright_foreground" }
 "ui.cursor.insert"            = { fg = "background", bg = "bright_blue" }
 "ui.cursor.select"            = { fg = "background", bg = "purple" }
-"ui.cursor.match"             = { fg = "bright_blue", modifiers = ["underlined"] }
+"ui.cursor.match"             = { fg = "bright_blue", modifiers = ["bold", "underlined"] }
 "ui.cursor.primary"           = { fg = "background", bg = "bright_foreground" }
 "ui.cursor.primary.normal"    = { fg = "background", bg = "bright_foreground" }
 "ui.cursor.primary.insert"    = { fg = "background", bg = "bright_blue" }
@@ -148,20 +163,20 @@
 
 # Gutter / line numbers
 "ui.gutter"                   = { bg = "background" }
-"ui.gutter.selected"          = { bg = "background" }
-"ui.linenr"                   = { fg = "light_gray" }
+"ui.gutter.selected"          = { bg = "cursorline_bg" }
+"ui.linenr"                   = { fg = "disabled" }
 "ui.linenr.selected"          = { fg = "bright_foreground", modifiers = ["bold"] }
 
-# Statusline
+# Statusline — mode colors match cursor for instant visual consistency
 "ui.statusline"               = { fg = "bright_foreground", bg = "background_dark" }
-"ui.statusline.inactive"      = { fg = "light_gray", bg = "background_dark" }
+"ui.statusline.inactive"      = { fg = "muted_foreground", bg = "background_dark" }
 "ui.statusline.normal"        = { fg = "background", bg = "bright_blue", modifiers = ["bold"] }
 "ui.statusline.insert"        = { fg = "background", bg = "green", modifiers = ["bold"] }
 "ui.statusline.select"        = { fg = "background", bg = "purple", modifiers = ["bold"] }
 "ui.statusline.separator"     = { fg = "border" }
 
 # Bufferline
-"ui.bufferline"               = { fg = "light_gray", bg = "background" }
+"ui.bufferline"               = { fg = "muted_foreground", bg = "background" }
 "ui.bufferline.active"        = { fg = "bright_foreground", bg = "background", modifiers = ["bold"] }
 "ui.bufferline.background"    = { bg = "background" }
 
@@ -173,8 +188,8 @@
 
 # Text
 "ui.text"                     = "bright_foreground"
-"ui.text.focus"               = { fg = "bright_foreground", bg = "element_selected", modifiers = ["bold"] }
-"ui.text.inactive"            = "light_gray"
+"ui.text.focus"               = { fg = "bright_foreground", bg = "element_active", modifiers = ["bold"] }
+"ui.text.inactive"            = "muted_foreground"
 "ui.text.info"                = { fg = "bright_blue", modifiers = ["bold"] }
 "ui.text.directory"           = "blue"
 
@@ -184,48 +199,49 @@
 
 # Picker header
 "ui.picker.header"            = { bg = "element_active" }
-"ui.picker.header.column"     = { fg = "light_gray", bg = "element_active" }
+"ui.picker.header.column"     = { fg = "muted_foreground", bg = "element_active" }
 "ui.picker.header.column.active" = { fg = "bright_blue", bg = "element_active", modifiers = ["bold"] }
 
 # Highlight
 "ui.highlight"                = { bg = "element_active" }
-"ui.highlight.frameline"      = { bg = "diff_change" }
+"ui.highlight.frameline"      = { bg = "diff_change_bg" }
 
-# Cursorline / cursorcolumn
+# Cursorline — subtle, one notch above bg. Never distracting.
 "ui.cursorline.primary"       = { bg = "cursorline_bg" }
-"ui.cursorline.secondary"     = { bg = "cursorline_bg_dim" }
+"ui.cursorline.secondary"     = { bg = "background" }
 "ui.cursorcolumn.primary"     = { bg = "cursorline_bg" }
-"ui.cursorcolumn.secondary"   = { bg = "cursorline_bg_dim" }
+"ui.cursorcolumn.secondary"   = { bg = "background" }
 
-# Menu (autocomplete)
+# Autocomplete menu
 "ui.menu"                     = { fg = "bright_foreground", bg = "background_dark" }
 "ui.menu.selected"            = { fg = "bright_foreground", bg = "element_active", modifiers = ["bold"] }
-"ui.menu.scroll"              = { fg = "gray", bg = "background_darker" }
+"ui.menu.scroll"              = { fg = "muted_foreground", bg = "background_darker" }
 
 # Virtual / decorative
 "ui.virtual.ruler"            = { bg = "ruler_bg" }
 "ui.virtual.whitespace"       = { fg = "indent_guide" }
 "ui.virtual.indent-guide"     = { fg = "indent_guide" }
-"ui.virtual.inlay-hint"       = { fg = "cyan_dim", bg = "lsp_inlay_hint", modifiers = ["italic"] }
-"ui.virtual.inlay-hint.parameter" = { fg = "muted_blue", bg = "lsp_inlay_hint", modifiers = ["italic"] }
-"ui.virtual.inlay-hint.type"  = { fg = "bright_yellow", bg = "lsp_inlay_hint", modifiers = ["italic"] }
-"ui.virtual.wrap"             = { fg = "light_gray" }
+"ui.virtual.inlay-hint"       = { fg = "comment_color", bg = "inlay_bg", modifiers = ["italic"] }
+"ui.virtual.inlay-hint.parameter" = { fg = "muted_blue", bg = "inlay_bg", modifiers = ["italic"] }
+"ui.virtual.inlay-hint.type"  = { fg = "bright_yellow", bg = "inlay_bg", modifiers = ["italic"] }
+"ui.virtual.wrap"             = { fg = "comment_color" }
 "ui.virtual.jump-label"       = { fg = "bright_purple", modifiers = ["bold"] }
 
-# Diagnostics (gutter indicators)
+# Diagnostics — severity ladder: error > warning > info > hint
+# Colors chosen to be unambiguous even for common color-deficiency types
 "warning"                     = { fg = "warning_color" }
 "error"                       = { fg = "error_color" }
 "info"                        = { fg = "info_color" }
 "hint"                        = { fg = "hint_color" }
 
-# Diagnostics (editing area)
+# Diagnostic underlines — curl for error/warning, dotted/dashed for softer severities
 "diagnostic"                  = { underline = { style = "curl" } }
 "diagnostic.hint"             = { underline = { color = "hint_color",    style = "dotted" } }
 "diagnostic.info"             = { underline = { color = "info_color",    style = "dashed" } }
 "diagnostic.warning"          = { underline = { color = "warning_color", style = "curl" } }
 "diagnostic.error"            = { underline = { color = "error_color",   style = "curl" } }
-"diagnostic.unnecessary"      = { fg = "light_gray", modifiers = ["dim"] }
-"diagnostic.deprecated"       = { modifiers = ["crossed_out"] }
+"diagnostic.unnecessary"      = { fg = "comment_color", modifiers = ["dim"] }
+"diagnostic.deprecated"       = { fg = "comment_color", modifiers = ["crossed_out"] }
 
 # Snippet tabstop
 "tabstop"                     = { fg = "bright_yellow", bg = "element_active" }
@@ -234,7 +250,7 @@
 "ui.debug.breakpoint"         = { fg = "bright_red" }
 "ui.debug.active"             = { fg = "bright_green" }
 
-# ── Markup in popups (completion / hover) ───────────────────
+# ── Markup in popups ────────────────────────────────────────
 
 "markup.normal.completion"    = "bright_foreground"
 "markup.normal.hover"         = "bright_foreground"
@@ -250,72 +266,71 @@
 [palette]
 
 # ── Base backgrounds ─────────────────────────────────────────
+# Progression: background → background_dark → background_darker
+# Each step is visibly distinct but never jarring
 background         = "#0F1219"
 background_dark    = "#090c11"
 background_darker  = "#060810"
-background_lighter = "#161b24"
+background_lighter = "#141820"
 
-# ── Cursorline (subtle, non-distracting) ────────────────────
+# ── Cursorline & rulers ──────────────────────────────────────
+# Very subtle — one step above background, no color cast
 cursorline_bg      = "#141820"
-cursorline_bg_dim  = "#111519"
 ruler_bg           = "#131720"
 
-# ── Foregrounds ──────────────────────────────────────────────
-bright_foreground  = "#d7dae0"
-foreground         = "#abb2bf"
-muted_foreground   = "#697082"
-light_gray         = "#697082"
-gray               = "#3e4452"
-disabled           = "#495162"
-
-# ── Selection / UI state ─────────────────────────────────────
-selection_bg       = "#3b4559"
-selection_fg       = "#d7dae0"
-element_active     = "#2c313a"
-element_selected   = "#252a34"
-element_hover      = "#1e242e"
+# ── UI state backgrounds ─────────────────────────────────────
+element_active     = "#20252f"
+element_selected   = "#1c2130"
+element_hover      = "#191e28"
 element_bg         = "#0F1219"
-popup_bg           = "#0F1219"
+popup_bg           = "#090c11"
+inlay_bg           = "#0e1420"
+diff_change_bg     = "#3a2e14"
+
+# ── Foregrounds ──────────────────────────────────────────────
+bright_foreground  = "#d7dae0"    # identifiers, cursor-adjacent
+foreground         = "#abb2bf"    # body text
+muted_foreground   = "#697082"    # line numbers, inactive UI
+comment_color      = "#4d5566"    # comments — visually subordinate
+disabled           = "#3a4050"
 
 # ── Borders ──────────────────────────────────────────────────
-border             = "#23283a"
-border_focused     = "#495162"
-bracket_color      = "#7a8499"
+border             = "#1c2230"
+border_focused     = "#3a4460"
+bracket_color      = "#6a7896"
 
-# ── Syntax: base palette ─────────────────────────────────────
+# ── Selection ────────────────────────────────────────────────
+selection_bg       = "#2c3a50"    # blue-tinted for natural visual-mode color
+selection_fg       = "#d7dae0"
+
+# ── Syntax: base + bright pairs ─────────────────────────────
 green              = "#98c379"
 bright_green       = "#a5e075"
 yellow             = "#e5c07b"
 bright_yellow      = "#ebc275"
 blue               = "#61afef"
 bright_blue        = "#5ab0f6"
-muted_blue         = "#4d89be"
+muted_blue         = "#4d7fa8"
 purple             = "#c678dd"
 bright_purple      = "#de73ff"
 cyan               = "#56b6c2"
 bright_cyan        = "#4dbdcb"
-cyan_dim           = "#3d96a3"
-red_field          = "#e06c75"
-bright_red         = "#ff616e"
-gold               = "#d19a66"
-white              = "#d7dae0"
-bright_white       = "#e6e6e6"
-black              = "#3f4451"
-bright_black       = "#4f5666"
-
-# ── Diff backgrounds ─────────────────────────────────────────
-diff_add           = "#3b5135"
-diff_change        = "#4e3e30"
-diff_delete        = "#572a32"
-diff_text          = "#293b4d"
+red_field          = "#e06c75"    # struct fields, tags — named to avoid confusion with errors
+bright_red         = "#ff616e"    # errors, diff deletions
+gold               = "#d19a66"    # attributes, decorators
 
 # ── Diagnostics ──────────────────────────────────────────────
+# error uses a purer hue (#ff4757) distinct from red_field syntax
 error_color        = "#ff4757"
 warning_color      = "#e5c07b"
 info_color         = "#5ab0f6"
-hint_color         = "#abb2bf"
+hint_color         = "#56b6c2"
 
-# ── LSP ──────────────────────────────────────────────────────
-lsp_inlay_hint     = "#181d28"
-indent_guide       = "#1e242e"
-indent_guide_active= "#3e4452"
+# ── Diffs ────────────────────────────────────────────────────
+diff_add_bg        = "#253b22"
+diff_delete_bg     = "#3d1820"
+diff_text_bg       = "#1e3248"
+
+# ── Decoration ──────────────────────────────────────────────
+indent_guide       = "#181e2c"
+indent_guide_active= "#2e3548"
