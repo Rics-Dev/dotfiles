@@ -1,0 +1,13 @@
+(defsrc
+  caps
+  esc
+)
+
+(defalias
+  cap (tap-hold-press 125 100 esc lmet)
+)
+
+(deflayer base
+  @cap
+  grv
+)

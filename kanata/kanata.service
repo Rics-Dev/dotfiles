@@ -1,0 +1,13 @@
+[Unit]
+Description=Kanata keyboard remapper
+Documentation=https://github.com/jtroo/kanata
+After=systemd-udevd.service
+
+[Service]
+Type=simple
+ExecStart=/opt/kanata/kanata --cfg /etc/kanata/kanata.kbd
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

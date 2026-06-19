@@ -3,7 +3,7 @@ theme = current
 font-family = "JetBrainsMonoNL Nerd Font Mono"
 #font-feature = -liga
 #font-family = "GeistMono Nerd Font"
-font-size = 14
+font-size = 16
 
 cursor-style = block
 shell-integration-features = no-cursor
@@ -22,7 +22,7 @@ window-save-state = always
 window-decoration = none
 #fullscreen = true
 maximize = false
-window-padding-x = 6
+window-padding-x = 4
 window-padding-y = 6
 
 
