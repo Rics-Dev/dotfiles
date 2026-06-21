@@ -1,0 +1,80 @@
+[theme]
+theme = "native"
+
+# [icons]
+# icons = "awesome6"
+
+# ----------------------------------------
+# CPU
+# ----------------------------------------
+
+[[block]]
+block = "cpu"
+interval = 2
+format = "$icon $utilization"
+
+
+# ----------------------------------------
+# Memory
+# ----------------------------------------
+[[block]]
+block = "memory"
+format = "$icon $mem_used.eng(prefix:M)/$mem_total.eng(prefix:M)"
+
+# ----------------------------------------
+# Temperature
+# ----------------------------------------
+
+# [[block]]
+# block = "temperature"
+# format = " $icon $max max "
+# interval = 10
+# chip = "*-isa-*"
+
+# ----------------------------------------
+# Disk Usage
+# ----------------------------------------
+
+# [[block]]
+# block = "disk_space"
+# path = "/"
+# info_type = "available"
+# format = " $icon $available "
+
+# ----------------------------------------
+# Network
+# ----------------------------------------
+
+# [[block]]
+# block = "net"
+
+# ----------------------------------------
+# Volume (PipeWire)
+# ----------------------------------------
+
+[[block]]
+block = "sound"
+format = "$icon $volume"
+show_volume_when_muted = true
+
+
+# ----------------------------------------
+# Battery
+# ----------------------------------------
+
+[[block]]
+block = "battery"
+format = "$icon $percentage"
+full_format = "$icon $percentage"
+not_charging_format = "$icon $percentage"
+
+
+# ----------------------------------------
+# Clock
+# ----------------------------------------
+
+[[block]]
+block = "time"
+interval = 60
+format = "$timestamp.datetime(f:'%Y-%m-%d %R') "
+

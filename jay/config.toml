@@ -1,0 +1,186 @@
+keymap = """
+    xkb_keymap {
+        xkb_keycodes { include "evdev+aliases(qwerty)" };
+        xkb_types    { include "complete"              };
+        xkb_compat   { include "complete"              };
+        xkb_symbols  { include "pc+us+inet(evdev)"     };
+    };
+    """
+
+
+on-graphics-initialized = [
+    { type = "exec", exec = "cosmic-notifications" },
+    { type = "exec", exec = "wl-tray-bridge" },
+]
+
+auto-reload = true
+window-management-key = "Super_L"
+
+[session-management]
+enabled = true
+
+[status]
+format = "i3bar"
+exec = "i3status-rs"
+# [status]
+# format = "plain"
+# exec = { shell = "while true; do date '+%Y-%m-%d %H:%M'; sleep 1; done" }
+
+
+
+[[clients]]
+match.any = [
+    { comm = "wl-copy" },
+    { comm = "wl-paste" },
+]
+match.sandboxed = false
+capabilities = "data-control"
+
+
+[actions]
+launch-terminal = { type = "exec", exec = "alacritty" }
+launch-browser = { type = "exec", exec = "firefox" }
+launch-launcher = { type = "exec", exec = "fuzzel" }
+launch-files = { type = "exec", exec = "cosmic-files" }
+
+[float]
+show-pin-icon = true
+
+[shortcuts]
+
+mod4-t = "$launch-terminal"
+mod4-b = "$launch-browser"
+mod4-space = "$launch-launcher"
+mod4-f = "$launch-files"
+
+mod4-h = "focus-left"
+mod4-j = "focus-down"
+mod4-k = "focus-up"
+mod4-l = "focus-right"
+
+mod4-shift-h = "move-left"
+mod4-shift-j = "move-down"
+mod4-shift-k = "move-up"
+mod4-shift-l = "move-right"
+
+mod4-d = "split-horizontal"
+mod4-v = "split-vertical"
+
+mod4-s = "toggle-split"
+mod4-m = "toggle-fullscreen"
+mod4-shift-m = "toggle-mono"
+
+mod4-shift-f = "focus-parent"
+mod4-c = "open-control-center"
+mod4-g = "toggle-floating"
+mod4-shift-p = "toggle-float-pinned"
+mod4-q = "close"
+mod4-shift-r = "reload-config-toml"
+mod4-shift-Return = "quit"
+
+
+
+# mod4-Return = { type = "exec", exec = {prog = "swaylock", privileged = true,} }
+
+mod4-1 = { type = "show-workspace", name = "1" }
+mod4-2 = { type = "show-workspace", name = "2" }
+mod4-3 = { type = "show-workspace", name = "3" }
+mod4-4 = { type = "show-workspace", name = "4" }
+mod4-5 = { type = "show-workspace", name = "5" }
+mod4-6 = { type = "show-workspace", name = "6" }
+mod4-7 = { type = "show-workspace", name = "7" }
+mod4-8 = { type = "show-workspace", name = "8" }
+mod4-9 = { type = "show-workspace", name = "9" }
+mod4-10 = { type = "show-workspace", name = "10" }
+mod4-11 = { type = "show-workspace", name = "11" }
+mod4-12 = { type = "show-workspace", name = "12" }
+
+mod4-shift-1 = { type = "move-to-workspace", name = "1" }
+mod4-shift-2 = { type = "move-to-workspace", name = "2" }
+mod4-shift-3 = { type = "move-to-workspace", name = "3" }
+mod4-shift-4 = { type = "move-to-workspace", name = "4" }
+mod4-shift-5 = { type = "move-to-workspace", name = "5" }
+mod4-shift-6 = { type = "move-to-workspace", name = "6" }
+mod4-shift-7 = { type = "move-to-workspace", name = "7" }
+mod4-shift-8 = { type = "move-to-workspace", name = "8" }
+mod4-shift-9 = { type = "move-to-workspace", name = "9" }
+mod4-shift-10 = { type = "move-to-workspace", name = "10" }
+mod4-shift-11 = { type = "move-to-workspace", name = "11" }
+mod4-shift-12 = { type = "move-to-workspace", name = "12" }
+
+
+
+XF86AudioRaiseVolume = {
+    type = "exec",
+    exec = ["pactl", "set-sink-volume", "0", "+5%"],
+}
+XF86AudioLowerVolume = {
+    type = "exec",
+    exec = ["pactl", "set-sink-volume", "0", "-5%"],
+}
+XF86AudioMute = {
+    type = "exec",
+    exec = ["pactl", "set-sink-mute", "0", "toggle"],
+}
+
+shift-Print = {
+    type = "exec",
+    exec = {
+        shell = "grim - | wl-copy",
+        privileged = true,
+    },
+}
+
+Print = {
+    type = "exec",
+    exec = {
+        shell = "grim ~/Pictures/Screenshots/screenshot-$(date +%s).png",
+        privileged = true,
+    },
+}
+
+[theme]
+# ── Flow Theme ──────────────────────────────────────────────
+# Surfaces
+bg-color                         = "#0F1219"
+bar-bg-color                     = "#090c11"
+bar-status-text-color            = "#abb2bf"
+
+# Borders
+border-color                     = "#1c2230"
+
+# Focused window title — Balanced contrast & clean elevation
+focused-title-bg-color           = "#272d39"   
+focused-title-text-color         = "#d7dae0"
+
+# Unfocused titles — muted, subordinate
+unfocused-title-bg-color         = "#141820"
+unfocused-title-text-color       = "#5c6370"
+
+# Focused-inactive — between focused and unfocused
+focused-inactive-title-bg-color  = "#1c2130"
+focused-inactive-title-text-color = "#abb2bf"
+
+# Attention requested — red, hard to miss
+attention-requested-bg-color     = "#ff4757"
+
+# Captured (screen recording) titles
+captured-focused-title-bg-color  = "#252b36"  
+captured-unfocused-title-bg-color = "#141820"  
+
+# Separator between title bar and window content
+separator-color                  = "#1c2230"
+
+# Accent / highlight
+highlight-color                  = "#5ab0f6" 
+
+# Sizes
+border-width  = 2
+title-height  = 24
+bar-height    = 24
+
+# Font
+font = "JetBrainsMono NF 12"
+
+# Bar at top (default)
+bar-position = "top"
