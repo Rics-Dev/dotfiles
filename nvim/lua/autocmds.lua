@@ -16,8 +16,8 @@ end
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = augroup('kickstart-highlight-yank'),
   callback = function()
-    -- vim.hl.hl_op({ higroup = 'IncSearch', timeout = 150 })
-    vim.hl.on_yank({ higroup = 'IncSearch', timeout = 150 })
+    vim.hl.hl_op({ higroup = 'IncSearch', timeout = 150 })
+    -- vim.hl.on_yank({ higroup = 'IncSearch', timeout = 150 })
   end,
 })
 

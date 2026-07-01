@@ -1,0 +1,22 @@
+# Basic functionality
+daemonize
+show-failed-attempts
+ignore-empty-password
+
+# Styling the indicator
+# indicator
+# indicator-radius=100
+# indicator-thickness=10
+
+# Color scheme and transparency
+# Colors are in rrggbb or rrggbbaa format
+ring-color=bb00cc
+key-hl-color=880033
+line-color=00000000
+inside-color=00000088
+separator-color=00000000
+
+# Background and visual effects
+# image=/home/ric/Pictures/wallpapers/wallpaperflare.com_wallpaper.jpg
+# scaling=fill
+# effect-blur=7x5

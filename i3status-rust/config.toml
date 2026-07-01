@@ -48,6 +48,10 @@ format = "$icon $mem_used.eng(prefix:M)/$mem_total.eng(prefix:M)"
 # [[block]]
 # block = "net"
 
+[[block]]
+block = "backlight"
+device = "intel_backlight"
+
 # ----------------------------------------
 # Volume (PipeWire)
 # ----------------------------------------

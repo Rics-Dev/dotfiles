@@ -11,10 +11,17 @@ keymap = """
 on-graphics-initialized = [
     { type = "exec", exec = "cosmic-notifications" },
     { type = "exec", exec = "wl-tray-bridge" },
+    { type = "exec", exec = { shell = "swaybg -i ~/Pictures/wallpapers/wallhaven-ogg3em_1920x1080.png -m fill" } },
 ]
 
 auto-reload = true
 window-management-key = "Super_L"
+middle-click-paste = false
+
+show-titles = false
+show-bar = true      
+workspace-display-order = "sorted"
+
 
 [session-management]
 enabled = true
@@ -37,8 +44,13 @@ match.sandboxed = false
 capabilities = "data-control"
 
 
+
+
+
+
 [actions]
 launch-terminal = { type = "exec", exec = "alacritty" }
+launch-emacs = { type = "exec", exec = "emacs" }
 launch-browser = { type = "exec", exec = "firefox" }
 launch-launcher = { type = "exec", exec = "fuzzel" }
 launch-files = { type = "exec", exec = "cosmic-files" }
@@ -49,6 +61,7 @@ show-pin-icon = true
 [shortcuts]
 
 mod4-t = "$launch-terminal"
+mod4-e = "$launch-emacs"
 mod4-b = "$launch-browser"
 mod4-space = "$launch-launcher"
 mod4-f = "$launch-files"
@@ -63,6 +76,12 @@ mod4-shift-j = "move-down"
 mod4-shift-k = "move-up"
 mod4-shift-l = "move-right"
 
+# Resize windows
+mod4-ctrl-h = { type = "resize", dx1 = -20 }
+mod4-ctrl-j = { type = "resize", dy2 = 20 }
+mod4-ctrl-k = { type = "resize", dy1 = -20 }
+mod4-ctrl-l = { type = "resize", dx2 = 20 }
+
 mod4-d = "split-horizontal"
 mod4-v = "split-vertical"
 
@@ -71,6 +90,7 @@ mod4-m = "toggle-fullscreen"
 mod4-shift-m = "toggle-mono"
 
 mod4-shift-f = "focus-parent"
+mod4-shift-t = "toggle-titles"
 mod4-c = "open-control-center"
 mod4-g = "toggle-floating"
 mod4-shift-p = "toggle-float-pinned"
@@ -184,3 +204,4 @@ font = "JetBrainsMono NF 12"
 
 # Bar at top (default)
 bar-position = "top"
+
